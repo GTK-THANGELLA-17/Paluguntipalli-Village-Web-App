@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import LoadingSpinner from './ui/LoadingSpinner';
@@ -31,9 +30,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('');
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
 
-  // Enhanced image optimization with WebP support
+  // WebP optimization for unsplash images
   const getOptimizedSrc = useCallback((originalSrc: string) => {
     if (originalSrc.includes('unsplash.com')) {
       const separator = originalSrc.includes('?') ? '&' : '?';
@@ -42,8 +41,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     return originalSrc;
   }, []);
 
-  // Intersection Observer for lazy loading optimization
+  // Intersection Observer + Fallback for mobile
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     if (loading === 'eager' || priority) {
       setImageSrc(getOptimizedSrc(src));
       return;
@@ -59,19 +60,23 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       },
       {
         threshold: 0.1,
-        rootMargin: '50px',
+        rootMargin: '100px',
       }
     );
 
     const currentRef = imgRef.current;
     if (currentRef) {
       observer.observe(currentRef);
+      // Fallback after 3 seconds
+      timeoutId = setTimeout(() => {
+        setImageSrc(getOptimizedSrc(src));
+        observer.disconnect();
+      }, 3000);
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      if (currentRef) observer.unobserve(currentRef);
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, [src, loading, priority, getOptimizedSrc]);
 
@@ -85,19 +90,22 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   }, []);
 
   return (
-    <div className={`relative overflow-hidden ${aspectRatio} ${className}`} ref={imgRef}>
-      {/* Loading Animation */}
+    <div
+      className={`relative overflow-hidden w-full ${aspectRatio} ${className}`}
+      ref={imgRef}
+    >
+      {/* Loading Spinner */}
       {isLoading && imageSrc && <LoadingSpinner />}
 
-      {/* Error State */}
+      {/* Error Placeholder */}
       {hasError && <ImageError />}
 
-      {/* Placeholder when no src is set yet */}
+      {/* Placeholder shimmer */}
       {!imageSrc && !hasError && (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 animate-pulse" />
       )}
 
-      {/* Main Image with enhanced transitions */}
+      {/* Final Image */}
       {imageSrc && (
         <motion.img
           src={imageSrc}
@@ -109,11 +117,11 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           onLoad={handleLoad}
           onError={handleError}
           initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ 
-            opacity: isLoading ? 0 : 1, 
-            scale: isLoading ? 1.1 : 1 
+          animate={{
+            opacity: isLoading ? 0 : 1,
+            scale: isLoading ? 1.1 : 1,
           }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{
             imageRendering: '-webkit-optimize-contrast',
             backfaceVisibility: 'hidden',
@@ -122,12 +130,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
 
-      {/* Navigation arrows */}
+      {/* Navigation Arrows */}
       {showNavigationArrows && !isLoading && !hasError && imageSrc && (
         <NavigationArrows onPrevious={onPrevious} onNext={onNext} />
       )}
 
-      {/* Preload for priority images */}
+      {/* Preload */}
       {priority && imageSrc && (
         <link rel="preload" as="image" href={imageSrc} />
       )}

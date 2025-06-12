@@ -71,7 +71,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail size={18} className="text-heritage mr-3 flex-shrink-0" />
                 <a 
-                  href="mailto:thangellagadidamalla@gmail.com"
+                  href="mailto:imgtk17@gmail.com"
                   className="hover:text-heritage transition-colors duration-300"
                 >
                   thangellagadidamalla@gmail.com
