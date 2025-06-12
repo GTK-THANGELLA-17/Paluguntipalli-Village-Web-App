@@ -1,11 +1,15 @@
-
 import { motion } from "framer-motion";
 import { Image, Video } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import LoadingSpinner from "../ui/LoadingSpinner";
 
 interface GalleryItemProps {
-  item: any;
+  item: {
+    type: 'image' | 'video';
+    src: string;
+    thumbnail?: string;
+    alt: string;
+  };
   index: number;
   onSelect: (item: any) => void;
 }
@@ -14,10 +18,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [imageSrc, setImageSrc] = useState<string>('');
-  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver>();
 
-  // Enhanced image optimization with progressive loading
   const getOptimizedImageUrl = (url: string) => {
     if (url.includes('unsplash.com')) {
       const separator = url.includes('?') ? '&' : '?';
@@ -27,13 +30,15 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
   };
 
   useEffect(() => {
+    if (!imgRef.current) return;
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (entry.isIntersecting && !imageSrc) {
-          const optimizedSrc = item.thumbnail ? 
-            getOptimizedImageUrl(item.thumbnail) : 
-            getOptimizedImageUrl(item.src);
+          const optimizedSrc = item.thumbnail
+            ? getOptimizedImageUrl(item.thumbnail)
+            : getOptimizedImageUrl(item.src);
           setImageSrc(optimizedSrc);
         }
       },
@@ -44,9 +49,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
     );
 
     const currentRef = imgRef.current;
-    if (currentRef) {
-      observerRef.current.observe(currentRef);
-    }
+    if (currentRef) observerRef.current.observe(currentRef);
 
     return () => {
       if (observerRef.current && currentRef) {
@@ -66,13 +69,13 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       ref={imgRef}
-      className="gallery-item group cursor-pointer relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+      className="gallery-item group cursor-pointer relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
       data-aos="zoom-in"
       data-aos-delay={Math.min(100 * index, 500)}
       onClick={() => onSelect(item)}
-      whileHover={{ y: -3, scale: 1.01 }}
+      whileHover={{ y: -2, scale: 1.01 }}
       transition={{ duration: 0.2 }}
     >
       <div className="aspect-[4/3] overflow-hidden rounded-xl relative bg-gray-200 dark:bg-gray-700">
@@ -81,7 +84,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
             <LoadingSpinner />
           </div>
         )}
-        
+
         {hasError && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
             <div className="text-center text-gray-500">
@@ -96,7 +99,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
             <img
               src={imageSrc}
               alt={item.alt}
-              className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+              className={`w-full h-full object-cover transition-opacity duration-500 group-hover:scale-105 ${
                 isLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               onLoad={handleImageLoad}
@@ -109,31 +112,35 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
                 transform: 'translateZ(0)',
               }}
             />
-            
+
             {item.type === 'video' && isLoaded && (
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 flex items-center justify-center"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-heritage/80 backdrop-blur-sm text-white border-2 border-white/30">
-                  <Video size={24} className="sm:w-8 sm:h-8" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-black/60 backdrop-blur-sm text-white border-2 border-white/30">
+                  <Video size={24} className="sm:w-7 sm:h-7" />
                 </div>
               </motion.div>
             )}
           </>
         )}
       </div>
-      
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end justify-center rounded-xl"
+
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center rounded-xl"
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
       >
-        <div className="text-white p-4 text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-          {item.type === 'image' ? <Image size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" /> : <Video size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" />}
-          <p className="font-medium text-sm sm:text-base">{item.alt}</p>
+        <div className="text-white p-3 text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+          {item.type === 'image' ? (
+            <Image size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" />
+          ) : (
+            <Video size={20} className="mx-auto mb-2 sm:w-6 sm:h-6" />
+          )}
+          <p className="font-medium text-xs sm:text-sm">{item.alt}</p>
         </div>
       </motion.div>
     </motion.div>
