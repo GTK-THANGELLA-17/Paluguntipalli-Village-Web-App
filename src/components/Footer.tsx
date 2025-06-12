@@ -74,7 +74,7 @@ const Footer = () => {
                   href="mailto:imgtk17@gmail.com"
                   className="hover:text-heritage transition-colors duration-300"
                 >
-                  thangellagadidamalla@gmail.com
+                  imgtk17@gmail.com
                 </a>
               </li>
               <li className="flex items-center">

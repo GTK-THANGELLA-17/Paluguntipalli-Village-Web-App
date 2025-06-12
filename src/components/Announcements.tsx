@@ -18,7 +18,7 @@ const announcements: Announcement[] = [
   },
   {
     title: "Pedda Sarigesu",
-    date: "July 27, 2025",
+    date: "July 6, 2025",
     description: "Special ceremony at the village temple with community gathering.",
     important: true
   }

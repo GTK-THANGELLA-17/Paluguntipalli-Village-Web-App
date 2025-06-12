@@ -43,7 +43,7 @@ const WhyUseApp = () => {
             className="flex items-center justify-center mb-4"
           >
             <Star className="text-heritage dark:text-white mr-2" size={32} />
-            <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white mb-16">Why Use Our App?</h2>
+            <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white mb-16">Why Use Our Web App?</h2>
             <Heart className="text-red-500 ml-2" size={32} />
           </motion.div>
           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
