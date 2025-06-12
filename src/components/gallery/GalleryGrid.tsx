@@ -1,40 +1,31 @@
+// components/GalleryGrid.tsx
 import { motion } from "framer-motion";
-import GalleryItem from './GalleryItem';
-
-interface GalleryItemType {
-  type: 'image' | 'video';
-  src: string;
-  alt: string;
-  thumbnail?: string;
-}
+import GalleryItem from "./GalleryItem";
 
 interface GalleryGridProps {
-  items: GalleryItemType[];
-  onItemSelect: (item: GalleryItemType) => void;
+  items: {
+    type: "image" | "video";
+    src: string;
+    thumbnail?: string;
+    alt: string;
+  }[];
+  onItemSelect: (item: any) => void;
 }
 
 const GalleryGrid: React.FC<GalleryGridProps> = ({ items, onItemSelect }) => {
   return (
-    <motion.div 
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.1,
-          }
-        }
-      }}
+    <motion.div
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
     >
       {items.map((item, index) => (
-        <GalleryItem 
-          key={item.src + index}  // Better unique key for React reconciliation
-          item={item} 
-          index={index} 
-          onSelect={onItemSelect} 
+        <GalleryItem
+          key={index}
+          item={item}
+          index={index}
+          onSelect={onItemSelect}
         />
       ))}
     </motion.div>
