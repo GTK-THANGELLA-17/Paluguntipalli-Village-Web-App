@@ -11,7 +11,7 @@ const villageGallery: GalleryItem[] = [
   { type: 'image', src: "/BUS STAND ROAD.jpg", alt: "Bus Stand Road" },
   { type: 'image', src: "/Hanuman Statue.jpg", alt: "Hanuman Statue" },
   { type: 'image', src: "/VILLAGE START.jpg", alt: "Village Entrance" },
-  { type: 'image', src: "/Temple.jpg", alt: "Temple View" },
+  { type: 'image', src: "/Temple .jpg", alt: "Temple View" },
   { type: 'image', src: "/School.jpg", alt: "Village School" },
   { type: 'image', src: "/Peerla chavidi 1.jpg", alt: "Peerla Chavidi Celebration" },
   { type: 'image', src: "/Kasinayana Temple.jpg", alt: "Kasinayana Temple" },
