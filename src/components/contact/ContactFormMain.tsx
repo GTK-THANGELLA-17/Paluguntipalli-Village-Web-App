@@ -40,7 +40,7 @@ const ContactFormMain = () => {
 
     try {
       const subject = `${formData.category} - Contact from ${formData.name}`;
-      const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone || 'Not provided'}%0D%0ACategory: ${formData.category}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
+      const body = `Contact Form Details:%0D%0A%0D%0AName: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone || 'Not provided'}%0D%0ACategory: ${formData.category}%0D%0A%0D%0AMessage:%0D%0A${formData.message}%0D%0A%0D%0ASubmitted from: Paluguntipalli Village App`;
       
       const mailtoLink = `mailto:imgtk17@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
       window.location.href = mailtoLink;
@@ -118,19 +118,18 @@ const ContactFormMain = () => {
           
           <div>
             <Select onValueChange={(value) => handleInputChange('category', value)} required>
-  <SelectTrigger className="border-heritage/30 focus:border-heritage dark:border-white/30 dark:focus:border-white">
-    <SelectValue placeholder="Select Category *" />
-  </SelectTrigger>
-  <SelectContent className="bg-white dark:bg-[#2a2a2a] border border-heritage/30 dark:border-white/30 shadow-lg rounded-md">
-    <SelectItem value="general">General Inquiry</SelectItem>
-    <SelectItem value="event">Event Information</SelectItem>
-    <SelectItem value="feedback">Feedback</SelectItem>
-    <SelectItem value="support">Technical Support</SelectItem>
-    <SelectItem value="business">Business Partnership</SelectItem>
-    <SelectItem value="media">Media & Press</SelectItem>
-  </SelectContent>
-</Select>
-
+              <SelectTrigger className="border-heritage/30 focus:border-heritage dark:border-white/30 dark:focus:border-white">
+                <SelectValue placeholder="Select Category *" />
+              </SelectTrigger>
+              <SelectContent className="bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 z-[100] shadow-lg">
+                <SelectItem value="general">General Inquiry</SelectItem>
+                <SelectItem value="event">Event Information</SelectItem>
+                <SelectItem value="feedback">Feedback</SelectItem>
+                <SelectItem value="support">Technical Support</SelectItem>
+                <SelectItem value="business">Business Partnership</SelectItem>
+                <SelectItem value="media">Media & Press</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           
           <div>

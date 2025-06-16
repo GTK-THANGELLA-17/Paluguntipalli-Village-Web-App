@@ -1,58 +1,49 @@
-export interface GalleryItem {
-  type: 'image' | 'video';
-  src: string;
-  alt: string;
-  thumbnail?: string; // Only used for videos
-}
-
-// 🏡 Village Gallery Images
-const villageGallery: GalleryItem[] = [
-  { type: 'image', src: "/BUS STAND.jpg", alt: "Bus Stand" },
-  { type: 'image', src: "/BUS STAND ROAD.jpg", alt: "Bus Stand Road" },
-  { type: 'image', src: "/Hanuman Statue.jpg", alt: "Hanuman Statue" },
-  { type: 'image', src: "/VILLAGE START.jpg", alt: "Village Entrance" },
-  { type: 'image', src: "/Temple .jpg", alt: "Temple View" },
-  { type: 'image', src: "/School.jpg", alt: "Village School" },
-  { type: 'image', src: "/Peerla chavidi 1.jpg", alt: "Peerla Chavidi Celebration" },
-  { type: 'image', src: "/Kasinayana Temple.jpg", alt: "Kasinayana Temple" },
-];
-
-// 🎉 Festival Gallery Images
-const festivalGallery: GalleryItem[] = [
-  { type: 'image', src: "/gundam.jpg", alt: "Gundam Procession" },
-  { type: 'image', src: "/peerla chavidi.jpg", alt: "Peerla Chavidi Gathering" },
-  { type: 'image', src: "/peerlu 1.jpg", alt: "Peerlu Festival Crowd" },
-  { type: 'image', src: "/Thangella Swamy And Brother.jpg", alt: "Thangella Swamy and Brother" },
-  { type: 'image', src: "/pedda sarigesu 2.jpg", alt: "Pedda Sarigesu Ceremony 2" },
-  { type: 'image', src: "/pedda sarigesu 1.jpg", alt: "Pedda Sarigesu Ceremony 1" },
-  { type: 'image', src: "/Thangella Swamy.jpg", alt: "Thangella Swamy Portrait" },
-];
-
-// 🎥 Festival Videos
-const festivalVideos: GalleryItem[] = [
-  {
-    type: 'video',
-    src: "/pedda sarigesu 1.mp4",
-    alt: "Pedda Sarigesu Video 1",
-    thumbnail: "/pedda sarigesu 1.jpg"
-  },
-  {
-    type: 'video',
-    src: "/pedda sarigesu 3.mp4",
-    alt: "Pedda Sarigesu Video 2",
-    thumbnail: "/pedda sarigesu image 4.jpg"
-  },
-  {
-    type: 'video',
-    src: "/pedda sarigesu 2.mp4",
-    alt: "Pedda Sarigesu Video 3",
-    thumbnail: "/pedda sarigesu 2.jpg"
-  }
-];
-
-// 📦 Final Export
+// 🖼️ Gallery data with local assets for village heritage
 export const galleryData = {
-  village: villageGallery,
-  festival: festivalGallery,
-  videos: festivalVideos
+  village: [
+    { id: 1, src: "/BUS STAND.jpg", alt: "Bus Stand", type: "image", tags: ["transport", "public place"] },
+    { id: 2, src: "/BUS STAND ROAD.jpg", alt: "Bus Stand Road", type: "image", tags: ["road", "village"] },
+    { id: 3, src: "/Hanuman Statue.jpg", alt: "Hanuman Statue", type: "image", tags: ["statue", "religion"] },
+    { id: 4, src: "/VILLAGE START.jpg", alt: "Village Entrance", type: "image", tags: ["entrance", "landmark"] },
+    { id: 5, src: "/Temple .jpg", alt: "Temple View", type: "image", tags: ["temple", "spiritual"] },
+    { id: 6, src: "/School.jpg", alt: "Village School", type: "image", tags: ["school", "education"] },
+    { id: 7, src: "/Peerla chavidi 1.jpg", alt: "Peerla Chavidi Celebration", type: "image", tags: ["festival", "celebration"] },
+    { id: 8, src: "/Kasinayana Temple.jpg", alt: "Kasinayana Temple", type: "image", tags: ["temple", "heritage"] }
+  ],
+  festival: [
+    { id: 9, src: "/gundam.jpg", alt: "Gundam Procession", type: "image", tags: ["festival", "procession"] },
+    { id: 10, src: "/peerla chavidi.jpg", alt: "Peerla Chavidi Gathering", type: "image", tags: ["gathering",  "event"] },
+    { id: 11, src: "/peerlu 1.jpg", alt: "Peerlu Festival Crowd", type: "image", tags: ["crowd", "festival"] },
+    { id: 12, src: "/Thangella Swamy And Brother.jpg", alt: "image", type: "image", tags: ["portrait", "cultural"] },
+    { id: 13, src: "/pedda sarigesu 2.jpg", alt: "Pedda Sarigesu Ceremony 2", type: "image", tags: ["ceremony", "traditional"] },
+    { id: 14, src: "/pedda sarigesu 1.jpg", alt: "Pedda Sarigesu Ceremony 1", type: "image", tags: ["event", "village"] },
+    { id: 15, src: "/Thangella Swamy.jpg", alt: "Thangella Swamy Portrait", type: "image", tags: ["leader", "festival"] }
+  ],
+  videos: [
+    {
+      id: 16,
+      src: "/pedda sarigesu 1.mp4",
+      thumbnail: "/pedda sarigesu 1.jpg",
+      alt: "Pedda Sarigesu Video 1",
+      type: "video",
+      tags: ["ceremony", "video", "culture"]
+    },
+    {
+      id: 17,
+      src: "/pedda sarigesu 3.mp4",
+      thumbnail: "/pedda sarigesu image 4.jpg",
+      alt: "Pedda Sarigesu Video 2",
+      type: "video",
+      tags: ["tradition", "festival", "community"]
+    },
+    {
+      id: 18,
+      src: "/pedda sarigesu 2.mp4",
+      thumbnail: "/pedda sarigesu 2.jpg",
+      alt: "Pedda Sarigesu Video 3",
+      type: "video",
+      tags: ["ritual", "festival", "village"]
+    }
+  ],
+  heritage: [] // Add heritage entries here if needed
 };

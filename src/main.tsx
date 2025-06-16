@@ -1,56 +1,63 @@
 
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './providers/ThemeProvider';
+import './i18n';
+import { config, validateEnvironment } from './config/environment';
+import { productionUtils } from './utils/productionUtils';
+import { initPerformanceMonitoring } from './config/performance';
+import { registerServiceWorker } from './config/serviceWorker';
+import { setupGlobalErrorHandling } from './config/errorHandling';
+import { initializeProductionFeatures } from './config/initialization';
+import { createFallbackErrorDisplay } from './config/fallback';
 
-// Create a style element for transitions
-const createGlobalStyles = () => {
-  const style = document.createElement('style');
-  style.textContent = `
-    .theme-transition {
-      transition: background-color 1s ease, color 1s ease;
-    }
-    
-    .theme-transition-overlay {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-    
-    .theme-transition-to-dark {
-      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
-      animation: fadeInOut 1s ease;
-    }
-    
-    .theme-transition-to-light {
-      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
-      animation: fadeInOut 1s ease;
-    }
-    
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      50% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-};
+// Production environment validation
+try {
+  validateEnvironment();
+} catch (error) {
+  console.error('Environment validation failed:', error);
+  if (config.isProduction) {
+    throw error; // Fail fast in production
+  }
+}
 
-// Apply global styles
-createGlobalStyles();
+// Initialize all features
+initPerformanceMonitoring();
+registerServiceWorker();
+setupGlobalErrorHandling();
+initializeProductionFeatures();
 
-createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </BrowserRouter>
-);
+// Root element validation
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  const error = new Error('Root element not found. Please ensure index.html contains a div with id="root"');
+  productionUtils.reportError(error, { context: 'app-initialization' });
+  throw error;
+}
+
+// Enhanced root rendering with comprehensive error handling
+try {
+  const root = createRoot(rootElement);
+  
+  root.render(
+    <StrictMode>
+      <BrowserRouter>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </StrictMode>
+  );
+  
+  console.log(`🚀 ${config.APP_NAME} v${config.APP_VERSION} initialized successfully`);
+  
+} catch (error) {
+  console.error('Failed to render application:', error);
+  productionUtils.reportError(error as Error, { context: 'app-render' });
+  
+  // Enhanced fallback error display
+  createFallbackErrorDisplay(rootElement);
+}

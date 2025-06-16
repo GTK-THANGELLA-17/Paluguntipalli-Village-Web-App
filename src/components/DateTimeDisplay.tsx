@@ -101,11 +101,11 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
             type: "spring",
             stiffness: 100
           }}
-          className="fixed top-[72px] left-0 right-0 z-40 flex justify-center items-center py-3 bg-gradient-to-r from-white/90 via-heritage/40 to-white/90 dark:from-[#252525]/90 dark:via-slate/50 dark:to-[#252525]/90 backdrop-blur-xl shadow-2xl border-b-2 border-heritage/30 dark:border-white/30"
-          style={{ height: '60px' }}
+          className="fixed top-[72px] left-0 right-0 z-30 flex justify-center items-center py-2 bg-gradient-to-r from-white/90 via-heritage/40 to-white/90 dark:from-[#252525]/90 dark:via-slate/50 dark:to-[#252525]/90 backdrop-blur-xl shadow-2xl border-b-2 border-heritage/30 dark:border-white/30"
+          style={{ height: '45px' }}
         >
           <motion.div 
-            className="flex flex-col items-center sm:flex-row sm:gap-4 relative overflow-hidden rounded-3xl px-6 py-3 bg-white/90 dark:bg-[#252525]/90 backdrop-blur-xl border-2 border-heritage/40 dark:border-white/40 shadow-2xl"
+            className="flex flex-col items-center sm:flex-row sm:gap-3 relative overflow-hidden rounded-2xl px-4 py-2 bg-white/90 dark:bg-[#252525]/90 backdrop-blur-xl border-2 border-heritage/40 dark:border-white/40 shadow-2xl"
             whileHover={{ 
               scale: 1.05,
               boxShadow: "0 25px 50px rgba(0,0,0,0.25)"
@@ -128,9 +128,9 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             
-            {/* Enhanced date display with premium animations */}
+            {/* Enhanced date display with smaller size */}
             <motion.p 
-              className="text-[#000000] dark:text-white text-sm lg:text-base font-bold relative z-10"
+              className="text-[#000000] dark:text-white text-xs lg:text-sm font-bold relative z-10"
               initial={{ opacity: 0, scale: 0.8, rotateX: -90 }}
               animate={{ opacity: 1, scale: 1, rotateX: 0 }}
               transition={{ 
@@ -159,9 +159,9 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
               </motion.span>
             </motion.p>
             
-            {/* Premium separator with pulsing animation */}
+            {/* Premium separator with pulsing animation - smaller */}
             <motion.div 
-              className="hidden sm:block w-2 h-2 bg-heritage dark:bg-white rounded-full relative"
+              className="hidden sm:block w-1.5 h-1.5 bg-heritage dark:bg-white rounded-full relative"
               animate={{ 
                 scale: [1, 1.5, 1], 
                 opacity: [0.6, 1, 0.6],
@@ -183,9 +183,9 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
               />
             </motion.div>
             
-            {/* Enhanced time display with premium effects */}
+            {/* Enhanced time display with smaller size */}
             <motion.p 
-              className="text-[#000000] dark:text-white font-bold text-sm lg:text-base flex items-center relative z-10"
+              className="text-[#000000] dark:text-white font-bold text-xs lg:text-sm flex items-center relative z-10"
               animate={{ 
                 scale: [1, 1.02, 1],
               }}
@@ -210,7 +210,7 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
               </motion.span>
               {weatherTemp !== null && (
                 <motion.span 
-                  className="ml-3 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/80 dark:to-blue-800/80 px-3 py-1.5 rounded-full text-blue-800 dark:text-blue-100 text-xs lg:text-sm backdrop-blur-sm border-2 border-blue-300 dark:border-blue-600 shadow-lg font-bold relative overflow-hidden"
+                  className="ml-2 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/80 dark:to-blue-800/80 px-2 py-1 rounded-full text-blue-800 dark:text-blue-100 text-xs font-bold relative overflow-hidden"
                   initial={{ opacity: 0, scale: 0.6, rotateY: -180 }}
                   animate={{ opacity: 1, scale: 1, rotateY: 0 }}
                   transition={{ 
@@ -235,8 +235,8 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
               )}
             </motion.p>
             
-            {/* Premium enhanced progress bar */}
-            <div className="absolute -bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 overflow-hidden rounded-full">
+            {/* Premium enhanced progress bar - smaller */}
+            <div className="absolute -bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 overflow-hidden rounded-full">
               <motion.div 
                 className="h-full rounded-full bg-gradient-to-r from-heritage via-blue-500 via-purple-500 to-pink-500 relative overflow-hidden"
                 style={{ width: `${progress}%` }}

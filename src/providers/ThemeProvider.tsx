@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 
 type ThemeType = "light" | "dark";
 
@@ -13,7 +13,7 @@ const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {} 
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeType>("light");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -133,7 +133,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       {children}
     </ThemeContext.Provider>
   );
-}
+};
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);

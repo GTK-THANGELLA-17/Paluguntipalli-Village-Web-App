@@ -26,6 +26,8 @@ const LanguageSwitcher = () => {
   useEffect(() => {
     const handleLanguageChange = (lng: string) => {
       setCurrentLang(lng);
+      // Force re-render of all components by triggering a custom event
+      window.dispatchEvent(new CustomEvent('languageChanged', { detail: lng }));
     };
 
     i18n.on('languageChanged', handleLanguageChange);
@@ -37,7 +39,7 @@ const LanguageSwitcher = () => {
 
   const currentLanguage = languages.find(lang => lang.code === currentLang) || languages[0];
 
-  // Enhanced language change function WITHOUT page refresh
+  // Enhanced language change function
   const handleLanguageChange = async (langCode: string) => {
     if (isChanging || langCode === currentLang) return;
     
@@ -75,7 +77,7 @@ const LanguageSwitcher = () => {
         flag.style.transform = 'translate(-50%, -50%) scale(1.1)';
       });
 
-      // Change language WITHOUT page refresh
+      // Change language
       const success = await changeLanguage(langCode);
       
       if (success) {
@@ -86,6 +88,16 @@ const LanguageSwitcher = () => {
           description: t('language.applied', "Translation applied successfully"),
           duration: 2000,
         });
+
+        // Force complete re-render by updating document attributes
+        document.documentElement.lang = langCode;
+        document.documentElement.setAttribute('data-language', langCode);
+        
+        // Trigger a global refresh event
+        window.dispatchEvent(new CustomEvent('globalLanguageChange', { 
+          detail: { language: langCode, timestamp: Date.now() }
+        }));
+        
       } else {
         throw new Error('Language change failed');
       }

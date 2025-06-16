@@ -119,10 +119,7 @@ const NearbyAttractions = () => {
   return (
     <section id="places" className="py-20 bg-white dark:bg-[#252525]">
       <div className="container mx-auto px-4">
-       <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white mb-16">
-  {t("Places to Visit")}
-</h2>
-
+        <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white mb-16">{t("Places to Visit")}</h2>
         
         {/* Tabs for switching between Village and Nearby attractions */}
         <div className="flex justify-center mb-10">

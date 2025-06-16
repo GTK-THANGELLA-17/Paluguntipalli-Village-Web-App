@@ -1,0 +1,50 @@
+
+/* Premium theme transitions with enhanced effects */
+.theme-transition {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.theme-transition-to-dark {
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #000000 0%, transparent 60%);
+  animation: expandCircle 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.theme-transition-to-light {
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #ffffff 0%, transparent 60%);
+  animation: expandCircle 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes expandCircle {
+  0% {
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+  }
+  100% {
+    clip-path: circle(200% at var(--x, 50%) var(--y, 50%));
+  }
+}
+
+/* Enhanced accessibility for production */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+}

@@ -1,0 +1,87 @@
+
+/* Enhanced section title styling with premium effects */
+.section-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 bg-gradient-to-r from-heritage via-heritage-dark to-heritage bg-clip-text text-transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  filter: drop-shadow(0 2px 4px rgba(139, 69, 19, 0.3));
+  text-align: center !important;
+  width: 100%;
+  display: block;
+}
+
+/* Premium loading states with enhanced effects */
+.loading-skeleton {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.15), 
+    rgba(139,69,19,0.1), 
+    rgba(255,255,255,0.15), 
+    transparent
+  );
+  background-size: 300% 100%;
+  animation: shimmer 2s infinite, shimmerGlow 3s infinite ease-in-out;
+  will-change: background-position, opacity;
+  border-radius: 8px;
+}
+
+.dark .loading-skeleton {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.08), 
+    rgba(255,255,255,0.12), 
+    rgba(255,255,255,0.08), 
+    transparent
+  );
+  background-size: 300% 100%;
+}
+
+/* Premium hover effects for interactive elements */
+.interactive-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-hover:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Premium button animations */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-premium:hover::before {
+  left: 100%;
+}
+
+/* Premium glow effects */
+.glow-heritage {
+  box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+}
+
+.glow-heritage-strong {
+  box-shadow: 0 0 30px rgba(139, 69, 19, 0.8), 0 0 60px rgba(139, 69, 19, 0.4);
+}
+
+/* Premium text effects */
+.text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.text-glow-strong {
+  text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+}

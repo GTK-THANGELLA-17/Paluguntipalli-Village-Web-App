@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Calendar, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import OptimizedImage from "./OptimizedImage";
 import VideoPlayer from "./VideoPlayer";
@@ -42,24 +42,33 @@ const Events = () => {
   const [showAllImages, setShowAllImages] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const nextImage = () => {
+  // Memoize navigation functions to prevent unnecessary re-renders
+  const nextImage = useMemo(() => () => {
     setCurrentImageIndex((prev) => (prev + 1) % eventImages.length);
-  };
+  }, []);
 
-  const prevImage = () => {
+  const prevImage = useMemo(() => () => {
     setCurrentImageIndex((prev) => (prev - 1 + eventImages.length) % eventImages.length);
-  };
+  }, []);
 
-  const visibleImages = showAllImages ? eventImages : eventImages.slice(0, 3);
+  // Optimize visible images calculation
+  const visibleImages = useMemo(() => 
+    showAllImages ? eventImages : eventImages.slice(0, 3),
+    [showAllImages]
+  );
 
   return (
     <section id="main-events" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-[#252525]">
-  <div className="container mx-auto px-4">
-    <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white">
-      Main Events
-    </h2>
-
-
+      <div className="container mx-auto px-4">
+        <motion.h2 
+          className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white" 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          Main Events
+        </motion.h2>
         
         <motion.div 
           className="bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl p-6 sm:p-8 mb-8 sm:mb-12" 
@@ -73,7 +82,7 @@ const Events = () => {
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg border-4 border-heritage dark:border-white">
                 <OptimizedImage
                   src={eventImages[currentImageIndex]}
-                  alt="Peerla Panguda"
+                  alt={`Peerla Panguda Image ${currentImageIndex + 1}`}
                   className="w-full h-full"
                   priority={true}
                   showNavigationArrows={true}
@@ -116,7 +125,7 @@ const Events = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {visibleImages.map((image, index) => (
             <motion.div 
-              key={index} 
+              key={`image-${index}`}
               className="gallery-item relative group"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -168,7 +177,7 @@ const Events = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {videoData.map((video, index) => (
             <motion.div 
-              key={video.id} 
+              key={`video-${video.id}`}
               className="gallery-item relative group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

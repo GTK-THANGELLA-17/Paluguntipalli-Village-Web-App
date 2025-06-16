@@ -19,29 +19,7 @@ export const initializeHeadingAnimations = () => {
     // Apply animation class to each title with optimized DOM manipulation
     sectionTitles.forEach(title => {
       if (title instanceof HTMLElement && !title.classList.contains('processed-heading')) {
-        const text = title.innerText;
-        title.innerHTML = `<span class="animate-heading">${text}</span>`;
-        title.classList.add('processed-heading');
-        
-        // Add optimized hover animation event listeners
-        const headingSpan = title.querySelector('.animate-heading');
-        if (headingSpan) {
-          let isAnimating = false;
-          
-          title.addEventListener('mouseenter', () => {
-            if (!isAnimating) {
-              headingSpan.classList.add('hover-animation');
-              isAnimating = true;
-            }
-          });
-          
-          title.addEventListener('mouseleave', () => {
-            headingSpan.classList.remove('hover-animation');
-            setTimeout(() => {
-              isAnimating = false;
-            }, 300);
-          });
-        }
+        title.classList.add('processed-heading', 'visible-heading');
       }
     });
 
@@ -50,24 +28,18 @@ export const initializeHeadingAnimations = () => {
       const style = document.createElement('style');
       style.id = 'heading-animation-styles';
       style.textContent = `
-        .animate-heading {
-          display: inline-block;
+        .visible-heading {
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: block !important;
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                      text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                      filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                      color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           will-change: transform;
         }
         
-        .animate-heading.hover-animation {
-          transform: scale(1.05) translateY(-2px);
-          text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-          filter: brightness(1.1);
-        }
-        
-        .animate-heading:hover {
-          transform: scale(1.05) translateY(-2px);
-          text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-          filter: brightness(1.1);
+        .visible-heading:hover {
+          transform: translateY(-2px);
+          color: #c19a6b;
         }
         
         /* Smooth scroll optimization */
@@ -89,6 +61,19 @@ export const initializeHeadingAnimations = () => {
         .icon-hover:hover {
           transform: scale(1.1);
         }
+        
+        /* Ensure all headings are visible */
+        h1, h2, h3, h4, h5, h6 {
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+        
+        /* Remove any text hiding effects */
+        .animate-heading {
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: inline-block !important;
+        }
       `;
       document.head.appendChild(style);
     }
@@ -104,9 +89,7 @@ export const initializeHeadingAnimations = () => {
       scheduleWork(() => {
         batch.forEach(heading => {
           if (heading instanceof HTMLElement && !heading.classList.contains('section-title')) {
-            const text = heading.innerText;
-            heading.innerHTML = `<span class="animate-heading">${text}</span>`;
-            heading.classList.add('processed-heading');
+            heading.classList.add('processed-heading', 'visible-heading');
           }
         });
       });

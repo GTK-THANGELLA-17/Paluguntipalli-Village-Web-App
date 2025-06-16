@@ -12,7 +12,7 @@ const resources = {
   hi: { translation: hi }
 };
 
-// Initialize i18next with reliable configuration
+// Initialize i18next with comprehensive configuration
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -29,7 +29,7 @@ i18n
     react: {
       useSuspense: false,
       transSupportBasicHtmlNodes: true,
-      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p', 'span']
+      transKeepBasicHtmlNodesFor: ['br', 'strong', 'i', 'p', 'span', 'div']
     },
     
     detection: {
@@ -40,7 +40,7 @@ i18n
     }
   });
 
-// Enhanced language change function WITHOUT page refresh
+// Enhanced language change function with complete UI refresh
 export const changeLanguage = async (language: string): Promise<boolean> => {
   try {
     console.log('Changing language to:', language);
@@ -56,11 +56,16 @@ export const changeLanguage = async (language: string): Promise<boolean> => {
     // Update localStorage
     localStorage.setItem('i18nextLng', language);
     
-    // Update document language
+    // Update document language and attributes
     document.documentElement.lang = language;
+    document.documentElement.setAttribute('data-language', language);
     
-    // NO PAGE REFRESH - just apply translations
+    // Apply translations to all elements
     applyTranslations();
+    
+    // Force React components to re-render by dispatching events
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: language }));
+    window.dispatchEvent(new CustomEvent('i18nextLanguageChanged', { detail: language }));
     
     console.log('Language changed successfully to:', language);
     return true;
@@ -71,7 +76,7 @@ export const changeLanguage = async (language: string): Promise<boolean> => {
   }
 };
 
-// Apply translations to DOM elements
+// Enhanced translation application
 export const applyTranslations = (): void => {
   try {
     // Update elements with data-i18n attributes
@@ -95,14 +100,41 @@ export const applyTranslations = (): void => {
         (el as HTMLInputElement).setAttribute('placeholder', translated);
       }
     });
+
+    // Update aria-labels
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (key && i18n.exists(key)) {
+        const translated = i18n.t(key);
+        el.setAttribute('aria-label', translated);
+      }
+    });
+
+    // Update titles
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (key && i18n.exists(key)) {
+        const translated = i18n.t(key);
+        el.setAttribute('title', translated);
+      }
+    });
+
   } catch (error) {
     console.error('Error applying translations:', error);
   }
 };
 
-// Listen for language changes
+// Listen for language changes and apply translations
 i18n.on('languageChanged', (lng) => {
   console.log('Language changed event fired:', lng);
+  applyTranslations();
+  
+  // Update CSS direction for RTL languages if needed
+  document.documentElement.dir = lng === 'ar' || lng === 'he' ? 'rtl' : 'ltr';
+});
+
+// Initialize translations on load
+document.addEventListener('DOMContentLoaded', () => {
   applyTranslations();
 });
 

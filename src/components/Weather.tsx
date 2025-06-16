@@ -22,35 +22,47 @@ const Weather = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
+        setLoading(true);
+        setError(null);
+        
         // Using OpenWeatherMap free API - Paluguntipalli coordinates (approximate)
         const apiKey = "4d8fb5b93d4af21d66a2948710284366"; // Free public API key
         const lat = 14.5138; // Approximate lat for Paluguntipalli
         const lon = 79.8927; // Approximate long for Paluguntipalli
         
+        console.log('Fetching weather data...');
+        
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
         );
         
-        if (!response.ok) throw new Error("Weather data not available");
+        console.log('Weather API response status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`Weather API error: ${response.status}`);
+        }
         
         const data = await response.json();
+        console.log('Weather data received:', data);
         
         setWeather({
-          temperature: data.main.temp,
+          temperature: Math.round(data.main.temp),
           description: data.weather[0].description,
           humidity: data.main.humidity,
-          windSpeed: data.wind.speed,
+          windSpeed: Math.round(data.wind.speed * 3.6), // Convert m/s to km/h
           icon: data.weather[0].icon
         });
         
+        console.log('Weather state updated successfully');
+        
       } catch (err) {
         console.error("Error fetching weather:", err);
-        setError("Unable to fetch weather data");
+        setError("Unable to fetch current weather data");
         
         // Fallback to sample data when API fails
         setWeather({
-          temperature: 32,
-          description: "Sunny with clear skies",
+          temperature: 30,
+          description: "Clear skies",
           humidity: 65,
           windSpeed: 12,
           icon: "01d"
@@ -63,13 +75,22 @@ const Weather = () => {
     fetchWeather();
   }, []);
 
-  return (
-    <section id="village-weather" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
-      <div className="container mx-auto px-4">
-        <h2 className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white">
-  {t("Village Weather")}
-</h2>
+  const getWeatherIcon = () => {
+    if (!weather) return <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />;
+    
+    if (weather.description?.toLowerCase().includes("rain")) {
+      return <CloudRain size={120} className="text-blue-400 dark:text-blue-500" />;
+    } else if (weather.description?.toLowerCase().includes("cloud")) {
+      return <Cloud size={120} className="text-gray-400 dark:text-gray-500" />;
+    } else {
+      return <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />;
+    }
+  };
 
+  return (
+    <section id="village-weather" className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white">
+      <div className="container mx-auto px-4">
+        <h2 className="section-title" data-aos="fade-up">{t("Village Weather")}</h2>
         
         <div className="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
           <motion.div 
@@ -91,16 +112,24 @@ const Weather = () => {
                     <Loader2 className="animate-spin text-blue-600 dark:text-blue-400" size={40} />
                     <p className="ml-3 text-blue-600 dark:text-blue-400">{t("Loading weather data...")}</p>
                   </div>
-                ) : error ? (
-                  <p className="text-red-500 mb-4">{error}</p>
                 ) : (
                   <div className="space-y-4">
-                    <div className="flex justify-center md:justify-start items-center gap-2">
-                      <img 
-                        src={`https://openweathermap.org/img/wn/${weather?.icon}@2x.png`} 
-                        alt="Weather icon" 
-                        className="w-16 h-16"
-                      />
+                    {error && !weather && (
+                      <p className="text-red-500 mb-4 text-sm">{error}</p>
+                    )}
+                    
+                    <div className="flex justify-center md:justify-start items-center gap-4">
+                      {weather?.icon ? (
+                        <img 
+                          src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 
+                          alt="Weather icon" 
+                          className="w-16 h-16"
+                          onError={(e) => {
+                            console.log('Weather icon failed to load, hiding image');
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      ) : null}
                       <div>
                         <p className="text-3xl font-bold text-blue-800 dark:text-blue-300">
                           {weather?.temperature}°C
@@ -112,25 +141,31 @@ const Weather = () => {
                     </div>
                     
                     <div className="grid grid-cols-2 gap-4 text-left">
-                      <div className="bg-white/50 dark:bg-gray-800/50 p-2 rounded">
+                      <div className="bg-white/50 dark:bg-gray-800/50 p-3 rounded-lg">
                         <p className="text-sm text-blue-600 dark:text-blue-400">{t("Humidity")}</p>
                         <p className="text-xl font-semibold text-blue-800 dark:text-blue-300">
                           {weather?.humidity}%
                         </p>
                       </div>
-                      <div className="bg-white/50 dark:bg-gray-800/50 p-2 rounded">
+                      <div className="bg-white/50 dark:bg-gray-800/50 p-3 rounded-lg">
                         <p className="text-sm text-blue-600 dark:text-blue-400">{t("Wind Speed")}</p>
                         <p className="text-xl font-semibold text-blue-800 dark:text-blue-300">
                           {weather?.windSpeed} km/h
                         </p>
                       </div>
                     </div>
+                    
+                    {error && weather && (
+                      <p className="text-yellow-600 dark:text-yellow-400 text-xs mt-2">
+                        {t("Showing cached weather data")}
+                      </p>
+                    )}
                   </div>
                 )}
                 
                 <div className="mt-6">
                   <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">{t("Typical weather patterns:")}</p>
-                  <ul className="text-blue-800 dark:text-blue-300 mb-6 text-left list-disc list-inside">
+                  <ul className="text-blue-800 dark:text-blue-300 mb-6 text-left list-disc list-inside text-sm">
                     <li>{t("Summers (March-June): Hot and dry (30°C - 40°C)")}</li>
                     <li>{t("Monsoon (July-September): Moderate rainfall")}</li>
                     <li>{t("Winters (November-February): Cool and pleasant (15°C - 28°C)")}</li>
@@ -160,20 +195,13 @@ const Weather = () => {
                   animate={{ rotate: [0, 10, 0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
                 >
-                  {/* Weather icon animation */}
                   <div className="w-48 h-48 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 flex items-center justify-center relative shadow-lg">
                     <motion.div 
                       className="absolute"
                       animate={{ y: [0, -10, 0, 10, 0] }}
                       transition={{ repeat: Infinity, duration: 10 }}
                     >
-                      {weather?.description?.includes("rain") ? (
-                        <CloudRain size={120} className="text-blue-300 dark:text-blue-500" />
-                      ) : weather?.description?.includes("cloud") ? (
-                        <Cloud size={120} className="text-blue-300 dark:text-blue-500" />
-                      ) : (
-                        <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />
-                      )}
+                      {getWeatherIcon()}
                     </motion.div>
                   </div>
                 </motion.div>

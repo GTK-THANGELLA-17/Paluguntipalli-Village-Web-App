@@ -1,0 +1,113 @@
+
+/* Premium shimmer animation with enhanced GPU acceleration */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    background-position: 200% 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmerGlow {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(2px);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear, shimmerGlow 3s infinite ease-in-out;
+  will-change: background-position, transform, opacity, filter;
+  transform: translateZ(0);
+}
+
+/* Premium gradient animations */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Premium floating animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(10px) rotate(-1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(1deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 8s ease-in-out infinite;
+}
+
+/* Premium pulse animations */
+@keyframes premiumPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+.animate-premium-pulse {
+  animation: premiumPulse 3s ease-in-out infinite;
+}
+
+/* Premium image fade transitions */
+.image-fade-in {
+  animation: fadeInPremium 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInPremium {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}

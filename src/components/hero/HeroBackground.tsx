@@ -13,10 +13,15 @@ interface HeroBackgroundProps {
 }
 
 const slideshowImages = [
-  "/Village.jpg"
+  "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1920&q=80&fm=webp",
+  "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?auto=format&fit=crop&w=1920&q=80&fm=webp",
+  "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1920&q=80&fm=webp",
+  "https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=1920&q=80&fm=webp",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80&fm=webp",
+  "https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=1920&q=80&fm=webp"
 ];
 
-const videoUrls = ["/Village video.mp4"];
+const videoUrls = ["/village-life.mp4"];
 
 const HeroBackground = ({
   currentSlide,
