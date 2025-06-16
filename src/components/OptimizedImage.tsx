@@ -20,7 +20,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   alt,
   className = '',
-  aspectRatio = 'aspect-square',
+  aspectRatio = '',
   loading = 'lazy',
   priority = false,
   showNavigationArrows = false,
@@ -32,19 +32,16 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [imageSrc, setImageSrc] = useState<string>('');
   const imgRef = useRef<HTMLDivElement>(null);
 
-  // WebP optimization for unsplash images
   const getOptimizedSrc = useCallback((originalSrc: string) => {
     if (originalSrc.includes('unsplash.com')) {
       const separator = originalSrc.includes('?') ? '&' : '?';
-      return `${originalSrc}${separator}auto=format&fit=crop&w=800&q=85&fm=webp`;
+      return `${originalSrc}${separator}auto=format&fit=crop&w=1200&q=85&fm=webp`;
     }
     return originalSrc;
   }, []);
 
-  // Intersection Observer + Fallback for mobile
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-
     if (loading === 'eager' || priority) {
       setImageSrc(getOptimizedSrc(src));
       return;
@@ -59,19 +56,19 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '100px',
+        threshold: 0.01,
+        rootMargin: '200px',
       }
     );
 
     const currentRef = imgRef.current;
     if (currentRef) {
       observer.observe(currentRef);
-      // Fallback after 3 seconds
+
       timeoutId = setTimeout(() => {
         setImageSrc(getOptimizedSrc(src));
         observer.disconnect();
-      }, 3000);
+      }, 3000); // fallback
     }
 
     return () => {
@@ -80,47 +77,36 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     };
   }, [src, loading, priority, getOptimizedSrc]);
 
-  const handleLoad = useCallback(() => {
-    setIsLoading(false);
-  }, []);
-
-  const handleError = useCallback(() => {
+  const handleLoad = () => setIsLoading(false);
+  const handleError = () => {
     setIsLoading(false);
     setHasError(true);
-  }, []);
+  };
 
   return (
     <div
-      className={`relative overflow-hidden w-full ${aspectRatio} ${className}`}
       ref={imgRef}
+      className={`relative w-full overflow-hidden ${aspectRatio || 'aspect-video'} ${className}`}
     >
-      {/* Loading Spinner */}
       {isLoading && imageSrc && <LoadingSpinner />}
-
-      {/* Error Placeholder */}
       {hasError && <ImageError />}
-
-      {/* Placeholder shimmer */}
       {!imageSrc && !hasError && (
         <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 animate-pulse" />
       )}
 
-      {/* Final Image */}
       {imageSrc && (
         <motion.img
           src={imageSrc}
           alt={alt}
           loading={loading}
+          sizes="(max-width: 768px) 100vw, 800px"
           className={`w-full h-full object-cover transition-all duration-500 ${
             isLoading ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
           }`}
           onLoad={handleLoad}
           onError={handleError}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{
-            opacity: isLoading ? 0 : 1,
-            scale: isLoading ? 1.1 : 1,
-          }}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: isLoading ? 0 : 1, scale: isLoading ? 1.05 : 1 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
           style={{
             imageRendering: '-webkit-optimize-contrast',
@@ -130,12 +116,10 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         />
       )}
 
-      {/* Navigation Arrows */}
       {showNavigationArrows && !isLoading && !hasError && imageSrc && (
         <NavigationArrows onPrevious={onPrevious} onNext={onNext} />
       )}
 
-      {/* Preload */}
       {priority && imageSrc && (
         <link rel="preload" as="image" href={imageSrc} />
       )}
