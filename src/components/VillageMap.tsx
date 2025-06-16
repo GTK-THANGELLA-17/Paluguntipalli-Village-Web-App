@@ -57,14 +57,14 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             transition={{ duration: 0.3 }}
             className="mb-6"
           >
-            <Button
-              onClick={onBackToFeatures}
-              variant="outline"
-              className="flex items-center gap-2 hover:bg-heritage hover:text-white"
-            >
-              <ArrowLeft size={16} />
-              Back to Features
-            </Button>
+              <Button
+    onClick={onBackToFeatures}
+    variant="outline"
+    className="flex items-center gap-2 hover:bg-heritage hover:text-white text-black dark:text-black"
+  >
+    <ArrowLeft size={16} />
+    Back to Features
+  </Button>
           </motion.div>
         )}
 
