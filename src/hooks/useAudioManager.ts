@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 
 export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
@@ -11,20 +10,18 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
     audio.volume = 0.1;
     audio.preload = 'metadata';
     audioRef.current = audio;
-    
-    const playAudio = async () => {
-      try {
-        await audio.play();
-        setIsAudioPlaying(true);
-      } catch (error) {
-        console.log('Auto-play prevented by browser');
+
+    // Pause audio if user switches tab or app is hidden
+    const handleVisibilityChange = () => {
+      if (document.hidden && audioRef.current && !audioRef.current.paused) {
+        audioRef.current.pause();
+        setIsAudioPlaying(false);
       }
     };
-    
-    if (!loading) {
-      playAudio();
-    }
-    
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Scroll handler to pause audio if isScrolled is true
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -40,15 +37,42 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isScrolled, loading]);
+  }, [isScrolled]);
 
-  return { audioRef, isAudioPlaying, setIsAudioPlaying };
+  // Manual play method
+  const playAudio = async () => {
+    if (loading) return; // Don't allow play if loading
+    try {
+      if (audioRef.current) {
+        await audioRef.current.play();
+        setIsAudioPlaying(true);
+      }
+    } catch (error) {
+      console.log('User interaction required to play audio or autoplay prevented.');
+    }
+  };
+
+  // Manual pause method
+  const pauseAudio = () => {
+    if (audioRef.current && !audioRef.current.paused) {
+      audioRef.current.pause();
+      setIsAudioPlaying(false);
+    }
+  };
+
+  return {
+    audioRef,
+    isAudioPlaying,
+    playAudio,
+    pauseAudio,
+  };
 };
