@@ -4,8 +4,6 @@ import {
   MapPin,
   Satellite,
   Map as MapIcon,
-  ZoomIn,
-  ZoomOut,
   Navigation,
   ArrowLeft,
 } from "lucide-react";
@@ -21,11 +19,15 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const [mapView, setMapView] = useState<"road" | "satellite">("road");
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
-  const roadMapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+  // Embed URLs copied from Google Maps Share > Embed a map for Paluguntipalli
 
+  // Road Map Embed URL
+  const roadMapSrc =
+    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15295.597508862733!2d78.962409!3d15.4808278!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1697488106956!5m2!1sen!2sin";
+
+  // Satellite Map Embed URL (same location, satellite view)
   const satelliteMapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15295.597508862733!2d78.962409!3d15.4808278!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1697488161904!5m2!1sen!2sin";
 
   const handleDirectionsClick = () => {
     if (navigator.geolocation) {
@@ -57,14 +59,14 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             transition={{ duration: 0.3 }}
             className="mb-6"
           >
-              <Button
-    onClick={onBackToFeatures}
-    variant="outline"
-    className="flex items-center gap-2 hover:bg-heritage hover:text-white text-black dark:text-black"
-  >
-    <ArrowLeft size={16} />
-    Back to Features
-  </Button>
+            <Button
+              onClick={onBackToFeatures}
+              variant="outline"
+              className="flex items-center gap-2 hover:bg-heritage hover:text-white text-black dark:text-black"
+            >
+              <ArrowLeft size={16} />
+              Back to Features
+            </Button>
           </motion.div>
         )}
 
@@ -228,17 +230,19 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0 }}
           viewport={{ once: true }}
-          className="text-center mt-6"
+          className="mt-8 flex justify-center"
         >
-          <Button asChild className="hero-button group">
-            <a
-              href="https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4808278,78.962409,15z"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MapPin size={18} className="mr-2 group-hover:animate-bounce" />
-              {t("Open in Google Maps", "Open in Google Maps")}
-            </a>
+          <Button
+            variant="outline"
+            className="hover:bg-heritage hover:text-white text-black dark:text-black"
+            onClick={() =>
+              window.open(
+                "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368",
+                "_blank"
+              )
+            }
+          >
+            Open in Google Maps
           </Button>
         </motion.div>
       </div>
