@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Dialog,
@@ -11,7 +10,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Mail, Globe, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Globe, Twitter, Instagram } from "lucide-react";
 
 export interface DeveloperModalProps {
   open: boolean;
@@ -23,6 +22,7 @@ export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
     { icon: <Github className="h-3 w-3 sm:h-4 sm:w-4" />, label: "GitHub", url: "https://github.com/GTK-THANGELLA-17" },
     { icon: <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />, label: "LinkedIn", url: "https://www.linkedin.com/in/gthangella/" },
     { icon: <Twitter className="h-3 w-3 sm:h-4 sm:w-4 text-blue-400" />, label: "Twitter", url: "https://twitter.com/g_thangella" },
+    { icon: <Instagram className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />, label: "Instagram", url: "https://www.instagram.com/g_thangella_k" },
     { icon: <Mail className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />, label: "Email", url: "mailto:imgtk17@gmail.com" },
     { icon: <Globe className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" }
   ];
@@ -42,12 +42,21 @@ export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
         <div className="flex flex-col items-center gap-3 sm:gap-4 pt-3 sm:pt-4">
           {/* Avatar & Info */}
           <div className="flex flex-col items-center text-center w-full">
-            <Avatar className="h-16 w-16 sm:h-20 sm:w-20 border border-heritage dark:border-white mb-2 sm:mb-3">
+            <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border border-heritage dark:border-white mb-2 sm:mb-3">
               <AvatarImage src="/GTK.JPG" alt="G. Thangella" />
               <AvatarFallback className="text-xs sm:text-sm">GT</AvatarFallback>
             </Avatar>
-            <h3 className="text-xs sm:text-sm font-semibold text-[#000000] dark:text-white">G. Thangella</h3>
+            <h3 className="text-sm sm:text-base font-semibold text-[#000000] dark:text-white">
+              Gadidamalla Thangella
+            </h3>
             <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 whitespace-pre-line leading-snug">
+              Son of Gadidamalla Kasaiah{"\n"}
+              This is my village — Paluguntipalli. I'm a village member.{"\n"}
+              My grandparents, and my babai still live there.{"\n"}
+              I currently live and work in Hyderabad.
+            </p>
+
+            <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 whitespace-pre-line leading-snug">
               💼 Entrepreneur{"\n"}
               🧠 Tech Explorer{"\n"}
               🎨 Creative Thinker{"\n"}
@@ -74,11 +83,13 @@ export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
           {/* Description */}
           <div className="space-y-2 text-xs w-full">
             <p className="text-gray-700 dark:text-gray-300 text-center sm:text-left">
-              I build impactful digital tools to simplify complex systems. The Paluguntipalli Village app reflects my passion for cultural preservation and accessible design.
+              This application was developed to keep our Paluguntipalli villagers informed and connected. You can explore festival highlights, download cultural and village media, and stay updated with local news, events, and traditions.
             </p>
 
             <div>
-              <h4 className="font-medium text-xs sm:text-sm mb-1 text-[#000000] dark:text-white">Tech Stack of This Application</h4>
+              <h4 className="font-medium text-xs sm:text-sm mb-1 text-[#000000] dark:text-white">
+                Tech Stack of This Application
+              </h4>
               <p className="text-gray-600 dark:text-gray-400 text-xs">
                 React, TypeScript, TailwindCSS, shadcn/ui, Framer Motion, Vite
               </p>
@@ -87,7 +98,7 @@ export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
             <div>
               <h4 className="font-medium text-xs sm:text-sm mb-1 text-[#000000] dark:text-white">Mission</h4>
               <p className="text-gray-600 dark:text-gray-400 text-xs">
-                I'm driven to create meaningful digital products that solve real-world problems. My focus is building tools that inspire, innovate, and leave a lasting impact through technology and design.
+                I'm focused on creating meaningful digital products that make a difference. With this app, I hope to preserve our village's culture and help every resident stay connected and informed through simple, effective technology.
               </p>
             </div>
           </div>
