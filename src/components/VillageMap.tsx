@@ -4,8 +4,6 @@ import {
   MapPin,
   Satellite,
   Map as MapIcon,
-  ZoomIn,
-  ZoomOut,
   Navigation,
   ArrowLeft,
 } from "lucide-react";
@@ -19,7 +17,6 @@ interface VillageMapProps {
 const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const { t } = useTranslation();
   const [mapView, setMapView] = useState<"road" | "satellite">("road");
-  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   const roadMapSrc =
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.727933912945!2d78.532818!3d17.412159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93b3f42a7a3f%3A0x17e35614a1b63cd!2sPaluguntipalli%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1650648282284!5m2!1sen!2sin";
@@ -57,14 +54,14 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             transition={{ duration: 0.3 }}
             className="mb-6"
           >
-              <Button
-    onClick={onBackToFeatures}
-    variant="outline"
-    className="flex items-center gap-2 hover:bg-heritage hover:text-white text-black dark:text-black"
-  >
-    <ArrowLeft size={16} />
-    Back to Features
-  </Button>
+            <Button
+              onClick={onBackToFeatures}
+              variant="outline"
+              className="flex items-center gap-2 hover:bg-heritage hover:text-white text-black dark:text-black"
+            >
+              <ArrowLeft size={16} />
+              Back to Features
+            </Button>
           </motion.div>
         )}
 
@@ -77,7 +74,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
         >
           <div className="flex items-center justify-center mb-4">
             <MapPin className="text-heritage mr-3" size={36} />
-            <h2 className="text-4xl font-bold font-playfair text-[#000000] dark:text-white">
+            <h2 className="text-4xl font-bold font-playfair text-black dark:text-white">
               {t("Village Map", "Village Map")}
             </h2>
           </div>
@@ -142,13 +139,13 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             className="lg:col-span-2"
           >
             <div className="relative w-full rounded-2xl overflow-hidden border-4 border-heritage shadow-2xl bg-white dark:bg-black">
-              {/* Maintain 4:3 Aspect Ratio */}
-              <div style={{ paddingTop: "75%", position: "relative" }}>
+              <div className="relative pt-[75%] min-h-[300px]">
                 <iframe
                   src={mapView === "road" ? roadMapSrc : satelliteMapSrc}
                   className="absolute top-0 left-0 w-full h-full rounded-2xl"
                   style={{ border: 0 }}
                   allowFullScreen
+                  allow="fullscreen"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title={`Paluguntipalli ${mapView} view`}
@@ -179,7 +176,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           </motion.div>
         </div>
 
-        {/* Map Features Cards */}
+        {/* Map Features */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
