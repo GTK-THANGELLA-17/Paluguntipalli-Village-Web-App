@@ -12,7 +12,7 @@ export const dailyQuestions: QuizQuestion[] = [
   {
     id: 1,
     question: "What is the traditional festival celebrated during harvest season in Paluguntipalli?",
-    options: ["Peerla Panguda", "Diwali", "Holi", "Ugadi"],
+    options: ["Peerla Panduga", "Diwali", "Holi", "Ugadi"],
     correctAnswer: 0,
     explanation: "Peerla Panguda is our unique harvest festival celebrated with great enthusiasm by the entire village community.",
     category: "Culture"

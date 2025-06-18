@@ -41,7 +41,7 @@ const Gamification: React.FC<GamificationProps> = ({ onClose }) => {
             className="bg-white dark:bg-gray-800 shadow-lg"
           >
             <Home size={16} className="mr-2" />
-            Back to Village
+            Back to features
           </Button>
         </div>
 
