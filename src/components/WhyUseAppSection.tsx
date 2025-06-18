@@ -19,7 +19,7 @@ const features = [
   {
     icon: Download,
     title: "Festival Memories",
-    description: "During festivals like Peerla Panguda, access and download the latest photos and videos to preserve precious memories.",
+    description: "During festivals like Peerla Panduga, access and download the latest photos and videos to preserve precious memories.",
     image: "/VILLAGE START.jpg"
   },
   {

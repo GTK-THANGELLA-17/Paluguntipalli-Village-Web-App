@@ -82,7 +82,7 @@ const Events = () => {
               <div className="relative aspect-square rounded-xl overflow-hidden shadow-lg border-4 border-heritage dark:border-white">
                 <OptimizedImage
                   src={eventImages[currentImageIndex]}
-                  alt={`Peerla Panguda Image ${currentImageIndex + 1}`}
+                  alt={`Peerla Panduga Image ${currentImageIndex + 1}`}
                   className="w-full h-full"
                   priority={true}
                   showNavigationArrows={true}
@@ -93,9 +93,9 @@ const Events = () => {
             </div>
             
             <div className="w-full lg:w-2/3">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 font-playfair text-[#000000] dark:text-white">Peerla Panguda</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 font-playfair text-[#000000] dark:text-white">Peerla Panduga</h3>
               <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-[#000000] dark:text-white">
-                <strong>Peerla Panguda</strong> is the main event celebrated during every
+                <strong>Peerla Panduga</strong> is the main event celebrated during every
                 Moharam. Experience vibrant processions, religious rituals, and cultural
                 performances that unite the community.
               </p>
@@ -119,7 +119,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panguda Images
+          Peerla Panduga Images
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -135,7 +135,7 @@ const Events = () => {
             >
               <OptimizedImage
                 src={image}
-                alt={`Peerla Panguda Image ${index + 1}`}
+                alt={`Peerla Panduga Image ${index + 1}`}
                 aspectRatio="aspect-[4/3]"
                 className="rounded-lg w-full hover:scale-105 transition-transform duration-300"
                 loading="lazy"
@@ -171,7 +171,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panguda Videos
+          Peerla Panduga Videos
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
