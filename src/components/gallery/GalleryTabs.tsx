@@ -1,4 +1,4 @@
-
+import { useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Map, Sparkles, Film, Camera, ImageIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,7 @@ interface GalleryTabsProps {
 
 const GalleryTabs: React.FC<GalleryTabsProps> = ({ galleryData, onItemSelect, isLoading = false }) => {
   const { t } = useTranslation();
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const tabData = [
     {
@@ -49,6 +50,11 @@ const GalleryTabs: React.FC<GalleryTabsProps> = ({ galleryData, onItemSelect, is
     }
   ];
 
+  // Scroll to tab content when a tab is clicked
+  const handleTabChange = () => {
+    contentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -56,7 +62,7 @@ const GalleryTabs: React.FC<GalleryTabsProps> = ({ galleryData, onItemSelect, is
       transition={{ duration: 0.6 }}
       className="w-full"
     >
-      <Tabs defaultValue="village" className="w-full">
+      <Tabs defaultValue="village" onValueChange={handleTabChange} className="w-full">
         <motion.div 
           className="flex justify-center mb-6 sm:mb-8 lg:mb-12"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -115,42 +121,44 @@ const GalleryTabs: React.FC<GalleryTabsProps> = ({ galleryData, onItemSelect, is
             ))}
           </TabsList>
         </motion.div>
-        
-        {tabData.map((tab) => (
-          <TabsContent key={tab.value} value={tab.value} className="mt-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-xl"
-            >
-              {galleryData[tab.value] && galleryData[tab.value].length > 0 ? (
-                <GalleryGrid 
-                  items={galleryData[tab.value]} 
-                  onItemSelect={onItemSelect}
-                  isLoading={isLoading}
-                />
-              ) : (
-                <motion.div 
-                  className="text-center py-12 sm:py-16 lg:py-20"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="text-6xl sm:text-8xl mb-4 sm:mb-6 opacity-40">
-                    <ImageIcon size={60} className="mx-auto text-gray-400 sm:w-20 sm:h-20" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-600 dark:text-gray-400 mb-2 px-4">
-                    No {tab.label.toLowerCase()} available
-                  </h3>
-                  <p className="text-gray-500 dark:text-gray-500 px-4">
-                    Check back later for new {tab.label.toLowerCase()} content
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-          </TabsContent>
-        ))}
+
+        <div ref={contentRef}>
+          {tabData.map((tab) => (
+            <TabsContent key={tab.value} value={tab.value} className="mt-0">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 shadow-xl"
+              >
+                {galleryData[tab.value] && galleryData[tab.value].length > 0 ? (
+                  <GalleryGrid 
+                    items={galleryData[tab.value]} 
+                    onItemSelect={onItemSelect}
+                    isLoading={isLoading}
+                  />
+                ) : (
+                  <motion.div 
+                    className="text-center py-12 sm:py-16 lg:py-20"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <div className="text-6xl sm:text-8xl mb-4 sm:mb-6 opacity-40">
+                      <ImageIcon size={60} className="mx-auto text-gray-400 sm:w-20 sm:h-20" />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-600 dark:text-gray-400 mb-2 px-4">
+                      No {tab.label.toLowerCase()} available
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-500 px-4">
+                      Check back later for new {tab.label.toLowerCase()} content
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
+            </TabsContent>
+          ))}
+        </div>
       </Tabs>
     </motion.div>
   );
