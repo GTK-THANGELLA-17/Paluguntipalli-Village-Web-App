@@ -22,10 +22,10 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
   const roadMapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.727933912945!2d78.532818!3d17.412159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93b3f42a7a3f%3A0x17e35614a1b63cd!2sPaluguntipalli%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1650648282284!5m2!1sen!2sin";
 
   const satelliteMapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.727933912945!2d78.532818!3d17.412159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93b3f42a7a3f%3A0x17e35614a1b63cd!2sPaluguntipalli%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1650648282284!5m2!1sen!2sin";
 
   const handleDirectionsClick = () => {
     if (navigator.geolocation) {
