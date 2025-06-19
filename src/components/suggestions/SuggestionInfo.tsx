@@ -11,7 +11,7 @@ const SuggestionInfo = () => {
         </h4>
         <p className="text-sm text-blue-700 dark:text-blue-300">
           When you click "Submit Suggestion", your default email client will open with a pre-filled message 
-          containing your suggestion details. You can review and send it directly to our development team at imgtk17@gmail.com.
+          containing your suggestion details. You can review and send it directly to our development team at paluguntipalli@gmail.com.
         </p>
       </div>
 

@@ -42,10 +42,10 @@ const ContactInfo = () => {
                 {t('Email', 'Email')}
               </h4>
               <a 
-                href="mailto:imgtk17@gmail.com"
+                href="mailto:paluguntipalli@gmail.com"
                 className="text-heritage hover:text-heritage/80 transition-colors duration-300"
               >
-                imgtk17@gmail.com
+                paluguntipalli@gmail.com
               </a>
             </div>
           </motion.div>

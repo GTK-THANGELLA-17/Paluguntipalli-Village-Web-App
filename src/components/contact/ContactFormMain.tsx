@@ -42,7 +42,7 @@ const ContactFormMain = () => {
       const subject = `${formData.category} - Contact from ${formData.name}`;
       const body = `Contact Form Details:%0D%0A%0D%0AName: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone || 'Not provided'}%0D%0ACategory: ${formData.category}%0D%0A%0D%0AMessage:%0D%0A${formData.message}%0D%0A%0D%0ASubmitted from: Paluguntipalli Village App`;
       
-      const mailtoLink = `mailto:imgtk17@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      const mailtoLink = `mailto:paluguntipalli@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
       window.location.href = mailtoLink;
 
       toast({

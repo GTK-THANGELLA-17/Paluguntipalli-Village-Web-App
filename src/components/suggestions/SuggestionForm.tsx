@@ -47,7 +47,7 @@ const SuggestionForm = ({ onSuccess }: SuggestionFormProps) => {
       const mobileInfo = formData.mobile ? `%0D%0AMobile: ${formData.mobile}` : '';
       const body = `Application Suggestion Details:%0D%0A%0D%0AName: ${formData.name}%0D%0AEmail: ${formData.email}${mobileInfo}%0D%0AVillage Member Status: ${formData.memberStatus}%0D%0ASuggestion Type: ${formData.suggestionType}%0D%0ATitle: ${formData.title}%0D%0A%0D%0ADescription:%0D%0A${formData.description}%0D%0A%0D%0ASubmitted from: Paluguntipalli Village App`;
       
-      const mailtoLink = `mailto:imgtk17@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      const mailtoLink = `mailto:paluguntipalli@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
       window.location.href = mailtoLink;
 
       toast({

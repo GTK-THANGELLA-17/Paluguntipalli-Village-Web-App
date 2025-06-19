@@ -141,7 +141,7 @@ From: Paluguntipalli Village App
     `.trim();
     
     // Create mailto link
-    const mailtoLink = `mailto:imgtk17@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:paluguntipalli@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     
     setTimeout(() => {
       window.location.href = mailtoLink;
