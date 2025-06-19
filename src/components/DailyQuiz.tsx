@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   MapPin,
@@ -18,14 +18,26 @@ interface VillageMapProps {
 const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const { t } = useTranslation();
   const [mapView, setMapView] = useState<"road" | "satellite">("road");
-  const [mapError, setMapError] = useState(false);
+  const [mapBlocked, setMapBlocked] = useState(false);
 
   const coords = "15.4808278,78.962409";
-  const googleMapsPlaceUrl = `https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@${coords},15z`;
+  const googleMapsUrl = `https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@${coords},15z`;
 
   const roadMapSrc = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin`;
 
   const satelliteMapSrc = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin`;
+
+  // Also block on small screens: Google often blocks iframes on mobile browsers
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth <= 768) {
+        setMapBlocked(true);
+      }
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleDirectionsClick = () => {
     if (navigator.geolocation) {
@@ -61,7 +73,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                 onBackToFeatures();
               }}
               variant="outline"
-              className="flex items-center gap-2 bg-transparent text-black dark:bg-black dark:text-white border-gray-400 dark:border-gray-600 hover:bg-heritage hover:text-white transition-colors"
+              className="flex items-center gap-2 bg-transparent text-black dark:text-white dark:bg-black border-gray-400 dark:border-gray-600 hover:bg-heritage hover:text-white transition-colors"
             >
               <ArrowLeft size={16} />
               {t("Back to Features")}
@@ -103,7 +115,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                   variant={mapView === "road" ? "default" : "ghost"}
                   onClick={() => {
                     setMapView("road");
-                    setMapError(false);
+                    setMapBlocked(window.innerWidth <= 768); // check again on toggle
                   }}
                   className={`${
                     mapView === "road"
@@ -118,7 +130,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                   variant={mapView === "satellite" ? "default" : "ghost"}
                   onClick={() => {
                     setMapView("satellite");
-                    setMapError(false);
+                    setMapBlocked(window.innerWidth <= 768);
                   }}
                   className={`${
                     mapView === "satellite"
@@ -133,43 +145,45 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             </div>
           </div>
 
-          {/* Map + Fallback */}
+          {/* Map + fallback */}
           <div className="lg:col-span-2">
             <div className="rounded-xl overflow-hidden border-4 border-heritage shadow-xl aspect-video bg-white dark:bg-gray-800 relative">
-              {!mapError ? (
+              {!mapBlocked ? (
                 <iframe
                   src={mapView === "road" ? roadMapSrc : satelliteMapSrc}
                   className="w-full h-full border-0"
                   allowFullScreen
                   loading="lazy"
                   title={`Paluguntipalli ${mapView}`}
-                  onError={() => setMapError(true)}
+                  onError={() => setMapBlocked(true)}
                 />
               ) : (
                 <div className="flex flex-col justify-center items-center h-full text-center p-4">
                   <AlertTriangle size={40} className="text-red-500 mb-4" />
                   <p className="text-gray-700 dark:text-gray-200 mb-4">
                     {t(
-                      "Map content is blocked or unavailable on this device."
+                      "Map content is blocked or unavailable on mobile devices."
                     )}
                   </p>
+                  <Button asChild>
+                    <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+                      <MapPin className="mr-2" size={18} />
+                      {t("Open in Google Maps")}
+                    </a>
+                  </Button>
                 </div>
               )}
             </div>
 
-            {/* 📌 NOTE + Button always shown */}
+            {/* Always show note + button below */}
             <div className="text-center mt-4">
               <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                 ⚠️ {t(
-                  "Note: If you can't see the map above (common on mobile), click below to open it directly in Google Maps."
+                  "Note: If you can't see the map above, click below to open it directly in Google Maps."
                 )}
               </p>
               <Button asChild>
-                <a
-                  href={googleMapsPlaceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
                   <MapPin className="mr-2" size={18} />
                   {t("Open in Google Maps")}
                 </a>
