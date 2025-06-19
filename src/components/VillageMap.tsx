@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Satellite, Map as MapIcon, ZoomIn, ZoomOut, Navigation, ArrowLeft } from "lucide-react";
+import {
+  MapPin,
+  Satellite,
+  Map as MapIcon,
+  Navigation,
+  ArrowLeft,
+  AlertCircle,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import { useTranslation } from "react-i18next";
 
@@ -10,30 +17,31 @@ interface VillageMapProps {
 
 const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const { t } = useTranslation();
-  const [mapView, setMapView] = useState<'road' | 'satellite'>('road');
+  const [mapView, setMapView] = useState<"road" | "satellite">("road");
+  const [mapError, setMapError] = useState(false);
 
-  // Map URLs updated with embed URLs that differ only by maptype (road or satellite)
-  const roadMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
-  const satelliteMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+  const villageCoords = "15.4808278,78.962409";
+  const googleMapsPlaceUrl = `https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@${villageCoords},15z`;
+  const directionsUrl = `https://www.google.com/maps/dir//${villageCoords}`;
+
+  const roadMapSrc = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin`;
+
+  const satelliteMapSrc = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin`;
 
   const handleDirectionsClick = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          const destination = "15.4808278,78.962409"; // Paluguntipalli coords
-          const directionsUrl = `https://www.google.com/maps/dir/${latitude},${longitude}/${destination}`;
-          window.open(directionsUrl, '_blank');
+          const userDirections = `https://www.google.com/maps/dir/${latitude},${longitude}/${villageCoords}`;
+          window.open(userDirections, "_blank");
         },
         () => {
-          // fallback if user denies location
-          const directionsUrl = `https://www.google.com/maps/dir//15.4808278,78.962409`;
-          window.open(directionsUrl, '_blank');
+          window.open(directionsUrl, "_blank");
         }
       );
     } else {
-      const directionsUrl = `https://www.google.com/maps/dir//15.4808278,78.962409`;
-      window.open(directionsUrl, '_blank');
+      window.open(directionsUrl, "_blank");
     }
   };
 
@@ -49,24 +57,23 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             className="mb-6"
           >
             <Button
-  onClick={onBackToFeatures}
-  variant="outline"
-  className="
-    flex items-center gap-2 
-    bg-transparent text-black 
-    border-gray-400 
-    dark:bg-black dark:text-white dark:border-gray-600 
-    hover:bg-heritage hover:text-white 
-    transition-colors
-  "
->
-  <ArrowLeft size={16} />
-  {t('Back to Features', 'Back to Features')}
-</Button>
-
+              onClick={onBackToFeatures}
+              variant="outline"
+              className="
+                flex items-center gap-2 
+                bg-transparent text-black 
+                dark:bg-black dark:text-white 
+                border-gray-400 dark:border-gray-600 
+                hover:bg-heritage hover:text-white transition-colors
+              "
+            >
+              <ArrowLeft size={16} />
+              {t("Back to Features", "Back to Features")}
+            </Button>
           </motion.div>
         )}
 
+        {/* Title & subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,15 +84,18 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           <div className="flex items-center justify-center mb-4">
             <MapPin className="text-heritage mr-3" size={36} />
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-playfair text-[#000000] dark:text-white">
-              {t('Village Map', 'Village Map')}
+              {t("Village Map", "Village Map")}
             </h2>
           </div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('Explore Paluguntipalli through interactive maps with road and satellite views', 
-              'Explore Paluguntipalli through interactive maps with road and satellite views')}
+            {t(
+              "Explore Paluguntipalli through interactive maps with road and satellite views",
+              "Explore Paluguntipalli through interactive maps with road and satellite views"
+            )}
           </p>
         </motion.div>
 
+        {/* Main grid */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {/* Map View Toggle */}
           <motion.div
@@ -97,32 +107,46 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           >
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg h-fit">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 text-center lg:text-left">
-                {t('Map View', 'Map View')}
+                {t("Map View", "Map View")}
               </h3>
               <div className="flex lg:flex-col gap-2">
                 <Button
-                  variant={mapView === 'road' ? 'default' : 'ghost'}
+                  variant={mapView === "road" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setMapView('road')}
-                  className={`${mapView === 'road' ? 'bg-heritage text-white' : 'text-gray-600 dark:text-gray-300'} w-full justify-start`}
+                  onClick={() => {
+                    setMapError(false);
+                    setMapView("road");
+                  }}
+                  className={`${
+                    mapView === "road"
+                      ? "bg-heritage text-white"
+                      : "text-gray-600 dark:text-gray-300"
+                  } w-full justify-start`}
                 >
                   <MapIcon size={16} className="mr-2" />
-                  {t('Road View', 'Road View')}
+                  {t("Road View", "Road View")}
                 </Button>
                 <Button
-                  variant={mapView === 'satellite' ? 'default' : 'ghost'}
+                  variant={mapView === "satellite" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setMapView('satellite')}
-                  className={`${mapView === 'satellite' ? 'bg-heritage text-white' : 'text-gray-600 dark:text-gray-300'} w-full justify-start`}
+                  onClick={() => {
+                    setMapError(false);
+                    setMapView("satellite");
+                  }}
+                  className={`${
+                    mapView === "satellite"
+                      ? "bg-heritage text-white"
+                      : "text-gray-600 dark:text-gray-300"
+                  } w-full justify-start`}
                 >
                   <Satellite size={16} className="mr-2" />
-                  {t('Satellite View', 'Satellite View')}
+                  {t("Satellite View", "Satellite View")}
                 </Button>
               </div>
             </div>
           </motion.div>
 
-          {/* Map iframe */}
+          {/* Map with fallback */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,15 +154,40 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="rounded-xl overflow-hidden border-4 border-heritage shadow-xl h-[300px] sm:h-[400px] bg-white dark:bg-gray-800">
-              <iframe
-                src={mapView === 'road' ? roadMapSrc : satelliteMapSrc}
-                className="w-full h-full border-0"
-                allowFullScreen
-                loading="lazy"
-                title={`Paluguntipalli ${mapView === 'road' ? 'Road' : 'Satellite'} Map`}
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="rounded-xl overflow-hidden border-4 border-heritage shadow-xl aspect-video bg-white dark:bg-gray-800 relative">
+              {!mapError ? (
+                <iframe
+                  src={mapView === "road" ? roadMapSrc : satelliteMapSrc}
+                  className="w-full h-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                  title={`Paluguntipalli ${
+                    mapView === "road" ? "Road" : "Satellite"
+                  } Map`}
+                  referrerPolicy="no-referrer-when-downgrade"
+                  onError={() => setMapError(true)}
+                />
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+                  <AlertCircle className="text-red-600 mb-3" size={40} />
+                  <p className="text-gray-800 dark:text-gray-200 mb-4">
+                    {t(
+                      "Map failed to load. This might be due to network restrictions or Google Maps blocking the embed.",
+                      "Map failed to load. This might be due to network restrictions or Google Maps blocking the embed."
+                    )}
+                  </p>
+                  <Button asChild>
+                    <a
+                      href={googleMapsPlaceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MapPin className="mr-2" size={18} />
+                      {t("Open in Google Maps", "Open in Google Maps")}
+                    </a>
+                  </Button>
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -153,18 +202,18 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg h-fit">
               <div className="flex items-center mb-3">
                 <MapPin className="text-heritage mr-2" size={20} />
-                <h3 className="font-bold text-gray-800 dark:text-white">Paluguntipalli</h3>
+                <h3 className="font-bold text-gray-800 dark:text-white">
+                  Paluguntipalli
+                </h3>
               </div>
-              <div className="space-y-1 text-sm">
-                <p className="text-gray-600 dark:text-gray-300">
-                  AP 523368, India • 15.48°N, 78.96°E
-                </p>
-              </div>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">
+                AP 523368, India • {villageCoords} (Approx.)
+              </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Features and Directions */}
+        {/* Features + Directions */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -174,29 +223,50 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
         >
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
             <MapIcon className="text-heritage mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-800 dark:text-white mb-2">{t('Interactive Navigation', 'Interactive Navigation')}</h3>
+            <h3 className="font-bold text-gray-800 dark:text-white mb-2">
+              {t("Interactive Navigation", "Interactive Navigation")}
+            </h3>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              {t('Zoom, pan, and explore every corner of our village', 'Zoom, pan, and explore every corner of our village')}
+              {t(
+                "Zoom, pan, and explore every corner of our village",
+                "Zoom, pan, and explore every corner of our village"
+              )}
             </p>
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
             <Satellite className="text-heritage mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-800 dark:text-white mb-2">{t('Satellite Imagery', 'Satellite Imagery')}</h3>
+            <h3 className="font-bold text-gray-800 dark:text-white mb-2">
+              {t("Satellite Imagery", "Satellite Imagery")}
+            </h3>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              {t('View detailed aerial images of village landmarks', 'View detailed aerial images of village landmarks')}
+              {t(
+                "View detailed aerial images of village landmarks",
+                "View detailed aerial images of village landmarks"
+              )}
             </p>
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
             <Navigation className="text-heritage mx-auto mb-3" size={32} />
-            <h3 className="font-bold text-gray-800 dark:text-white mb-2">{t('Directions', 'Directions')}</h3>
+            <h3 className="font-bold text-gray-800 dark:text-white mb-2">
+              {t("Directions", "Directions")}
+            </h3>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
-              {t('Get directions to reach Paluguntipalli easily', 'Get directions to reach Paluguntipalli easily')}
+              {t(
+                "Get directions to reach Paluguntipalli easily",
+                "Get directions to reach Paluguntipalli easily"
+              )}
             </p>
-            <Button onClick={handleDirectionsClick} className="hero-button group mx-auto inline-flex items-center">
-              <Navigation size={18} className="mr-2 group-hover:animate-bounce" />
-              {t('Get Directions', 'Get Directions')}
+            <Button
+              onClick={handleDirectionsClick}
+              className="hero-button group mx-auto inline-flex items-center"
+            >
+              <Navigation
+                size={18}
+                className="mr-2 group-hover:animate-bounce"
+              />
+              {t("Get Directions", "Get Directions")}
             </Button>
           </div>
         </motion.div>
@@ -211,13 +281,16 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
         >
           <Button asChild className="hero-button group">
             <a
-              href="https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4808278,78.962409,15z"
+              href={googleMapsPlaceUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center"
             >
-              <MapPin size={18} className="mr-2 group-hover:animate-bounce" />
-              {t('Open in Google Maps', 'Open in Google Maps')}
+              <MapPin
+                size={18}
+                className="mr-2 group-hover:animate-bounce"
+              />
+              {t("Open in Google Maps", "Open in Google Maps")}
             </a>
           </Button>
         </motion.div>
