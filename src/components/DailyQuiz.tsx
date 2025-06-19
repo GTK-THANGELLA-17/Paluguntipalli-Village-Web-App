@@ -58,7 +58,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                onBackToFeatures(); // ensure it fires YOUR prop, not default nav
+                onBackToFeatures();
               }}
               variant="outline"
               className="flex items-center gap-2 bg-transparent text-black dark:bg-black dark:text-white border-gray-400 dark:border-gray-600 hover:bg-heritage hover:text-white transition-colors"
@@ -153,18 +153,27 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                       "Map content is blocked or unavailable on this device."
                     )}
                   </p>
-                  <Button asChild>
-                    <a
-                      href={googleMapsPlaceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MapPin className="mr-2" size={18} />
-                      {t("Open in Google Maps")}
-                    </a>
-                  </Button>
                 </div>
               )}
+            </div>
+
+            {/* 📌 NOTE + Button always shown */}
+            <div className="text-center mt-4">
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                ⚠️ {t(
+                  "Note: If you can't see the map above (common on mobile), click below to open it directly in Google Maps."
+                )}
+              </p>
+              <Button asChild>
+                <a
+                  href={googleMapsPlaceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MapPin className="mr-2" size={18} />
+                  {t("Open in Google Maps")}
+                </a>
+              </Button>
             </div>
           </div>
 
@@ -182,27 +191,17 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           </div>
         </div>
 
-        {/* Bottom Buttons */}
+        {/* Get Directions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mt-8 space-x-4"
+          className="text-center mt-8"
         >
           <Button onClick={handleDirectionsClick} className="hero-button">
             <Navigation className="mr-2" size={18} />
             {t("Get Directions")}
-          </Button>
-          <Button asChild className="hero-button">
-            <a
-              href={googleMapsPlaceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MapPin className="mr-2" size={18} />
-              {t("Open in Google Maps")}
-            </a>
           </Button>
         </motion.div>
       </div>
