@@ -36,7 +36,7 @@ const QuizHeader = ({ onBackToFeatures }: QuizHeaderProps) => {
         </div>
       </div>
       <p className="text-lg text-gray-600 dark:text-gray-300">
-        Test your knowledge about our village!
+        Test your General knowledge
       </p>
     </motion.div>
   );
