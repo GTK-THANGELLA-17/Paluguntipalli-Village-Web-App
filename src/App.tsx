@@ -1,4 +1,3 @@
-
 import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import ErrorBoundary from '@/components/ErrorBoundary';
@@ -7,15 +6,15 @@ import { initializeHeadingAnimations } from '@/utils/animationUtils';
 import { useTheme } from '@/providers/ThemeProvider';
 import { Toaster } from '@/components/ui/sonner';
 
-// Lazy load pages for better performance
+// ✅ Lazy load pages
 const Index = lazy(() => import('@/pages/Index'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
+const VillageMap = lazy(() => import('@/components/VillageMap')); // ✅
 
 function App() {
   const location = useLocation();
   const { theme } = useTheme();
 
-  // Initialize animations when the route changes or app loads
   useEffect(() => {
     const animationFrame = requestAnimationFrame(() => {
       try {
@@ -24,15 +23,12 @@ function App() {
         console.warn('Animation initialization failed:', error);
       }
     });
-    
     return () => {
       cancelAnimationFrame(animationFrame);
     };
   }, [location.pathname]);
 
-  // Preload critical resources
   useEffect(() => {
-    // Preload fonts
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'font';
@@ -40,7 +36,6 @@ function App() {
     link.crossOrigin = 'anonymous';
     link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
     document.head.appendChild(link);
-
     return () => {
       if (link.parentNode) {
         link.parentNode.removeChild(link);
@@ -53,10 +48,11 @@ function App() {
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/village-map" element={<VillageMap />} /> {/* ✅ */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        
-        <Toaster 
+
+        <Toaster
           position="top-right"
           theme={theme}
           richColors
