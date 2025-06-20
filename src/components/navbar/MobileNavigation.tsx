@@ -155,7 +155,7 @@ const MobileNavigation = ({
               ]
             )}
 
-            {/* AI Assistant in Mobile Menu */}
+            {/* Chat Assistant in Mobile Menu */}
             <div className="px-4 py-2 mt-4 text-sm font-semibold text-heritage dark:text-white border-b border-gray-100 dark:border-gray-700">
               Assistant
             </div>
@@ -169,7 +169,7 @@ const MobileNavigation = ({
                 onClick={onAIAssistantClick}
               >
                 <Bot size={18} className="mr-2" />
-                <span>AI Assistant</span>
+                <span>Chat Assistant</span>
               </Button>
             </motion.div>
 

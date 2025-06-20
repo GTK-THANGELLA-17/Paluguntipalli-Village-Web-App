@@ -15,7 +15,7 @@ const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onA
     console.log('Feature clicked:', sectionId);
     
     if (sectionId === 'ai-assistant') {
-      console.log('AI Assistant clicked, onAIAssistantOpen available:', !!onAIAssistantOpen);
+      console.log('Chat Assistant clicked, onAIAssistantOpen available:', !!onAIAssistantOpen);
       if (onAIAssistantOpen) {
         onAIAssistantOpen();
       } else {
@@ -39,8 +39,8 @@ const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onA
     },
     {
       id: 'ai-assistant',
-      title: 'AI Assistant 🤖',
-      description: 'Get instant help and navigate through the app with our smart AI assistant.',
+      title: 'Chat Assistant 🤖',
+      description: 'Get instant help and navigate through the app with our smart Chat Assistant.',
       icon: MessageSquare,
       color: 'from-purple-500 to-pink-600',
       stats: 'Chat Support'

@@ -80,15 +80,15 @@ const DesktopNavigation = ({
         </NavigationMenuList>
       </NavigationMenu>
 
-      {/* AI Assistant Button */}
+      {/* Chat Assistant Button */}
       <Button
         variant="ghost"
         className={`hover:text-heritage hover:bg-heritage/10 transition-colors ${theme === 'light' ? 'text-black' : 'text-white'}`}
         onClick={onAIAssistantClick}
-        aria-label="Open AI Assistant"
+        aria-label="Open Chat Assistant"
       >
         <MessageSquare size={18} />
-        <span className={`ml-1 ${theme === 'light' ? 'text-black' : 'text-white'}`}>AI Assistant</span>
+        <span className={`ml-1 ${theme === 'light' ? 'text-black' : 'text-white'}`}>Chat Assistant</span>
       </Button>
 
       {/* Audio Control */}
