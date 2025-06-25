@@ -8,17 +8,14 @@ import {
   ArrowLeft,
   AlertCircle,
 } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "./ui/button"; // Assume you have this Button component
 import { useTranslation } from "react-i18next";
 
-interface VillageMapProps {
-  onBackToFeatures?: () => void;
-}
-
-const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
+// VillageMap component (your full code with slight edits for back button)
+const VillageMap: React.FC<{ onBackToFeatures: () => void }> = ({ onBackToFeatures }) => {
   const { t } = useTranslation();
-  const [mapView, setMapView] = useState<"road" | "satellite">("road");
-  const [mapError, setMapError] = useState(false);
+  const [mapView, setMapView] = React.useState<"road" | "satellite">("road");
+  const [mapError, setMapError] = React.useState(false);
 
   const villageCoords = "15.4808278,78.962409";
   const googleMapsPlaceUrl = `https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@${villageCoords},15z`;
@@ -45,33 +42,40 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
     }
   };
 
+  // Handle Back to Features + scroll smoothly
+  const handleBackClick = () => {
+    onBackToFeatures();
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-blue-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
       <div className="container mx-auto px-4">
         {/* Back to Features Button */}
-        {onBackToFeatures && (
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-6"
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mb-6"
+        >
+          <Button
+            onClick={handleBackClick}
+            variant="outline"
+            className="
+              flex items-center gap-2 
+              bg-transparent text-black 
+              dark:bg-black dark:text-white 
+              border-gray-400 dark:border-gray-600 
+              hover:bg-heritage hover:text-white transition-colors
+            "
           >
-            <Button
-              onClick={onBackToFeatures}
-              variant="outline"
-              className="
-                flex items-center gap-2 
-                bg-transparent text-black 
-                dark:bg-black dark:text-white 
-                border-gray-400 dark:border-gray-600 
-                hover:bg-heritage hover:text-white transition-colors
-              "
-            >
-              <ArrowLeft size={16} />
-              {t("Back to Features", "Back to Features")}
-            </Button>
-          </motion.div>
-        )}
+            <ArrowLeft size={16} />
+            {t("Back to Features", "Back to Features")}
+          </Button>
+        </motion.div>
 
         {/* Title & subtitle */}
         <motion.div
@@ -161,9 +165,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                   className="w-full h-full border-0"
                   allowFullScreen
                   loading="lazy"
-                  title={`Paluguntipalli ${
-                    mapView === "road" ? "Road" : "Satellite"
-                  } Map`}
+                  title={`Paluguntipalli ${mapView === "road" ? "Road" : "Satellite"} Map`}
                   referrerPolicy="no-referrer-when-downgrade"
                   onError={() => setMapError(true)}
                 />
@@ -299,4 +301,47 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   );
 };
 
-export default VillageMap;
+// Simple Features section
+const WhyUseAppSection: React.FC<{ onShowMap: () => void }> = ({ onShowMap }) => {
+  const { t } = useTranslation();
+  return (
+    <section
+      id="features"
+      className="py-16 bg-white dark:bg-gray-900 text-center"
+    >
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+        {t("Why Use Our App", "Why Use Our App")}
+      </h1>
+      <p className="max-w-xl mx-auto mb-8 text-gray-700 dark:text-gray-300">
+        {t(
+          "Discover the benefits and features of our village exploration app.",
+          "Discover the benefits and features of our village exploration app."
+        )}
+      </p>
+      <Button onClick={onShowMap} className="px-6 py-3">
+        {t("Show Village Map", "Show Village Map")}
+      </Button>
+    </section>
+  );
+};
+
+// Main App component controlling toggle
+export default function App() {
+  const [showVillageMap, setShowVillageMap] = useState(false);
+
+  const handleShowMap = () => setShowVillageMap(true);
+  const handleBackToFeatures = () => {
+    setShowVillageMap(false);
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <>
+      {!showVillageMap && <WhyUseAppSection onShowMap={handleShowMap} />}
+      {showVillageMap && <VillageMap onBackToFeatures={handleBackToFeatures} />}
+    </>
+  );
+}
