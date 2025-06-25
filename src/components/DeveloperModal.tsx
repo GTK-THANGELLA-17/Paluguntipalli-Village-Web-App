@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Github, Linkedin, Mail, Globe, Twitter, Instagram } from "lucide-react";
@@ -17,7 +17,20 @@ export interface DeveloperModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+// Replace with your actual image file names in the public folder
+const images = ["/GTK PIC.jpg","/gtk 2.jpg", "/GTK.png", ];
+
 export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Slideshow logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   const developerLinks = [
     { icon: <Github className="h-3 w-3 sm:h-4 sm:w-4" />, label: "GitHub", url: "https://github.com" },
     { icon: <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />, label: "LinkedIn", url: "https://www.linkedin.com/in/gthangella/" },
@@ -40,12 +53,16 @@ export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
         </DialogHeader>
 
         <div className="flex flex-col items-center gap-3 sm:gap-4 pt-3 sm:pt-4">
-          {/* Avatar & Info */}
+          {/* Avatar Slideshow */}
           <div className="flex flex-col items-center text-center w-full">
-            <Avatar className="h-20 w-20 sm:h-24 sm:w-24 border border-heritage dark:border-white mb-2 sm:mb-3">
-              <AvatarImage src="/GTK.JPG" alt="G. Thangella" />
-              <AvatarFallback className="text-xs sm:text-sm">GT</AvatarFallback>
-            </Avatar>
+            <div className="h-28 w-28 sm:h-32 sm:w-32 mb-2 sm:mb-3 overflow-hidden rounded-lg border border-heritage dark:border-white">
+              <img
+                src={images[currentImageIndex]}
+                alt="G. Thangella"
+                className="w-full h-full object-cover transition-opacity duration-500"
+              />
+            </div>
+
             <h3 className="text-sm sm:text-base font-semibold text-[#000000] dark:text-white">
               Gadidamalla Thangella
             </h3>
