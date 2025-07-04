@@ -5,6 +5,7 @@ export interface Business {
   description: string;
   phone: string;
   address: string;
+  location: string;
   hours: string;
   rating: number;
   image: string;
@@ -20,6 +21,7 @@ export const businesses: Business[] = [
     description: "Daily essentials, groceries, and tablets available in the village.",
     phone: "",
     address: "Paluguntipalli",
+    location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "6:00 AM - 10:00 PM",
     rating: 4.4,
     image: "/general store.png",
@@ -33,6 +35,7 @@ export const businesses: Business[] = [
     description: "General provisions and basic medicines available.",
     phone: "",
     address: "Paluguntipalli",
+    location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "7:00 AM - 9:00 PM",
     rating: 4.3,
     image: "/general store.png",
@@ -46,6 +49,7 @@ export const businesses: Business[] = [
     description: "Groceries, snacks, and over-the-counter medicines.",
     phone: "",
     address: "Paluguntipalli",
+    location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "6:30 AM - 9:30 PM",
     rating: 4.2,
     image: "/general store.png",
@@ -59,6 +63,7 @@ export const businesses: Business[] = [
     description: "Clinic and medical store with general medicine and health services.",
     phone: "",
     address: "Racherla, after Paluguntipalli village",
+    location: "Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "8:00 AM - 8:00 PM",
     rating: 4.5,
     image: "/clinic.png",
@@ -72,6 +77,7 @@ export const businesses: Business[] = [
     description: "Bicycle and motorcycle repair services with genuine spare parts.",
     phone: "",
     address: "Paluguntipalli",
+    location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "7:00 AM - 7:00 PM",
     rating: 4.2,
     image: "/puncher services.png",
