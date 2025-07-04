@@ -1,6 +1,5 @@
-
 import { motion } from "framer-motion";
-import { MapPin, Users, Calendar, Award } from "lucide-react";
+import { MapPin, Users, Calendar, Award, ThermometerSun, School, Train } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const About = () => {
@@ -9,28 +8,40 @@ const About = () => {
   const stats = [
     {
       icon: <Users className="w-8 h-8 text-heritage" />,
-      number: "500+",
-      label: t('Members', 'Population'),
-      description: t('Community members living in our village', 'Proud residents of our beautiful village')
+      number: "5645",
+      label: "Population",
+      description: "Residents living in Palugutipalli village"
     },
     {
       icon: <Calendar className="w-8 h-8 text-heritage" />,
       number: "200+",
-      label: t('Years', 'Years of Heritage'),
-      description: t('Rich cultural history spanning centuries', 'Years of rich cultural heritage')
+      label: "Years of Heritage",
+      description: "A culturally rich village with historic traditions"
     },
     {
       icon: <MapPin className="w-8 h-8 text-heritage" />,
       number: "5+",
-      label: t('Places to Visit', 'Sacred Places'),
-      description: t('Temples and historic landmarks to explore', 'Beautiful temples and landmarks')
+      label: "Sacred Sites",
+      description: "Temples and historical places to visit"
     },
     {
       icon: <Award className="w-8 h-8 text-heritage" />,
       number: "2+",
-      label: t('Festivals', 'Annual Festivals'),
-      description: t('Traditional celebrations throughout the year', 'Vibrant festivals celebrated annually')
+      label: "Major Festivals",
+      description: "Peerla Panduga and traditional village celebrations"
     }
+  ];
+
+  const villageInfo = [
+    { icon: <MapPin className="w-5 h-5 text-heritage" />, label: "Location", value: "Palugutipalli, Racherla Mandal, Prakasam, Andhra Pradesh" },
+    { icon: <ThermometerSun className="w-5 h-5 text-heritage" />, label: "Elevation", value: "231 meters above sea level" },
+    { icon: <Train className="w-5 h-5 text-heritage" />, label: "Nearest Railway", value: "Gudimetta & Somidevipalle Stations" },
+    { icon: <School className="w-5 h-5 text-heritage" />, label: "Nearby Colleges", value: "St. Ann's College, Govt Jr College, Pidathala Polytechnic" },
+    { icon: <Calendar className="w-5 h-5 text-heritage" />, label: "Weather", value: "Temp: 31.2°C | Humidity: 51% | Overcast clouds" },
+    { icon: <Users className="w-5 h-5 text-heritage" />, label: "Language", value: "Telugu (Official)" },
+    { icon: <MapPin className="w-5 h-5 text-heritage" />, label: "PIN Code", value: "523368 (Post Office: Racherla)" },
+    { icon: <Award className="w-5 h-5 text-heritage" />, label: "Assembly MLA", value: "Anna Rambabu" },
+    { icon: <Award className="w-5 h-5 text-heritage" />, label: "Parliament MP", value: "Magunta Sreenivasulu Reddy" }
   ];
 
   return (
@@ -42,6 +53,7 @@ const About = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,14 +62,14 @@ const About = () => {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 font-playfair text-[#000000] dark:text-white">
-            {t('About Our Village', 'About Our Village')}
+            {t('About Our Village')}
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            {t('Discover the rich cultural heritage of our beautiful village in Andhra Pradesh. Experience traditions that have been preserved for generations.')}
+            Discover the cultural roots, traditions, and unique lifestyle of Palugutipalli – a village that reflects the soul of Andhra Pradesh.
           </p>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12 lg:mb-16">
           {stats.map((stat, index) => (
             <motion.div
@@ -68,9 +80,7 @@ const About = () => {
               viewport={{ once: true }}
               className="text-center p-6 bg-white dark:bg-[#2a2a2a] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
-              <div className="flex justify-center mb-4">
-                {stat.icon}
-              </div>
+              <div className="flex justify-center mb-4">{stat.icon}</div>
               <div className="text-3xl sm:text-4xl font-bold text-heritage mb-2 font-playfair">
                 {stat.number}
               </div>
@@ -84,8 +94,8 @@ const About = () => {
           ))}
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* Heritage Description */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -94,12 +104,12 @@ const About = () => {
           >
             <img
               src="/VILLAGE START.jpg"
-              alt={t('Paluguntipalli Village', 'Village landscape')}
+              alt="Palugutipalli Landscape"
               className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl shadow-lg"
               loading="lazy"
             />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,15 +118,28 @@ const About = () => {
             className="space-y-6"
           >
             <h3 className="text-2xl sm:text-3xl font-bold font-playfair text-[#000000] dark:text-white">
-              {t('The Cultural Heritage', 'Our Rich Heritage')}
+              Our Rich Heritage
             </h3>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {t('Paluguntipalli is a vibrant village nestled in the heart of Andhra Pradesh, where ancient traditions blend seamlessly with modern life. Our community takes pride in preserving the cultural heritage that has been passed down through generations.', 'Paluguntipalli is a vibrant village nestled in the heart of Andhra Pradesh, where ancient traditions blend seamlessly with modern life.')}
+              Palugutipalli is a peaceful village in Racherla Mandal of Prakasam district, surrounded by hills, rivers, and fertile lands. It proudly maintains age-old traditions, celebrates vibrant festivals, and thrives with community warmth.
             </p>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {t('From our magnificent temples to our colorful festivals, every aspect of village life reflects the deep-rooted values and customs that define our identity. We welcome visitors to experience the warmth of our hospitality and the beauty of our traditions.', 'From our magnificent temples to our colorful festivals, every aspect of village life reflects our deep-rooted values and customs.')}
+              Whether you're here for the sacred temples, the scenic nature, or the hospitality, Palugutipalli offers a glimpse into Andhra’s timeless rural charm.
             </p>
           </motion.div>
+        </div>
+
+        {/* Additional Info Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {villageInfo.map((info, idx) => (
+            <div key={idx} className="flex items-start gap-4 bg-white dark:bg-[#2a2a2a] p-4 rounded-lg shadow-md">
+              <div>{info.icon}</div>
+              <div>
+                <div className="text-sm font-medium text-gray-800 dark:text-white">{info.label}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">{info.value}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

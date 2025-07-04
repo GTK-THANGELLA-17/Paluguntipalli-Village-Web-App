@@ -9,23 +9,24 @@ import { format } from "date-fns";
 const eventsData = [
   {
     id: 1,
-    title: "Keep Village Clean and Green",
+    title: "Peerla Panduga Celebrations",
     description:
-      "Join us in keeping the village clean and green by participating in regular cleaning drives and planting trees.",
-    time: "All-DAY ",
-    location: "Village Green",
-    image: "/VILLAGE START.jpg"
+      "Celebrate Peerla Panduga with vibrant processions, traditional rituals, and community prayers. Let's come together to honor the tradition and enjoy the festive spirit!",
+    time: "All Day",
+    location: "Village Main Peerla Chavidi",
+    image: "/pedda sarigesu 1.jpg"
   },
   {
     id: 2,
-    title: "Stay Safe, Drink Water",
+    title: "Rainy Season Safety Tips",
     description:
-      "As the summer temperatures rise, stay hydrated by drinking enough water throughout the day and maintaining your health.",
-    time: "All-Day ",
+      "The rainy season has begun with occasional heavy showers. Please stay cautious—avoid water-logged areas, drink clean water, and help keep the village mosquito-free.",
+    time: "All Day",
     location: "Across the Village",
-    image: "/Village.jpg"
+    image: "/VILLAGE START.jpg"
   }
 ];
+
 
 const TodaysEvents = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
