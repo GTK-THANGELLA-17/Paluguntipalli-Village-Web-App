@@ -141,6 +141,75 @@ const About = () => {
             </div>
           ))}
         </div>
+        <motion.a
+  href="#app-updates"
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 2.5, duration: 0.8 }}
+  className="flex justify-center mt-20"
+>
+  <motion.div
+    className="relative inline-flex items-center gap-3 px-7 py-4 rounded-full text-lg font-semibold z-10
+               bg-white dark:bg-black 
+               text-black dark:text-white 
+               border border-transparent"
+    animate={{
+      y: [0, 6, 0],
+      opacity: [0.8, 1, 0.8]
+    }}
+    transition={{
+      duration: 2.5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  >
+    <span>App Updates</span>
+    <motion.span
+      animate={{ y: [0, 4, 0] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="text-2xl"
+    >
+      ↓
+    </motion.span>
+
+    {/* Neon Border Only */}
+    <motion.div
+      className="absolute -inset-[2px] rounded-full z-[-1]"
+      animate={{
+        opacity: [0.5, 1, 0.5],
+        scale: [1, 1.05, 1]
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      style={{
+        background: "linear-gradient(135deg, #ff3e7e, #ffc0cb)", // Light mode red velvet fallback
+        filter: "blur(8px)"
+      }}
+    />
+
+    {/* Dark mode override glow using a second element */}
+    <motion.div
+      className="absolute -inset-[2px] rounded-full z-[-2] hidden dark:block"
+      animate={{
+        opacity: [0.4, 1, 0.4],
+        scale: [1, 1.05, 1]
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      style={{
+        background: "linear-gradient(135deg, #00ffff, #a0e9ff)", // Ice blue
+        filter: "blur(10px)"
+      }}
+    />
+  </motion.div>
+</motion.a>
+
       </div>
     </section>
   );
