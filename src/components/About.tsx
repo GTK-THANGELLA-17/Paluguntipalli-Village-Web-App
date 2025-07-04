@@ -8,7 +8,7 @@ const About = () => {
   const stats = [
     {
       icon: <Users className="w-8 h-8 text-heritage" />,
-      number: "5645",
+      number: "1500",
       label: "Population",
       description: "Residents living in Palugutipalli village"
     },
@@ -35,7 +35,7 @@ const About = () => {
   const villageInfo = [
     { icon: <MapPin className="w-5 h-5 text-heritage" />, label: "Location", value: "Palugutipalli, Racherla Mandal, Prakasam, Andhra Pradesh" },
     { icon: <ThermometerSun className="w-5 h-5 text-heritage" />, label: "Elevation", value: "231 meters above sea level" },
-    { icon: <Train className="w-5 h-5 text-heritage" />, label: "Nearest Railway", value: "Gudimetta & Somidevipalle Stations" },
+    { icon: <Train className="w-5 h-5 text-heritage" />, label: "Nearest Railway", value: "Gudimetta & Somidevipalle Stations And Giddalur Railway Station" },
     { icon: <School className="w-5 h-5 text-heritage" />, label: "Nearby Colleges", value: "St. Ann's College, Govt Jr College, Pidathala Polytechnic" },
     { icon: <Calendar className="w-5 h-5 text-heritage" />, label: "Weather", value: "Temp: 31.2°C | Humidity: 51% | Overcast clouds" },
     { icon: <Users className="w-5 h-5 text-heritage" />, label: "Language", value: "Telugu (Official)" },
