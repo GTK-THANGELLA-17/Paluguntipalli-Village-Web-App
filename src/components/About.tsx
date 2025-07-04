@@ -149,13 +149,14 @@ const About = () => {
   className="flex justify-center mt-20"
 >
   <motion.div
-    className="relative inline-flex items-center gap-3 px-7 py-4 rounded-full text-lg font-semibold z-10
+    className="relative inline-flex items-center gap-3 px-5 py-3 rounded-full text-base font-semibold z-10
                bg-white dark:bg-black 
                text-black dark:text-white 
-               border border-transparent"
+               border border-transparent 
+               transition-shadow duration-300 ease-in-out hover:shadow-lg"
     animate={{
-      y: [0, 6, 0],
-      opacity: [0.8, 1, 0.8]
+      y: [0, 4, 0],
+      opacity: [0.9, 1, 0.9]
     }}
     transition={{
       duration: 2.5,
@@ -167,16 +168,16 @@ const About = () => {
     <motion.span
       animate={{ y: [0, 4, 0] }}
       transition={{ duration: 2, repeat: Infinity }}
-      className="text-2xl"
+      className="text-xl"
     >
       ↓
     </motion.span>
 
-    {/* Neon Border Only */}
+    {/* Neon border light mode (red velvet) */}
     <motion.div
-      className="absolute -inset-[2px] rounded-full z-[-1]"
+      className="absolute -inset-[2px] rounded-full z-[-1] dark:hidden"
       animate={{
-        opacity: [0.5, 1, 0.5],
+        opacity: [0.6, 1, 0.6],
         scale: [1, 1.05, 1]
       }}
       transition={{
@@ -185,14 +186,17 @@ const About = () => {
         ease: "easeInOut"
       }}
       style={{
-        background: "linear-gradient(135deg, #ff3e7e, #ffc0cb)", // Light mode red velvet fallback
-        filter: "blur(8px)"
+        background: "linear-gradient(135deg, #ff3e7e, #ffc0cb)",
+        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "xor",
+        padding: "2px",
+        filter: "blur(4px)"
       }}
     />
 
-    {/* Dark mode override glow using a second element */}
+    {/* Neon border dark mode (ice blue) */}
     <motion.div
-      className="absolute -inset-[2px] rounded-full z-[-2] hidden dark:block"
+      className="absolute -inset-[2px] rounded-full z-[-1] hidden dark:block"
       animate={{
         opacity: [0.4, 1, 0.4],
         scale: [1, 1.05, 1]
@@ -203,12 +207,16 @@ const About = () => {
         ease: "easeInOut"
       }}
       style={{
-        background: "linear-gradient(135deg, #00ffff, #a0e9ff)", // Ice blue
-        filter: "blur(10px)"
+        background: "linear-gradient(135deg, #00ffff, #a0e9ff)",
+        WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "xor",
+        padding: "2px",
+        filter: "blur(5px)"
       }}
     />
   </motion.div>
 </motion.a>
+
 
       </div>
     </section>
