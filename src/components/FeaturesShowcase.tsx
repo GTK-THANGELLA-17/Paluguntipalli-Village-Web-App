@@ -1,12 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Brain, Users, Building2, Wrench, ArrowRight, Star, Bell, MapPin, MessageSquare, Lightbulb } from "lucide-react";
+import { Brain, Users, Building2, Wrench, ArrowRight, Star, Bell, MapPin, MessageSquare, Lightbulb, Video } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
+import LiveStreaming from './LiveStreaming';
 interface FeatureShowcaseProps {
-  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null) => void;
+  onSectionChange: (
+    section:
+      | 'quiz'
+      | 'community'
+      | 'business'
+      | 'services'
+      | 'why-use-app'
+      | 'stay-updated'
+      | 'village-map'
+      | 'app-suggestions'
+      | 'live-streaming' // ✅ Add this
+      | null
+  ) => void;
   onAIAssistantOpen?: () => void;
 }
+
 
 const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onAIAssistantOpen }) => {
   const { t } = useTranslation();
@@ -29,79 +42,88 @@ const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onA
   };
 
   const features = [
-    {
-      id: 'village-map',
-      title: 'Village Map',
-      description: 'Explore Paluguntipalli through interactive maps with road and satellite views.',
-      icon: MapPin,
-      color: 'from-emerald-500 to-green-600',
-      stats: 'Interactive Map'
-    },
-    {
-      id: 'ai-assistant',
-      title: 'Chat Assistant 🤖',
-      description: 'Get instant help and navigate through the app with our smart Chat Assistant.',
-      icon: MessageSquare,
-      color: 'from-purple-500 to-pink-600',
-      stats: 'Chat Support'
-    },
-    {
-      id: 'app-suggestions',
-      title: 'App Suggestions',
-      description: 'Share your ideas to help improve our village app with new features and enhancements.',
-      icon: Lightbulb,
-      color: 'from-yellow-500 to-orange-600',
-      stats: 'Share Ideas'
-    },
-    {
-      id: 'quiz',
-      title: 'Daily Quiz',
-      description: 'Test your knowledge about our village heritage and culture with fun daily quizzes.',
-      icon: Brain,
-      color: 'from-purple-500 to-indigo-600',
-      stats: '5 Questions Daily'
-    },
-    {
-      id: 'community',
-      title: 'Community Stories',
-      description: 'Share and discover heartwarming stories from our village community members.',
-      icon: Users,
-      color: 'from-orange-500 to-red-600',
-      stats: '20+ Stories'
-    },
-    {
-      id: 'business',
-      title: 'Local Business',
-      description: 'Discover local businesses, services, and support our village economy.',
-      icon: Building2,
-      color: 'from-blue-500 to-cyan-600',
-      stats: '15+ Businesses'
-    },
-    {
-      id: 'services',
-      title: 'Service Directory',
-      description: 'Find essential services, government offices, and important contacts in our village.',
-      icon: Wrench,
-      color: 'from-teal-500 to-blue-600',
-      stats: '25+ Services'
-    },
-    {
-      id: 'stay-updated',
-      title: 'Stay Updated',
-      description: 'Access real-time information through various APIs including weather, news, health tips, and market prices.',
-      icon: Bell,
-      color: 'from-green-500 to-emerald-600',
-      stats: '5+ Categories'
-    },
-    {
-      id: 'why-use-app',
-      title: 'Why Use Our App?',
-      description: 'Discover the many benefits and features that make our village app special.',
-      icon: Star,
-      color: 'from-pink-500 to-rose-600',
-      stats: 'Learn More'
-    }
-  ];
+  {
+    id: 'village-map',
+    title: 'Village Map',
+    description: 'Explore Paluguntipalli through interactive maps with road and satellite views.',
+    icon: MapPin,
+    color: 'from-emerald-500 to-green-600',
+    stats: 'Interactive Map'
+  },
+  {
+    id: 'ai-assistant',
+    title: 'Chat Assistant 🤖',
+    description: 'Get instant help and navigate through the app with our smart Chat Assistant.',
+    icon: MessageSquare,
+    color: 'from-purple-500 to-pink-600',
+    stats: 'Chat Support'
+  },
+  {
+    id: 'app-suggestions',
+    title: 'App Suggestions',
+    description: 'Share your ideas to help improve our village app with new features and enhancements.',
+    icon: Lightbulb,
+    color: 'from-yellow-500 to-orange-600',
+    stats: 'Share Ideas'
+  },
+  {
+    id: 'quiz',
+    title: 'Daily Quiz',
+    description: 'Test your knowledge about our village heritage and culture with fun daily quizzes.',
+    icon: Brain,
+    color: 'from-purple-500 to-indigo-600',
+    stats: '5 Questions Daily'
+  },
+  {
+    id: 'community',
+    title: 'Community Stories',
+    description: 'Share and discover heartwarming stories from our village community members.',
+    icon: Users,
+    color: 'from-orange-500 to-red-600',
+    stats: '20+ Stories'
+  },
+  {
+    id: 'business',
+    title: 'Local Business',
+    description: 'Discover local businesses, services, and support our village economy.',
+    icon: Building2,
+    color: 'from-blue-500 to-cyan-600',
+    stats: '15+ Businesses'
+  },
+  {
+    id: 'services',
+    title: 'Service Directory',
+    description: 'Find essential services, government offices, and important contacts in our village.',
+    icon: Wrench,
+    color: 'from-teal-500 to-blue-600',
+    stats: '25+ Services'
+  },
+  {
+    id: 'stay-updated',
+    title: 'Stay Updated',
+    description: 'Access real-time information through various APIs including weather, news, health tips, and market prices.',
+    icon: Bell,
+    color: 'from-green-500 to-emerald-600',
+    stats: '5+ Categories'
+  },
+  {
+    id: 'live-streaming',
+    title: 'Live Streaming',
+    description: 'Watch live events, festivals, and important updates directly from our village.',
+    icon: Video,
+    color: 'from-red-500 to-pink-500',
+    stats: 'Live Now'
+  },
+  {
+    id: 'why-use-app',
+    title: 'Why Use Our App?',
+    description: 'Discover the many benefits and features that make our village app special.',
+    icon: Star,
+    color: 'from-pink-500 to-rose-600',
+    stats: 'Learn More'
+  }
+];
+
 
   return (
     <section id="features" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#252525] dark:via-[#2a2a2a] dark:to-[#252525]">

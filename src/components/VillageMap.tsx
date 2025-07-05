@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Satellite, Map as MapIcon, ZoomIn, ZoomOut, Navigation, ArrowLeft } from "lucide-react";
@@ -13,24 +14,28 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
   const [mapView, setMapView] = useState<'road' | 'satellite'>('road');
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
+  // Fixed Google Maps embed URLs with proper parameters
   const roadMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
   const satelliteMapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15367.123456789!2d78.962409!3d15.4808278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb4e1b7fe8a6969%3A0x6daeb87da9e27400!2sPaluguntipalli%2C%20Andhra%20Pradesh%20523368!5e1!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
 
   const handleDirectionsClick = () => {
+    // Check if geolocation is available
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          const destination = "15.4808278,78.962409";
+          const destination = "15.4808278,78.962409"; // Paluguntipalli coordinates
           const directionsUrl = `https://www.google.com/maps/dir/${latitude},${longitude}/${destination}`;
           window.open(directionsUrl, '_blank');
         },
-        () => {
+        (error) => {
+          // Fallback: Open directions without current location
           const directionsUrl = `https://www.google.com/maps/dir//15.4808278,78.962409`;
           window.open(directionsUrl, '_blank');
         }
       );
     } else {
+      // Fallback: Open directions without current location
       const directionsUrl = `https://www.google.com/maps/dir//15.4808278,78.962409`;
       window.open(directionsUrl, '_blank');
     }
@@ -47,7 +52,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             transition={{ duration: 0.3 }}
             className="mb-6"
           >
-            <Button
+           <Button
               onClick={onBackToFeatures}
               variant="outline"
               className="flex items-center gap-2 transition-colors bg-white dark:bg-black dark:text-white hover:bg-heritage hover:text-white"
@@ -67,7 +72,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
         >
           <div className="flex items-center justify-center mb-4">
             <MapPin className="text-heritage mr-3" size={36} />
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-0 font-playfair text-[#000000] dark:text-white">
+            <h2 className="section-title text-[#000000] dark:text-white">
               {t('Village Map', 'Village Map')}
             </h2>
           </div>
@@ -78,7 +83,6 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {/* Left Panel: Map View Toggle */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -111,7 +115,6 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             </div>
           </motion.div>
 
-          {/* Center Panel: Map */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -119,7 +122,10 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div ref={mapContainerRef} className="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-heritage">
+            <div 
+              ref={mapContainerRef}
+              className="relative overflow-hidden rounded-2xl shadow-2xl border-4 border-heritage"
+            >
               <div className="aspect-[4/3] relative">
                 <iframe
                   src={mapView === 'road' ? roadMapSrc : satelliteMapSrc}
@@ -131,18 +137,34 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="absolute inset-0"
                   title={`Paluguntipalli ${mapView === 'road' ? 'Road' : 'Satellite'} Map`}
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                 />
-                {/* Map Controls - UI only */}
+                
                 <div className="absolute top-4 right-4 flex flex-col gap-2">
                   <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-lg p-2 shadow-lg">
                     <div className="flex flex-col gap-1">
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0" title="Zoom In">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Zoom In"
+                      >
                         <ZoomIn size={14} />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0" title="Zoom Out">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Zoom Out"
+                      >
                         <ZoomOut size={14} />
                       </Button>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0" title="Center Map">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0"
+                        title="Center Map"
+                      >
                         <Navigation size={14} />
                       </Button>
                     </div>
@@ -150,28 +172,8 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
                 </div>
               </div>
             </div>
-
-            {/* 📝 Note Below Map */}
-            <p className="text-center text-sm mt-4 text-gray-700 dark:text-gray-300">
-              {t('If you are not seeing the map, click the "Open in Google Maps" button below.', 'If you are not seeing the map, click the "Open in Google Maps" button below.')}
-            </p>
-
-            {/* 🔗 Open in Google Maps Button */}
-            <div className="text-center mt-4">
-              <Button asChild className="hero-button group">
-                <a
-                  href="https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4808278,78.962409,15z"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MapPin size={18} className="mr-2 group-hover:animate-bounce" />
-                  {t('Open in Google Maps', 'Open in Google Maps')}
-                </a>
-              </Button>
-            </div>
           </motion.div>
 
-          {/* Right Panel: Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +195,6 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
           </motion.div>
         </div>
 
-        {/* Feature Cards Below */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -208,7 +209,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
               Zoom, pan, and explore every corner of our village
             </p>
           </div>
-
+          
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
             <Satellite className="text-heritage mx-auto mb-3" size={32} />
             <h3 className="font-bold text-gray-800 dark:text-white mb-2">Satellite Imagery</h3>
@@ -216,7 +217,7 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
               View detailed aerial images of village landmarks
             </p>
           </div>
-
+          
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
             <Navigation className="text-heritage mx-auto mb-3" size={32} />
             <h3 className="font-bold text-gray-800 dark:text-white mb-2">Directions</h3>
@@ -228,6 +229,25 @@ const VillageMap: React.FC<VillageMapProps> = ({ onBackToFeatures }) => {
               Get Directions
             </Button>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          viewport={{ once: true }}
+          className="text-center mt-6"
+        >
+          <Button asChild className="hero-button group">
+            <a
+              href="https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4808278,78.962409,15z"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MapPin size={18} className="mr-2 group-hover:animate-bounce" />
+              {t('Open in Google Maps', 'Open in Google Maps')}
+            </a>
+          </Button>
         </motion.div>
       </div>
     </section>

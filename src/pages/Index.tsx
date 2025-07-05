@@ -9,6 +9,7 @@ import WhyUseAppSection from "@/components/WhyUseAppSection";
 import StayUpdated from "@/components/StayUpdated";
 import VillageMap from "@/components/VillageMap";
 import ApplicationSuggestions from "@/components/ApplicationSuggestions";
+import LiveStreaming from "@/components/LiveStreaming";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import MainContent from "@/components/sections/MainContent";
@@ -19,7 +20,7 @@ import { useAudioManager } from "@/hooks/useAudioManager";
 import { motion } from 'framer-motion';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState<'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null>(null);
+  const [activeSection, setActiveSection] = useState<'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null>(null);
   const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false);
   const { loading, isScrolled } = useAppInitialization();
   const { audioRef, isAudioPlaying, setIsAudioPlaying } = useAudioManager(loading, isScrolled);
@@ -55,6 +56,14 @@ const Index = () => {
     return (
       <SpecialSectionLayout {...specialSectionProps}>
         <VillageMap />
+      </SpecialSectionLayout>
+    );
+  }
+
+  if (activeSection === 'live-streaming') {
+    return (
+      <SpecialSectionLayout {...specialSectionProps}>
+        <LiveStreaming onClose={handleCloseSection} />
       </SpecialSectionLayout>
     );
   }
@@ -139,7 +148,7 @@ const Index = () => {
         <section id="contact" className="py-16 sm:py-20 bg-gradient-to-br from-white via-gray-50 to-white dark:from-[#252525] dark:via-[#2a2a2a] dark:to-[#252525]">
           <div className="container mx-auto px-4">
             <motion.h2 
-              className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white mb-16"
+              className="section-title text-[#000000] dark:text-white"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
