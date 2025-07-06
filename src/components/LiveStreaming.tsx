@@ -18,12 +18,12 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
   const liveStreams = [
     {
       id: '1',
-      title: 'Sankranti Festival Celebrations 2024',
-      description: 'Join us live for the grand Sankranti festival celebrations with traditional dances, music, and festivities',
+      title: 'Peerla Panduga Festival Celebrations 2025',
+      description: 'Join us live for the grand Peerla Panduga  festival celebrations with traditional Roots, dances, music, and festivities',
       isLive: true,
-      viewers: 1250,
+      viewers: 772,
       streamUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
-      thumbnail: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/pedda sarigesu 1.jpg',
       startTime: '10:00 AM',
       category: 'Festival'
     },
@@ -34,7 +34,7 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
       isLive: false,
       viewers: 0,
       streamUrl: '',
-      thumbnail: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/VILLAGE START.jpg',
       startTime: '6:00 PM',
       category: 'Community'
     },
