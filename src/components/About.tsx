@@ -40,7 +40,7 @@ const About = () => {
     { icon: <Calendar className="w-5 h-5 text-heritage" />, label: "Weather", value: "Temp: 31.2°C | Humidity: 51% | Overcast clouds" },
     { icon: <Users className="w-5 h-5 text-heritage" />, label: "Language", value: "Telugu (Official)" },
     { icon: <MapPin className="w-5 h-5 text-heritage" />, label: "PIN Code", value: "523368 (Post Office: Racherla)" },
-    { icon: <Award className="w-5 h-5 text-heritage" />, label: "Assembly MLA", value: "Anna Rambabu" },
+    { icon: <Award className="w-5 h-5 text-heritage" />, label: "Assembly MLA", value: "Muttumula Ashok Reddy" },
     { icon: <Award className="w-5 h-5 text-heritage" />, label: "Parliament MP", value: "Magunta Sreenivasulu Reddy" }
   ];
 
