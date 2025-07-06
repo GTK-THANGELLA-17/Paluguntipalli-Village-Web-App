@@ -20,7 +20,7 @@ const villageAttractions = [
     name: "Peerla Chavidi",
     description: "Cultural landmark and festival venue where community celebrations happen",
     link: "https://www.google.com/maps/place/Peerla+Chavidi/@15.4798849,78.9622919,17z/data=!4m15!1m8!3m7!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!2sPaluguntipalli,+Andhra+Pradesh+523368!3b1!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63!3m5!1s0x3bb4e16c6f66faed:0xf70656116ddb26a!8m2!3d15.4799415!4d78.9621971!16s%2Fg%2F11px3_fpg_?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
-    image: "/Peerla chavidi 1.jpg",
+    image: "/Peerla chavidi 1.JPG",
     distance: "In village"
   },
   {
@@ -34,7 +34,7 @@ const villageAttractions = [
     name: "Village Square",
     description: "Central gathering place with traditional charm and cultural significance",
     link: "https://www.google.com/maps/place/Ramalayam/@15.479978,78.9621663,18.83z/data=!4m15!1m8!3m7!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!2sPaluguntipalli,+Andhra+Pradesh+523368!3b1!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63!3m5!1s0x3bb4e1b7bf021981:0x8840ff075bc832ed!8m2!3d15.4800594!4d78.9624829!16s%2Fg%2F11ddzhs32h?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
-    image: "/Temple .jpg",
+    image: "/Temple.JPG",
     distance: "In village"
   },
 {
