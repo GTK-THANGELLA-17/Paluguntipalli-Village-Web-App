@@ -22,7 +22,7 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
       description: 'Join us live for the grand Peerla Panduga  festival celebrations with traditional Roots, dances, music, and festivities',
       isLive: true,
       viewers: 772,
-      streamUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
+      streamUrl: '/pedda sarigesu 2.mp4',
       thumbnail: '/pedda sarigesu 1.jpg',
       startTime: '10:00 AM',
       category: 'Festival'
@@ -52,22 +52,28 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
   ];
 
   const upcomingEvents = [
-    {
-      title: 'Ugadi Celebrations',
-      date: 'March 22, 2024',
-      time: '9:00 AM'
-    },
-    {
-      title: 'Harvest Festival',
-      date: 'April 14, 2024', 
-      time: '8:00 AM'
-    },
-    {
-      title: 'Village Fair',
-      date: 'May 1, 2024',
-      time: '6:00 AM'
-    }
-  ];
+  {
+    title: 'Ganesh Chaturthi',
+    date: 'August 27, 2025',
+    time: 'All Day'
+  },
+  {
+    title: 'Dussehra',
+    date: 'October 2, 2025',
+    time: 'All Day'
+  },
+  {
+    title: 'Diwali',
+    date: 'November 1, 2025',
+    time: 'Evening'
+  },
+  {
+    title: 'Christmas',
+    date: 'December 25, 2025',
+    time: 'All Day'
+  }
+];
+
 
   return (
     <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-blue-50 to-white dark:from-[#1a1a1a] dark:to-[#252525] min-h-screen">
