@@ -7,7 +7,7 @@ export const galleryData = {
     { id: 4, src: "/VILLAGE START.jpg", alt: "Village Entrance", type: "image", tags: ["entrance", "landmark"] },
     { id: 5, src: "/Temple.JPG", alt: "Temple View", type: "image", tags: ["temple", "spiritual"] },
     { id: 6, src: "/School.jpg", alt: "Village School", type: "image", tags: ["school", "education"] },
-    { id: 7, src: "/Peerla chavidi 1.png", alt: "Peerla Chavidi Celebration", type: "image", tags: ["festival", "celebration"] },
+    { id: 7, src: "/Peerla chavidi 1.JPG", alt: "Peerla Chavidi Celebration", type: "image", tags: ["festival", "celebration"] },
     { id: 8, src: "/Kasinayana Temple.jpg", alt: "Kasinayana Temple", type: "image", tags: ["temple", "heritage"] }
   ],
   festival: [
