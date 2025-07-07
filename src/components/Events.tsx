@@ -8,7 +8,7 @@ import VideoPlayer from "./VideoPlayer";
 
 const eventImages = [
   "/gundam.jpg",
-  "/peerla chavidi.JPG",
+  "/peerla chavidi.jpg",
   "/peerlu 1.jpg",
   "/Thangella Swamy And Brother.jpg",
   "/pedda sarigesu 2.jpg",
