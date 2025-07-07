@@ -26,7 +26,7 @@ const features = [
     icon: Users,
     title: "Community Connection",
     description: "Connect with fellow villagers, stay informed about community activities, and be part of our growing digital family.",
-    image: "/Peerla chavidi 1.JPG"
+    image: "//Peerla chavidi 1.JPG"
   }
 ];
 
