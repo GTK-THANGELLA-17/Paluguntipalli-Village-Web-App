@@ -1,45 +1,68 @@
-
-import { useState, useEffect } from "react";
-import { AlertTriangle, Info, Clock, Users, CheckCircle, XCircle, AlertCircle, Zap } from "lucide-react";
+import { useState } from "react";
+import {
+  AlertTriangle,
+  Info,
+  Clock,
+  Users,
+  CheckCircle,
+  XCircle,
+  Zap,
+} from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 interface Update {
   id: string;
   title: string;
   message: string;
-  type: 'info' | 'warning' | 'success' | 'error';
+  type: "info" | "warning" | "success" | "error";
   timestamp: Date;
-  priority: 'low' | 'medium' | 'high';
+  priority: "low" | "medium" | "high";
 }
 
 const ApplicationUpdates = () => {
-  const [updates, setUpdates] = useState<Update[]>([
+  const [updates] = useState<Update[]>([
     {
-      id: '1',
-      title: 'High Traffic Alert',
-      message: 'Due to increased user activity during festival season, please limit photo downloads to ensure the app remains accessible for everyone. Thank you for your cooperation!',
-      type: 'warning',
-      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-      priority: 'high'
-    }
+      id: "1",
+      title: "High Traffic Alert",
+      message:
+        "Due to increased user activity during festival season, please limit photo downloads to ensure the app remains accessible for everyone. Thank you for your cooperation!",
+      type: "warning",
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+      priority: "high",
+    },
+    {
+      id: "2",
+      title: "Festival Media Update Incoming",
+      message:
+        "Festival images and videos will be updated tomorrow. Stay tuned to view and download all the latest content!",
+      type: "info",
+      timestamp: new Date(), // now
+      priority: "medium",
+    },
   ]);
 
   const getIcon = (type: string) => {
     switch (type) {
-      case 'warning': return <AlertTriangle className="text-orange-500" size={20} />;
-      case 'success': return <CheckCircle className="text-green-500" size={20} />;
-      case 'error': return <XCircle className="text-red-500" size={20} />;
-      default: return <Info className="text-blue-500" size={20} />;
+      case "warning":
+        return <AlertTriangle className="text-orange-500" size={20} />;
+      case "success":
+        return <CheckCircle className="text-green-500" size={20} />;
+      case "error":
+        return <XCircle className="text-red-500" size={20} />;
+      default:
+        return <Info className="text-blue-500" size={20} />;
     }
   };
 
   const getBadgeColor = (priority: string) => {
     switch (priority) {
-      case 'high': return 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300';
-      case 'medium': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300';
-      default: return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300';
+      case "high":
+        return "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300";
+      case "medium":
+        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300";
+      default:
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300";
     }
   };
 
@@ -48,14 +71,17 @@ const ApplicationUpdates = () => {
     const diff = now.getTime() - timestamp.getTime();
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    
-    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
-    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    return 'Just now';
+
+    if (days > 0) return `${days} day${days > 1 ? "s" : ""} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    return "Just now";
   };
 
   return (
-    <section id="app-updates" className="py-12 sm:py-16 bg-gradient-to-br from-orange-50 to-red-100 dark:from-[#2a1810] dark:to-[#2a1a1a]">
+    <section
+      id="app-updates"
+      className="py-12 sm:py-16 bg-gradient-to-br from-orange-50 to-red-100 dark:from-[#2a1810] dark:to-[#2a1a1a]"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -109,16 +135,17 @@ const ApplicationUpdates = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
                   {update.message}
                 </p>
-                
+
                 <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
                   <div className="flex items-center text-orange-800 dark:text-orange-300">
                     <Users size={16} className="mr-2" />
                     <span className="text-sm font-medium">
-                      Current Status: High user activity detected - Please be mindful of usage
+                      Current Status: High user activity detected - Please be
+                      mindful of usage
                     </span>
                   </div>
                 </div>
@@ -138,7 +165,8 @@ const ApplicationUpdates = () => {
                 Stay Connected
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                We'll keep you updated with the latest app improvements and important notices.
+                We'll keep you updated with the latest app improvements and
+                important notices.
               </p>
             </div>
           </motion.div>
