@@ -141,7 +141,7 @@ const About = () => {
             </div>
           ))}
         </div>
-        <motion.a
+      <motion.a
   href="#app-updates"
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
@@ -172,6 +172,11 @@ const About = () => {
     >
       ↓
     </motion.span>
+
+    {/* 🔔 Notification Badge */}
+    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md animate-pulse">
+      New
+    </span>
 
     {/* Neon border light mode (red velvet) */}
     <motion.div
@@ -216,6 +221,7 @@ const About = () => {
     />
   </motion.div>
 </motion.a>
+
 
 
       </div>
