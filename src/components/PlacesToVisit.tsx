@@ -26,7 +26,7 @@ const villageAttractions = [
     name: "Hanuman Temple",
     description: "Religious site with impressive architecture and spiritual importance",
     link: "https://www.google.com/maps/place/Hanuman+temple/@15.4798849,78.9622919,17z/data=!4m15!1m8!3m7!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!2sPaluguntipalli,+Andhra+Pradesh+523368!3b1!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63!3m5!1s0x3bb4e13972f894dd:0x7ad275cd67cda489!8m2!3d15.4792483!4d78.9637295!16s%2Fg%2F11ng1f2kwq?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
-    image: "/Village Attractions/Hanuman Statue.jpg",
+    image: "/Village Attractions/Hanuman Statue.webp",
     distance: "In village"
   },
   {

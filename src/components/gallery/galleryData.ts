@@ -3,7 +3,7 @@ export const galleryData = {
   village: [
     { id: 1, src: "/Village Gallery/BUS STAND.jpg", alt: "Bus Stand", type: "image", tags: ["transport", "public place"] },
     { id: 2, src: "/Village Gallery/BUS STAND ROAD.jpg", alt: "Bus Stand Road", type: "image", tags: ["road", "village"] },
-    { id: 3, src: "/Village Gallery/Hanuman Statue.jpg", alt: "Hanuman Statue", type: "image", tags: ["statue", "religion"] },
+    { id: 3, src: "/Village Gallery/Hanuman Statue.webp", alt: "Hanuman Statue", type: "image", tags: ["statue", "religion"] },
     { id: 4, src: "/Village Gallery/VILLAGE START.jpg", alt: "Village Entrance", type: "image", tags: ["entrance", "landmark"] },
     { id: 5, src: "/Village Gallery/Temple.JPG", alt: "Temple View", type: "image", tags: ["temple", "spiritual"] },
     { id: 6, src: "/Village Gallery/School.JPG", alt: "Village School", type: "image", tags: ["school", "education"] },

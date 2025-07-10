@@ -23,7 +23,7 @@ const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshow
   const slides: Slide[] = [
     {
       type: 'image',
-      src: '/Starting Slide show/Hanuman Statue.jpg',
+      src: '/Starting Slide show/Hanuman Statue.webp',
       title: t('hero.title'),
       subtitle: t('hero.subtitle')
     },

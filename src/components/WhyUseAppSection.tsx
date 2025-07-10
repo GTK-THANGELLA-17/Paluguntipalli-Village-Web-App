@@ -26,7 +26,7 @@ const features = [
     icon: MapPin,
     title: "Explore & Discover",
     description: "Learn about Paluguntipalli's rich culture, historical places, traditions, and hidden gems whether you're local or visiting.",
-    image: "/Why Use Our App/Hanuman Statue.jpg"
+    image: "/Why Use Our App/Hanuman Statue.webp"
   },
   {
     icon: Users,

@@ -42,7 +42,7 @@ const Views360 = () => {
             >
               <div className="aspect-[16/9] bg-gray-200 relative">
                 <img 
-                  src="/360 Degrees/Hanuman Statue.jpg" 
+                  src="/360 Degrees/Hanuman Statue.webp" 
                   alt="Village 360 View Preview"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />

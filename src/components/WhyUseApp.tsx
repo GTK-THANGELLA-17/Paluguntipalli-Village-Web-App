@@ -20,7 +20,7 @@ const features = [
     icon: MapPin,
     title: "Explore & Discover",
     description: "Learn about Paluguntipalli's rich culture, historical places, traditions, and hidden gems whether you're local or visiting.",
-    image: "/Hanuman Statue.jpg"
+    image: "/Hanuman Statue.webp"
   },
   {
     icon: Users,
