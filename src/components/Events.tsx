@@ -43,28 +43,83 @@ const videoData = [
   {
     id: 1,
     title: "Pedda Sarigesu Festival Video 1",
-    videoSrc: "/Festival Videos/Video 2.mov",
-    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 1.jpg"
+    videoSrc: "/Festival Videos/Video 1.MOV",
+    thumbnailSrc: "/Main Events Thumbnails/Video 1.jpg"
   },
   {
     id: 2,
     title: "Pedda Sarigesu Festival Video 2",
     videoSrc: "/Festival Videos/Video 2.mov",
-    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu image 4.jpg"
+    thumbnailSrc: "/Main Events Thumbnails/Video 2.jpg"
   },
   {
     id: 3,
     title: "Pedda Sarigesu Festival Video 3",
     videoSrc: "/Festival Videos/Video 3.mov",
-    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 3.JPG"
+    thumbnailSrc: "/Main Events Thumbnails/Video 3.jpg"
   },
-   {
+  {
     id: 4,
-    title: "Pedda Sarigesu Festival Video 3",
-    videoSrc: "/Festival Videos/Video 3.mov",
-    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 2.JPG"
+    title: "Pedda Sarigesu Festival Video 4",
+    videoSrc: "/Festival Videos/Video 4.mov",
+    thumbnailSrc: "/Main Events Thumbnails/Video 4.jpg"
+  },
+  {
+    id: 5,
+    title: "Pedda Sarigesu Festival Video 5",
+    videoSrc: "/Festival Videos/Video 5.mov",
+    thumbnailSrc: "/Main Events Thumbnails/Video 5.jpg"
+  },
+  {
+    id: 6,
+    title: "Pedda Sarigesu Festival Video 6",
+    videoSrc: "/Festival Videos/Video 6.mov",
+    thumbnailSrc: "/Main Events Thumbnails/Video 6.jpg"
+  },
+  {
+    id: 7,
+    title: "Pedda Sarigesu Festival Video 7",
+    videoSrc: "/Festival Videos/Video 7.mov",
+    thumbnailSrc: "/Main Events Thumbnails/Video 7.jpg"
+  },
+  {
+    id: 8,
+    title: "Pedda Sarigesu Festival Video 8",
+    videoSrc: "/Festival Videos/Video 8.mov",
+    thumbnailSrc: "/Main Events Thumbnails/Video 8.jpg"
+  },
+  {
+    id: 9,
+    title: "Pedda Sarigesu Festival Video 9",
+    videoSrc: "/Festival Videos/Video 9.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/Video 9.jpg"
+  },
+  {
+    id: 10,
+    title: "Pedda Sarigesu Festival Video 10",
+    videoSrc: "/Festival Videos/Video 10.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/Video 10.jpg"
+  },
+  {
+    id: 11,
+    title: "Pedda Sarigesu Festival Video 11",
+    videoSrc: "/Festival Videos/Video 11.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/Video 11.jpg"
+  },
+  {
+    id: 12,
+    title: "Pedda Sarigesu Festival Video 12",
+    videoSrc: "/Festival Videos/Video 12.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/Video 12.jpg"
+  },
+  {
+    id: 13,
+    title: "Pedda Sarigesu Festival Video 13",
+    videoSrc: "/Festival Videos/Video 13.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/Video 13.jpg"
   }
 ];
+
 
 
 const Events = () => {

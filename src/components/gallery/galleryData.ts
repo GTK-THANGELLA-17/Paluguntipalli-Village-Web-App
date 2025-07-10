@@ -48,39 +48,111 @@ export const galleryData = {
   ],
 
   videos: [
-    {
-      id: 16,
-      src: "/Festival Videos/Video 1.mov",
-      thumbnail: "/Festival Thumbnails/pedda sarigesu 1.jpg",
-      alt: "Pedda Sarigesu Video 1",
-      type: "video",
-      tags: ["ceremony", "video", "culture"]
-    },
-    {
-      id: 17,
-      src: "/Festival Videos/Video 2.mov",
-      thumbnail: "/Festival Thumbnails/pedda sarigesu image 4.jpg",
-      alt: "Pedda Sarigesu Video 2",
-      type: "video",
-      tags: ["tradition", "festival", "community"]
-    },
-    {
-      id: 18,
-      src: "/Festival Videos/Video 3.mov",
-      thumbnail: "/Festival Thumbnails/pedda sarigesu 2.JPG",
-      alt: "Pedda Sarigesu Video 3",
-      type: "video",
-      tags: ["ritual", "festival", "village"]
-    },
-    {
-      id: 19,
-      src: "/Festival Videos/Video 4.mov",
-      thumbnail: "/Festival Thumbnails/pedda sarigesu 3.JPG",
-      alt: "Pedda Sarigesu Video 3",
-      type: "video",
-      tags: ["ritual", "festival", "village"]
-    }
-  ],
+  {
+    id: 1,
+    src: "/Festival Videos/Video 1.MOV",
+    thumbnail: "/Festival Thumbnails/Video 1.jpg",
+    alt: "Pedda Sarigesu Video 1",
+    type: "video",
+    tags: ["ceremony", "video", "culture"]
+  },
+  {
+    id: 2,
+    src: "/Festival Videos/Video 2.MOV",
+    thumbnail: "/Festival Thumbnails/Video 2.jpg",
+    alt: "Pedda Sarigesu Video 2",
+    type: "video",
+    tags: ["tradition", "festival", "community"]
+  },
+  {
+    id: 3,
+    src: "/Festival Videos/Video 3.mov",
+    thumbnail: "/Festival Thumbnails/Video 3.jpg",
+    alt: "Pedda Sarigesu Video 3",
+    type: "video",
+    tags: ["ritual", "festival", "village"]
+  },
+  {
+    id: 4,
+    src: "/Festival Videos/Video 4.mov",
+    thumbnail: "/Festival Thumbnails/Video 4.jpg",
+    alt: "Pedda Sarigesu Video 4",
+    type: "video",
+    tags: ["ritual", "festival", "village"]
+  },
+  {
+    id: 5,
+    src: "/Festival Videos/Video 5.mov",
+    thumbnail: "/Festival Thumbnails/Video 5.jpg",
+    alt: "Pedda Sarigesu Video 5",
+    type: "video",
+    tags: ["ceremony", "tradition", "village"]
+  },
+  {
+    id: 6,
+    src: "/Festival Videos/Video 6.mov",
+    thumbnail: "/Festival Thumbnails/Video 6.jpg",
+    alt: "Pedda Sarigesu Video 6",
+    type: "video",
+    tags: ["music", "festival", "celebration"]
+  },
+  {
+    id: 7,
+    src: "/Festival Videos/Video 7.mov",
+    thumbnail: "/Festival Thumbnails/Video 7.jpg",
+    alt: "Pedda Sarigesu Video 7",
+    type: "video",
+    tags: ["community", "dance", "ritual"]
+  },
+  {
+    id: 8,
+    src: "/Festival Videos/Video 8.mov",
+    thumbnail: "/Festival Thumbnails/Video 8.jpg",
+    alt: "Pedda Sarigesu Video 8",
+    type: "video",
+    tags: ["culture", "performance", "festival"]
+  },
+  {
+    id: 9,
+    src: "/Festival Videos/Video 9.mp4",
+    thumbnail: "/Festival Thumbnails/Video 9.jpg",
+    alt: "Pedda Sarigesu Video 9",
+    type: "video",
+    tags: ["dance", "celebration", "village"]
+  },
+  {
+    id: 10,
+    src: "/Festival Videos/Video 10.mp4",
+    thumbnail: "/Festival Thumbnails/Video 10.jpg",
+    alt: "Pedda Sarigesu Video 10",
+    type: "video",
+    tags: ["music", "tradition", "festival"]
+  },
+  {
+    id: 11,
+    src: "/Festival Videos/Video 11.mp4",
+    thumbnail: "/Festival Thumbnails/Video 11.jpg",
+    alt: "Pedda Sarigesu Video 11",
+    type: "video",
+    tags: ["performance", "culture", "community"]
+  },
+  {
+    id: 12,
+    src: "/Festival Videos/Video 12.mp4",
+    thumbnail: "/Festival Thumbnails/Video 12.jpg",
+    alt: "Pedda Sarigesu Video 12",
+    type: "video",
+    tags: ["ceremony", "festival", "heritage"]
+  },
+  {
+    id: 13,
+    src: "/Festival Videos/Video 13.mp4",
+    thumbnail: "/Festival Thumbnails/Video 13.jpg",
+    alt: "Pedda Sarigesu Video 13",
+    type: "video",
+    tags: ["ritual", "music", "celebration"]
+  }
+],
 
   heritage: [] // Add heritage entries here if needed
 };
