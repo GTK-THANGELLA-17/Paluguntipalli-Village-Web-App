@@ -50,7 +50,7 @@ export const galleryData = {
   videos: [
   {
     id: 1,
-    src: "/Festival Videos/Video 1.MOV",
+    src: "/Festival Videos/Video 1.mp4",
     thumbnail: "/Festival Thumbnails/Video 1.jpg",
     alt: "Pedda Sarigesu Video 1",
     type: "video",

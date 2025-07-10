@@ -43,7 +43,7 @@ const videoData = [
   {
     id: 1,
     title: "Pedda Sarigesu Festival Video 1",
-    videoSrc: "/Festival Videos/Video 1.MOV",
+    videoSrc: "/Festival Videos/Video 1.mp4",
     thumbnailSrc: "/Main Events Thumbnails/Video 1.jpg"
   },
   {
