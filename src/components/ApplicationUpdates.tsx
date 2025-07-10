@@ -32,14 +32,14 @@ const ApplicationUpdates = () => {
       priority: "high",
     },
     {
-      id: "2",
-      title: "Festival Media Update Incoming",
-      message:
-        "Festival images and videos will be updated tomorrow. Stay tuned to view and download all the latest content!",
-      type: "info",
-      timestamp: new Date(), // now
-      priority: "medium",
-    },
+  id: "2",
+  title: "Festival Media Update",
+  message:
+    "Festival images have been updated! Videos are yet to be uploaded. Check out the latest images of Peerla Panduga 2025 now.",
+  type: "info",
+  timestamp: new Date(), // now
+  priority: "medium",
+},
   ]);
 
   const getIcon = (type: string) => {
