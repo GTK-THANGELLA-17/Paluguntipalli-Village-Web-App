@@ -37,21 +37,19 @@ const villageAttractions = [
     distance: "In village"
   },
 {
-  name: "PaalaRathi Gundu, Water Tank",
-  description: "PaalaRathi Gundu is a historic water rock formation located within the village. According to local belief, when Lord Hanuman was carrying milk for Sita during the Vanvas period, a few drops fell at this spot, forming the 'PaalaRathi Gundu' (Milk Rock). This sacred rock has existed since that time and has served as a vital water source for generations. Its spiritual and practical significance remains preserved within the community.",
-  link: "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4815925,78.9622207,158m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
-  image: "/Village Attractions/Water tank .jpg",
-  distance: "In village"
+  "name": "PaalaRathi Gundu, Water Tank",
+  "description": "PaalaRathi Gundu is a historic water rock formation located within the village. According to local belief, during their Vanvas period, Lord Rama and Sita were passing through this area carrying pots of milk and ghee for their survival. At this particular spot, one of the milk pots accidentally fell and broke, spilling the milk onto the ground. From this sacred incident, the 'PaalaRathi Gundu' (Milk Rock) was formed. Since then, this rock has remained a vital water source and holds deep spiritual and practical significance within the community.",
+  "link": "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4815925,78.9622207,158m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
+  "image": "/Village Attractions/Water tank .jpg",
+  "distance": "In village"
 },
-  {
-  name: "Nalla Gundu",
-  description: "Historic site located 2 km from Paluguntipalli surrounded by farming fields. According to legend, dating back to 5075 BC when Rama went to Vanvas, Hanuman dropped ghee here which formed the Nalla Gundu rock. Sita and Rama used to live and cook here; ancient cooking items remain from that era. A small Hanuman temple is at the top where poojas are held on Hanuman Jayanti. Locals believe gold is buried beneath the rock. Attempts to break the rock failed and the temple was built to protect it. The place remains undisturbed since then.",
-  link: "https://maps.app.goo.gl/4pgpgUjQBMzcKvQk8",
-  image: "/Near By Places/Nalla Gundu.JPG",
-  distance: "2 km From Paluguntipalli"
+ {
+  "name": "Nalla Gundu",
+  "description": "Nalla Gundu is a historic site located 2 km from Paluguntipalli, surrounded by farming fields. According to local legend, during the Vanvas period, Lord Rama and Sita passed through this area carrying essential items for their survival, including pots of milk and ghee. At this particular spot, the ghee pot accidentally fell and broke, and from that incident, the 'Nalla Gundu' (Black Rock) was formed. It is believed that Rama and Sita stayed and cooked here; ancient cooking items from that era are said to remain. A small Hanuman temple sits atop the rock, where poojas are held every Hanuman Jayanti. Locals also believe that gold is buried beneath the rock. All attempts to break it have failed, and the temple was built to preserve and protect the sacred site. The place has remained undisturbed ever since.",
+  "link": "https://maps.app.goo.gl/4pgpgUjQBMzcKvQk8",
+  "image": "/Near By Places/Nalla Gundu.JPG",
+  "distance": "2 km From Paluguntipalli"
 }
-
-
 ];
 
 // Nearby places to visit with proper Google Maps links
@@ -65,13 +63,13 @@ const nearbyPlaces = [
     icon: <TrainFront size={14} />
   },
   {
-  name: "Nalla Gundu",
-  description: `Located 2 km from Paluguntipalli, Nalla Gundu is a sacred rock surrounded by farmland. Local legend says it dates back to 5075 BC during Rama's Vanvas. When Hanuman carried ghee to Sita, some spilled here, forming the black rock. It’s believed Rama and Sita once stayed and cooked at this site, and old cooking tools may still exist.
+  "name": "Nalla Gundu",
+  "description": `Located 2 km from Paluguntipalli, Nalla Gundu is a sacred rock surrounded by farmland. Local legend says it dates back to 5075 BC during Rama's Vanvas. As Rama and Sita were traveling through this region carrying pots of milk and ghee for their survival, the ghee pot accidentally fell and broke at this spot. The ghee seeped into the ground, and from that event, the black rock known as 'Nalla Gundu' was formed. It’s believed Rama and Sita once stayed and cooked at this site, and old cooking tools may still exist.
 
 On top of the rock is a small Hanuman temple, where poojas are held, especially on Hanuman Jayanti. Long ago, rumors of hidden gold led people to try and break the rock, but villagers stopped them and built the temple to protect it. Since then, the site remains untouched and spiritually important.`,
-  distance: "2 km From Paluguntipalli",
-  link: "https://maps.app.goo.gl/4pgpgUjQBMzcKvQk8",
-  image: "/Near By Places/Nalla Gundu.JPG"
+  "distance": "2 km From Paluguntipalli",
+  "link": "https://maps.app.goo.gl/4pgpgUjQBMzcKvQk8",
+  "image": "/Near By Places/Nalla Gundu.JPG"
 },
   {
   name: "Rangaswamy Gundam",
