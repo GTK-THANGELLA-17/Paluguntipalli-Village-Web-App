@@ -7,14 +7,36 @@ import OptimizedImage from "./OptimizedImage";
 import VideoPlayer from "./VideoPlayer";
 
 const eventImages = [
-  "/Main Events/gundam.jpg",
-  "/Main Events/peerla chavidi.jpg",
-  "/Main Events/peerlu 1.jpg",
-  "/Main Events/Thangella Swamy And Brother.jpg",
-  "/Main Events/pedda sarigesu 2.jpg",
-  "/Main Events/pedda sarigesu 1.jpg",
-  "/Main Events/Thangella Swamy.jpg"
+  "/Main Events/Image 1.JPG",
+  "/Main Events/Image 2.JPG",
+  "/Main Events/Image 3.JPG",
+  "/Main Events/Image 4.JPG",
+  "/Main Events/Image 5.jpg",  // lowercase
+  "/Main Events/Image 6.jpg",  // lowercase
+  "/Main Events/Image 7.jpg",  // lowercase
+  "/Main Events/Image 8.JPG",
+  "/Main Events/Image 9.JPG",
+  "/Main Events/Image 10.JPG",
+  "/Main Events/Image 11.JPG",
+  "/Main Events/Image 12.JPG",
+  "/Main Events/Image 13.jpg",  // lowercase
+  "/Main Events/Image 14.jpg",  // lowercase
+  "/Main Events/Image 15.JPG",
+  "/Main Events/Image 16.JPG",
+  "/Main Events/Image 17.JPG",
+  "/Main Events/Image 18.JPG",
+  "/Main Events/Image 19.JPG",
+  "/Main Events/Image 20.JPG",
+  "/Main Events/Image 21.JPG",
+  "/Main Events/Image 22.JPG",
+  "/Main Events/Image 23.JPG",
+  "/Main Events/Image 24.JPG",
+  "/Main Events/Image 25.JPG",
+  "/Main Events/Image 26.JPG",
+  "/Main Events/Image 27.JPG",
+  "/Main Events/Image 28.JPG"
 ];
+
 
 const videoData = [
   {
