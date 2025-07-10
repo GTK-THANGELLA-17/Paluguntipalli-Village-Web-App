@@ -50,7 +50,7 @@ export const galleryData = {
   videos: [
     {
       id: 16,
-      src: "/Festival Videos/Early Morning/pedda sarigesu 1.mp4",
+      src: "/Festival Videos/Video 1.mov",
       thumbnail: "/Festival Thumbnails/pedda sarigesu 1.jpg",
       alt: "Pedda Sarigesu Video 1",
       type: "video",
@@ -58,7 +58,7 @@ export const galleryData = {
     },
     {
       id: 17,
-      src: "/Festival Videos/Early Morning/pedda sarigesu 3.mp4",
+      src: "/Festival Videos/Video 2.mov",
       thumbnail: "/Festival Thumbnails/pedda sarigesu image 4.jpg",
       alt: "Pedda Sarigesu Video 2",
       type: "video",
@@ -66,8 +66,16 @@ export const galleryData = {
     },
     {
       id: 18,
-      src: "/Festival Videos/pedda sarigesu 2.mp4",
-      thumbnail: "/Festival Thumbnails/pedda sarigesu 2.jpg",
+      src: "/Festival Videos/Video 3.mov",
+      thumbnail: "/Festival Thumbnails/pedda sarigesu 2.JPG",
+      alt: "Pedda Sarigesu Video 3",
+      type: "video",
+      tags: ["ritual", "festival", "village"]
+    },
+    {
+      id: 19,
+      src: "/Festival Videos/Video 4.mov",
+      thumbnail: "/Festival Thumbnails/pedda sarigesu 3.JPG",
       alt: "Pedda Sarigesu Video 3",
       type: "video",
       tags: ["ritual", "festival", "village"]
