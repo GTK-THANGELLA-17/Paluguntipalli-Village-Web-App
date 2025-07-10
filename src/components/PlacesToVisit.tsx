@@ -9,12 +9,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 // Village attractions with proper Google Maps links
 const villageAttractions = [
   {
-    name: "Sri Peddaya Swamy Temple",
-    description: "Ancient temple with historical significance and beautiful architecture",
-    link: "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4795123,78.9627302,42m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
-    image: "/Village Attractions/Kasinayana Temple.JPG",
-    distance: "In village"
-  },
+  name: "Sri Peddaya Swamy Temple",
+  description: "The original Sri Peddaya Swamy Temple, around 100 years old, stood at this site in the village. Recently, a new temple has been constructed at the same location, dedicated to the same deity, providing a refreshed and improved place of worship for the community.",
+  link: "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/@15.4795123,78.9627302,42m/data=!3m1!1e3!4m6!3m5!1s0x3bb4e1b7fe8a6969:0x6daeb87da9e27400!8m2!3d15.4808278!4d78.962409!16s%2Fm%2F051xw63?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D",
+  image: "/Village Attractions/Kasinayana Temple.JPG",
+  distance: "In village"
+},
   {
   name: "Peerla Chavidi",
   description: `Peerla Chavidi is a historic and spiritual place in the heart of Paluguntipalli village. According to village legend, long ago, a man found a small gold figure while drinking water from a well. The figure mysteriously returned to his hands twice. That night, he dreamt of a divine being named Thangella Swamy, who told him to hold a festival every year during Moharram with "Chinna Sarigesu" and "Pedda Sarigesu" rituals. In return, Thangella Swamy promised to protect the village and bless those who worship him. Since then, the annual Peerla festival has continued for generations. During the celebration, the deity is taken out, honored with offerings, and then safely returned to the box inside Peerla Chavidi until the next year.`,
