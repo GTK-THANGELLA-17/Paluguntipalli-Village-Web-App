@@ -7,33 +7,33 @@ import OptimizedImage from "./OptimizedImage";
 import VideoPlayer from "./VideoPlayer";
 
 const eventImages = [
-  "/gundam.jpg",
-  "/peerla chavidi.jpg",
-  "/peerlu 1.jpg",
-  "/Thangella Swamy And Brother.jpg",
-  "/pedda sarigesu 2.jpg",
-  "/pedda sarigesu 1.jpg",
-  "/Thangella Swamy.jpg"
+  "/Main Events/gundam.jpg",
+  "/Main Events/peerla chavidi.jpg",
+  "/Main Events/peerlu 1.jpg",
+  "/Main Events/Thangella Swamy And Brother.jpg",
+  "/Main Events/pedda sarigesu 2.jpg",
+  "/Main Events/pedda sarigesu 1.jpg",
+  "/Main Events/Thangella Swamy.jpg"
 ];
 
 const videoData = [
   {
     id: 1,
     title: "Pedda Sarigesu Festival Video 1",
-    videoSrc: "/pedda sarigesu 1.mp4",
-    thumbnailSrc: "/pedda sarigesu 1.jpg"
+    videoSrc: "/Main Events/pedda sarigesu 1.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 1.jpg"
   },
   {
     id: 2,
     title: "Pedda Sarigesu Festival Video 2",
-    videoSrc: "/pedda sarigesu 3.mp4",
-    thumbnailSrc: "/pedda sarigesu image 4.jpg"
+    videoSrc: "/Main Events/pedda sarigesu 3.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu image 4.jpg"
   },
   {
     id: 3,
     title: "Pedda Sarigesu Festival Video 3",
-    videoSrc: "/pedda sarigesu 2.mp4",
-    thumbnailSrc: "/pedda sarigesu 2.jpg"
+    videoSrc: "/Main Events/pedda sarigesu 2.mp4",
+    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 2.jpg"
   }
 ];
 

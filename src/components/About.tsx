@@ -103,7 +103,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <img
-              src="/VILLAGE START.jpg"
+              src="/Starting Slide show/VILLAGE START.jpg"
               alt="Palugutipalli Landscape"
               className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-xl shadow-lg"
               loading="lazy"

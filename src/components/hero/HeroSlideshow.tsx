@@ -23,19 +23,19 @@ const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshow
   const slides: Slide[] = [
     {
       type: 'image',
-      src: '/Hanuman Statue.jpg',
+      src: '/Starting Slide show/Hanuman Statue.jpg',
       title: t('hero.title'),
       subtitle: t('hero.subtitle')
     },
     {
       type: 'image', 
-      src: '/pedda sarigesu 1.jpg',
+      src: '/Starting Slide show/pedda sarigesu 1.jpg',
       title: t('hero.title'),
       subtitle: t('hero.subtitle')
     },
     {
       type: 'image',
-      src: '/village 2.jpg',
+      src: '/Starting Slide show/VILLAGE START.jpg',
       title: t('hero.title'),
       subtitle: t('hero.subtitle')
     }

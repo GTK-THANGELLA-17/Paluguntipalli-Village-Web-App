@@ -14,7 +14,7 @@ const eventsData = [
       "Celebrate Peerla Panduga with vibrant processions, traditional rituals, and community prayers. Let's come together to honor the tradition and enjoy the festive spirit!",
     time: "All Day",
     location: "Village Main Peerla Chavidi",
-    image: "/pedda sarigesu 1.jpg"
+    image: "/Events Today/pedda sarigesu 1.jpg"
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ const eventsData = [
       "The rainy season has begun with occasional heavy showers. Please stay cautious—avoid water-logged areas, drink clean water, and help keep the village mosquito-free.",
     time: "All Day",
     location: "Across the Village",
-    image: "/VILLAGE START.jpg"
+    image: "/Events Today/VILLAGE START.jpg"
   }
 ];
 

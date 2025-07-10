@@ -18,7 +18,7 @@ export interface DeveloperModalProps {
 }
 
 // Replace with your actual image file names in the public folder
-const images = ["/GTK PIC.jpg","/gtk 2.jpg", "/GTK.png", "GTK-THANGELLA-1.JPG", "GTK-THANGELLA.jpg"];
+const images = ["/Developer Model/GTK PIC.jpg","/Developer Model/gtk 2.jpg", "/Developer Model/GTK.png", "/Developer Model/GTK-THANGELLA-1.JPG", "/Developer Model/GTK-THANGELLA.jpg"];
 
 export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
