@@ -7,55 +7,62 @@ import OptimizedImage from "./OptimizedImage";
 import VideoPlayer from "./VideoPlayer";
 
 const eventImages = [
-  "/Main Events/Image 1.JPG",
-  "/Main Events/Image 2.JPG",
-  "/Main Events/Image 3.JPG",
-  "/Main Events/Image 4.JPG",
-  "/Main Events/Image 5.jpg",  // lowercase
-  "/Main Events/Image 6.jpg",  // lowercase
-  "/Main Events/Image 7.jpg",  // lowercase
-  "/Main Events/Image 8.JPG",
-  "/Main Events/Image 9.JPG",
-  "/Main Events/Image 10.JPG",
-  "/Main Events/Image 11.JPG",
-  "/Main Events/Image 12.JPG",
-  "/Main Events/Image 13.jpg",  // lowercase
-  "/Main Events/Image 14.jpg",  // lowercase
-  "/Main Events/Image 15.JPG",
-  "/Main Events/Image 16.JPG",
-  "/Main Events/Image 17.JPG",
-  "/Main Events/Image 18.JPG",
-  "/Main Events/Image 19.JPG",
-  "/Main Events/Image 20.JPG",
-  "/Main Events/Image 21.JPG",
-  "/Main Events/Image 22.JPG",
-  "/Main Events/Image 23.JPG",
-  "/Main Events/Image 24.JPG",
-  "/Main Events/Image 25.JPG",
-  "/Main Events/Image 26.JPG",
-  "/Main Events/Image 27.JPG",
-  "/Main Events/Image 28.JPG"
+  "/Festival Gallery/Image 1.JPG",
+  "/Festival Gallery/Image 2.JPG",
+  "/Festival Gallery/Image 3.JPG",
+  "/Festival Gallery/Image 4.JPG",
+  "/Festival Gallery/Image 5.jpg",  // lowercase
+  "/Festival Gallery/Image 6.jpg",  // lowercase
+  "/Festival Gallery/Image 7.jpg",  // lowercase
+  "/Festival Gallery/Image 8.JPG",
+  "/Festival Gallery/Image 9.JPG",
+  "/Festival Gallery/Image 10.JPG",
+  "/Festival Gallery/Image 11.JPG",
+  "/Festival Gallery/Image 12.JPG",
+  "/Festival Gallery/Image 13.jpg",  // lowercase
+  "/Festival Gallery/Image 14.jpg",  // lowercase
+  "/Festival Gallery/Image 15.JPG",
+  "/Festival Gallery/Image 16.JPG",
+  "/Festival Gallery/Image 17.JPG",
+  "/Festival Gallery/Image 18.JPG",
+  "/Festival Gallery/Image 19.JPG",
+  "/Festival Gallery/Image 20.JPG",
+  "/Festival Gallery/Image 21.JPG",
+  "/Festival Gallery/Image 22.JPG",
+  "/Festival Gallery/Image 23.JPG",
+  "/Festival Gallery/Image 24.JPG",
+  "/Festival Gallery/Image 25.JPG",
+  "/Festival Gallery/Image 26.JPG",
+  "/Festival Gallery/Image 27.JPG",
+  "/Festival Gallery/Image 28.JPG"
 ];
+
 
 
 const videoData = [
   {
     id: 1,
     title: "Pedda Sarigesu Festival Video 1",
-    videoSrc: "/Main Events/pedda sarigesu 1.mp4",
+    videoSrc: "/Festival Videos/Video 2.mov",
     thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 1.jpg"
   },
   {
     id: 2,
     title: "Pedda Sarigesu Festival Video 2",
-    videoSrc: "/Main Events/pedda sarigesu 3.mp4",
+    videoSrc: "/Festival Videos/Video 2.mov",
     thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu image 4.jpg"
   },
   {
     id: 3,
     title: "Pedda Sarigesu Festival Video 3",
-    videoSrc: "/Main Events/pedda sarigesu 2.mp4",
-    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 2.jpg"
+    videoSrc: "/Festival Videos/Video 3.mov",
+    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 3.JPG"
+  },
+   {
+    id: 4,
+    title: "Pedda Sarigesu Festival Video 3",
+    videoSrc: "/Festival Videos/Video 3.mov",
+    thumbnailSrc: "/Main Events Thumbnails/pedda sarigesu 2.JPG"
   }
 ];
 
