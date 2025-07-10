@@ -141,7 +141,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panduga Images of 2024
+          Peerla Panduga Images of 2025
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -193,7 +193,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panduga Videos of 2024
+          Peerla Panduga Videos of 2025
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
