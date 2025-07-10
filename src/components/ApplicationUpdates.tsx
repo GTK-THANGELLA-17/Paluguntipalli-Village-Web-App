@@ -31,11 +31,11 @@ const ApplicationUpdates = () => {
       timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
       priority: "high",
     },
-    {
+ {
   id: "2",
   title: "Festival Media Update",
   message:
-    "Festival images have been updated! Videos are yet to be uploaded. Check out the latest images of Peerla Panduga 2025 now.",
+    "All festival media has been updated! The Gallery and Festival Main Events sections now include the latest images and videos from Peerla Panduga 2025. You can view and download them now.",
   type: "info",
   timestamp: new Date(), // now
   priority: "medium",
