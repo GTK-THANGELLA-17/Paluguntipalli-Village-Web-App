@@ -24,7 +24,7 @@ export const businesses: Business[] = [
     location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "6:00 AM - 10:00 PM",
     rating: 4.4,
-    image: "/general store.png",
+    image: "/Local Business/general store.png",
     featured: true,
     services: ["Groceries", "Household Items", "Tablets", "Mobile Recharge"]
   },
@@ -38,7 +38,7 @@ export const businesses: Business[] = [
     location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "7:00 AM - 9:00 PM",
     rating: 4.3,
-    image: "/general store.png",
+    image: "/Local Business/general store.png",
     featured: false,
     services: ["Groceries", "Tablets", "Bill Payments"]
   },
@@ -52,7 +52,7 @@ export const businesses: Business[] = [
     location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "6:30 AM - 9:30 PM",
     rating: 4.2,
-    image: "/general store.png",
+    image: "/Local Business/general store.png",
     featured: false,
     services: ["Snacks", "Groceries", "Medicines"]
   },
@@ -66,7 +66,7 @@ export const businesses: Business[] = [
     location: "Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "8:00 AM - 8:00 PM",
     rating: 4.5,
-    image: "/clinic.png",
+    image: "/Local Business/clinic.png",
     featured: true,
     services: ["General Checkup", "Medicines", "Vaccinations"]
   },
@@ -80,7 +80,7 @@ export const businesses: Business[] = [
     location: "Paluguntipalli, Racherla Mandalam, Prakasam District, Andhra Pradesh",
     hours: "7:00 AM - 7:00 PM",
     rating: 4.2,
-    image: "/puncher services.png",
+    image: "/Local Business/puncher services.png",
     featured: false,
     services: ["Bicycle Repair", "Motorcycle Service", "Spare Parts", "Tire Service"]
   }

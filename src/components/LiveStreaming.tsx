@@ -23,7 +23,7 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
       isLive: true,
       viewers: 772,
       streamUrl: '/pedda sarigesu 2.mp4',
-      thumbnail: '/pedda sarigesu 1.jpg',
+      thumbnail: '/Live Streaming/pedda sarigesu 1.jpg',
       startTime: '10:00 AM',
       category: 'Festival'
     },
@@ -34,7 +34,7 @@ const LiveStreaming: React.FC<LiveStreamingProps> = ({ onClose }) => {
       isLive: false,
       viewers: 0,
       streamUrl: '',
-      thumbnail: '/VILLAGE START.jpg',
+      thumbnail: 'Live Streaming/VILLAGE START.jpg',
       startTime: '6:00 PM',
       category: 'Community'
     },

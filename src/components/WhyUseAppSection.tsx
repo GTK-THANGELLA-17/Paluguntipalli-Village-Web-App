@@ -14,25 +14,25 @@ const features = [
     icon: Bell,
     title: "Stay Updated",
     description: "Receive the latest updates about village news, events, and important announcements directly through the app.",
-    image: "/BUS STAND.jpg"
+    image: "/Why Use Our App/BUS STAND.jpg"
   },
   {
     icon: Download,
     title: "Festival Memories",
     description: "During festivals like Peerla Panduga, access and download the latest photos and videos to preserve precious memories.",
-    image: "/VILLAGE START.jpg"
+    image: "/Why Use Our App/VILLAGE START.jpg"
   },
   {
     icon: MapPin,
     title: "Explore & Discover",
     description: "Learn about Paluguntipalli's rich culture, historical places, traditions, and hidden gems whether you're local or visiting.",
-    image: "/Hanuman Statue.jpg"
+    image: "/Why Use Our App/Hanuman Statue.jpg"
   },
   {
     icon: Users,
     title: "Community Connection",
     description: "Connect with fellow villagers, stay informed about community activities, and be part of our growing digital family.",
-    image:"/Peerla Chavidi Main.png"
+    image:"/Why Use Our App/Peerla Chavidi Main.png"
   }
 ];
 
