@@ -11,7 +11,7 @@ const eventsData = [
     id: 1,
     title: "Peerla Panduga Celebrations",
     description:
-      "Celebrate Peerla Panduga with vibrant processions, traditional rituals, and community prayers. Let's come together to honor the tradition and enjoy the festive spirit!",
+      "Peerla Panduga was celebrated with vibrant processions, traditional rituals, and community prayers. The celebrations went very well, with a large number of people attending from across Andhra Pradesh, Telangana, and local villages. The atmosphere was festive and filled with joy, devotion, and cultural unity. It was truly a memorable occasion for everyone who took part.",
     time: "All Day",
     location: "Village Main Peerla Chavidi",
     image: "/Events Today/pedda sarigesu 1.jpg"
