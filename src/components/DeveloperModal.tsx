@@ -7,134 +7,144 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Github, Linkedin, Mail, Globe, Twitter, Instagram } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface DeveloperModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-// Replace with your actual image file names in the public folder
-const images = ["/Developer Model/GTK PIC.jpg","/Developer Model/gtk 2.jpg", "/Developer Model/GTK.png", "/Developer Model/GTK-THANGELLA-1.JPG", "/Developer Model/GTK-THANGELLA.jpg"];
+const images = [
+  "/Developer Model/GTK PIC.jpg",
+  "/Developer Model/gtk 2.jpg",
+  "/Developer Model/GTK.png",
+  "/Developer Model/GTK-THANGELLA-1.JPG",
+  "/Developer Model/GTK-THANGELLA.jpg",
+];
+
+const developerLinks = [
+  { icon: <Github />, label: "GitHub", url: "https://github.com" },
+  { icon: <Linkedin className="text-blue-600" />, label: "LinkedIn", url: "https://www.linkedin.com/in/gthangella/" },
+  { icon: <Twitter className="text-blue-400" />, label: "Twitter", url: "https://twitter.com/g_thangella" },
+  { icon: <Instagram className="text-pink-500" />, label: "Instagram", url: "https://www.instagram.com/g_thangella_k" },
+  { icon: <Mail className="text-red-500" />, label: "Email", url: "mailto:imgtk17@gmail.com" },
+  { icon: <Globe className="text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" },
+];
 
 export function DeveloperModal({ open, onOpenChange }: DeveloperModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Slideshow logic
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 2000);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
-  const developerLinks = [
-    { icon: <Github className="h-3 w-3 sm:h-4 sm:w-4" />, label: "GitHub", url: "https://github.com" },
-    { icon: <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 text-blue-600" />, label: "LinkedIn", url: "https://www.linkedin.com/in/gthangella/" },
-    { icon: <Twitter className="h-3 w-3 sm:h-4 sm:w-4 text-blue-400" />, label: "Twitter", url: "https://twitter.com/g_thangella" },
-    { icon: <Instagram className="h-3 w-3 sm:h-4 sm:w-4 text-pink-500" />, label: "Instagram", url: "https://www.instagram.com/g_thangella_k" },
-    { icon: <Mail className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />, label: "Email", url: "mailto:imgtk17@gmail.com" },
-    { icon: <Globe className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />, label: "Portfolio", url: "https://thangella-creaftech-solutions.vercel.app/" }
-  ];
-
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95%] max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto rounded-lg p-3 sm:p-4 bg-white dark:bg-[#1a1a1a] border dark:border-gray-700">
+      <DialogContent className="w-[95%] max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto rounded-lg p-4 bg-white dark:bg-[#1a1a1a] border dark:border-gray-700">
         <DialogHeader>
-          <DialogTitle className="text-sm sm:text-base lg:text-lg text-center text-[#000000] dark:text-white">
+          <DialogTitle className="text-lg font-bold text-center text-black dark:text-white">
             Meet the Developer
           </DialogTitle>
-          <DialogDescription className="text-center text-xs text-gray-600 dark:text-gray-300">
+          <DialogDescription className="text-xs text-center text-gray-600 dark:text-gray-300">
             Behind the Paluguntipalli Village application
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex flex-col items-center gap-3 sm:gap-4 pt-3 sm:pt-4">
-          {/* Avatar Slideshow */}
-          <div className="flex flex-col items-center text-center w-full">
-            <div className="h-28 w-28 sm:h-32 sm:w-32 mb-2 sm:mb-3 overflow-hidden rounded-lg border border-heritage dark:border-white">
-              <img
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col items-center gap-4 pt-4"
+        >
+          {/* Slideshow Avatar */}
+          <div className="relative h-32 w-32 overflow-hidden rounded-lg border dark:border-white">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={images[currentImageIndex]}
                 src={images[currentImageIndex]}
                 alt="G. Thangella"
-                className="w-full h-full object-cover transition-opacity duration-500"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4 }}
+                className="w-full h-full object-cover"
               />
-            </div>
+            </AnimatePresence>
+          </div>
 
-            <h3 className="text-sm sm:text-base font-semibold text-[#000000] dark:text-white">
+          <div className="text-center space-y-2">
+            <h3 className="text-base font-semibold text-black dark:text-white">
               Gadidamalla Thangella
             </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 whitespace-pre-line leading-snug">
+            <p className="text-xs text-gray-600 dark:text-gray-300 whitespace-pre-line leading-snug">
               Son of Gadidamalla Kasaiah{"\n"}
               This is my village — Paluguntipalli. I'm a village member.{"\n"}
               My grandparents, and my babai still live there.{"\n"}
               I currently live and work in Hyderabad.
             </p>
-
-            <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 whitespace-pre-line leading-snug">
-              💼 Entrepreneur{"\n"}
-              🧠 Tech Explorer{"\n"}
-              🎨 Creative Thinker{"\n"}
+            <p className="text-xs text-gray-600 dark:text-gray-300 mt-2 leading-snug">
+              💼 Entrepreneur{"  "}
+              🧠 Tech Explorer{"  "}
+              🎨 Creative Thinker{"  "}
               🔭 Visionary
             </p>
-
-            <div className="flex gap-1 mt-2 flex-wrap justify-center">
-              {developerLinks.map((link, i) => (
-                <Button 
-                  key={i} 
-                  variant="outline" 
-                  size="icon" 
-                  asChild 
-                  className="h-6 w-6 sm:h-7 sm:w-7 rounded-full border-heritage dark:border-white hover:bg-heritage hover:text-white dark:hover:bg-white dark:hover:text-black"
-                >
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
-                    {link.icon}
-                  </a>
-                </Button>
-              ))}
-            </div>
           </div>
 
-          {/* Description */}
-          <div className="space-y-2 text-xs w-full">
-            <p className="text-gray-700 dark:text-gray-300 text-center sm:text-left">
-              This application was developed to keep our Paluguntipalli villagers informed and connected. You can explore festival highlights, download cultural and village media, and stay updated with local news, events, and traditions.
+          {/* Social Links */}
+          <div className="flex gap-2 flex-wrap justify-center mt-2">
+            {developerLinks.map((link, i) => (
+              <motion.a
+                key={i}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.label}
+                whileHover={{ scale: 1.1 }}
+                className="h-8 w-8 flex items-center justify-center rounded-full border dark:border-white hover:bg-heritage hover:text-white dark:hover:bg-white dark:hover:text-black transition"
+              >
+                {React.cloneElement(link.icon, { className: "h-4 w-4" })}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Mission and Description */}
+          <div className="w-full text-xs space-y-3 mt-4 text-gray-700 dark:text-gray-300 text-center sm:text-left">
+            <p>
+              This application was developed to keep our Paluguntipalli villagers informed and connected.
+              You can explore festival highlights, download cultural and village media, and stay updated with local news, events, and traditions.
             </p>
-
             <div>
-              <h4 className="font-medium text-xs sm:text-sm mb-1 text-[#000000] dark:text-white">
-                Tech Stack of This Application
+              <h4 className="font-medium text-sm mb-1 text-black dark:text-white">
+                Mission
               </h4>
-              <p className="text-gray-600 dark:text-gray-400 text-xs">
-                React, TypeScript, TailwindCSS, shadcn/ui, Framer Motion, Vite
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-medium text-xs sm:text-sm mb-1 text-[#000000] dark:text-white">Mission</h4>
-              <p className="text-gray-600 dark:text-gray-400 text-xs">
-                I'm focused on creating meaningful digital products that make a difference. With this app, I hope to preserve our village's culture and help every resident stay connected and informed through simple, effective technology.
+              <p>
+                I'm focused on creating meaningful digital products that make a difference.
+                With this app, I hope to preserve our village's culture and help every resident stay connected and informed through simple, effective technology.
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <Separator className="my-2 sm:my-3 dark:bg-gray-600" />
+        <Separator className="my-4 dark:bg-gray-600" />
 
         <DialogFooter className="flex flex-col sm:flex-row gap-2 justify-center sm:justify-end">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => onOpenChange(false)}
-            className="text-xs sm:text-sm bg-[#000000] text-white border-[#000000] hover:bg-[#333333] dark:bg-[#000000] dark:text-white dark:border-white dark:hover:bg-[#333333]"
+            className="text-xs sm:text-sm bg-black text-white border-black hover:bg-gray-800 dark:border-white"
           >
             Close
           </Button>
-          <Button 
-            variant="default" 
+          <Button
+            variant="default"
             asChild
-            className="text-xs sm:text-sm bg-[#000000] hover:bg-[#333333] text-white dark:bg-[#000000] dark:hover:bg-[#333333]"
+            className="text-xs sm:text-sm bg-black text-white hover:bg-gray-800"
           >
             <a href="mailto:imgtk17@gmail.com" target="_blank" rel="noopener noreferrer">
               Get in Touch
