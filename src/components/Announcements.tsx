@@ -13,16 +13,17 @@ const announcements: Announcement[] = [
   {
     title: "Peerla Panduga",
     date: "July 2025",
-    description: "Annual celebration with cultural performances and traditional rituals.",
+    description: "Peerla Panduga was successfully celebrated with cultural performances, traditional rituals, and vibrant processions.Village People from who are across Andhra Pradesh and Telangana came and participated, making it a grand and joyful event.",
     important: true
   },
   {
     title: "Pedda Sarigesu",
-    date: "ON MONDAY--July 7, 2025",
-    description: "Special ceremony at the village temple with community gathering.",
+    date: "ON MONDAY -- July 7, 2025",
+    description: "Pedda Sarigesu festival was completed successfully in village with a large community gathering. The event was marked by traditional ceremonies, strong local participation, and festive enthusiasm.",
     important: true
   }
 ];
+
 
 const Announcements = () => {
   const containerVariants = {
