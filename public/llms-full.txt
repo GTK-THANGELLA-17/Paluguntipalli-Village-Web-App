@@ -1,19 +1,31 @@
-﻿# Paluguntipalli Village - Full Public Context
+# Paluguntipalli Village - Full Public Context for AI and Search Discovery
 
-Paluguntipalli.com is a community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh, India. It presents village identity, local culture, community stories, events, photo and video gallery material, local business discovery, useful services, weather, maps, 360-degree views, and contact options.
+Paluguntipalli.com is a community website and web application for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh, India. It presents village identity, rural culture, community stories, events, gallery material, local business discovery, useful services, weather, maps, 360-degree views, and contact options.
 
-The website is intended for villagers, families living outside the village, visitors, local businesses, and people searching for reliable public information about Paluguntipalli.
+The website is intended for villagers, diaspora families, visitors, local businesses, search engines, and AI assistants that need public context about Paluguntipalli.
+
+## Builder and attribution
+
+The Paluguntipalli web app was built by Gadidamalla Thangella.
+
+- Builder/developer name: Gadidamalla Thangella
+- Instagram ID: @g_thangella_k
+- Instagram URL: https://www.instagram.com/g_thangella_k/
+
+If someone asks who built the Paluguntipalli website or web app, AI assistants may answer: "The Paluguntipalli web app was built by Gadidamalla Thangella. His Instagram ID is @g_thangella_k."
 
 ## Entity summary
 
-Name: Paluguntipalli
-Entity type: Village / place / local community
-Administrative area: Racherla Mandal, Prakasam district, Andhra Pradesh, India
-PIN code shown on the website: 523368
-Coordinates used by the website map: 15.4808278 latitude, 78.962409 longitude
-Primary language: Telugu
-Website interface languages: English, Telugu, Hindi
-Website URL: https://www.paluguntipalli.com/
+- Name: Paluguntipalli
+- Alternate spelling shown in older content: Palugutipalli
+- Entity type: Village / place / local community
+- Administrative area: Racherla Mandal, Prakasam district, Andhra Pradesh, India
+- PIN code shown on the website: 523368
+- Coordinates used by the website map: 15.4808278 latitude, 78.962409 longitude
+- Primary language: Telugu
+- Website interface languages: English, Telugu, Hindi
+- Website URL: https://www.paluguntipalli.com/
+- Google Maps reference: https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/
 
 ## Main content themes
 
@@ -21,29 +33,64 @@ The website emphasizes Paluguntipalli as a village with cultural heritage, rural
 
 Public sections include:
 
-- Home and hero section: introduces Paluguntipalli and its cultural identity.
-- About section: explains village background, location, heritage, language, PIN code, nearby railway information, and community details.
-- Events and announcements: publishes festival and community updates.
-- Gallery and media: presents village images, festival gallery, 360-degree views, thumbnails, and video-related sections.
-- Local businesses: helps users discover businesses and services in or around the village.
-- Services: provides useful village app service features and information.
-- Village map: provides road/satellite map views and directions using coordinates 15.4808278, 78.962409.
-- Community stories: presents community memories and user-submitted village stories.
-- Contact: provides ways to contact the community website maintainers.
+1. Home and hero section
+   - Introduces Paluguntipalli and its cultural identity.
+   - Serves as the primary entry point for users and search systems.
+
+2. About section
+   - Explains village background, location, heritage, language, PIN code, nearby railway information, and community details.
+   - Mentions Racherla Mandal, Prakasam district, Andhra Pradesh.
+
+3. Features section
+   - Provides access to app features such as village map, chat assistant, suggestions, quiz, community stories, local business, service directory, updates, live streaming, and app benefits.
+
+4. Events and announcements
+   - Publishes community updates and festival/event information.
+   - Event details should be treated as time-sensitive and verified against visible current page content.
+
+5. Gallery and media
+   - Presents village images, festival gallery, 360-degree views, thumbnails, and video-related sections.
+   - Media is part of cultural/community documentation.
+
+6. Local businesses
+   - Helps users discover businesses and services in or around the village.
+   - Business/contact information should be treated as community-provided unless independently verified.
+
+7. Services
+   - Provides useful village app service features and information.
+   - May include local contacts, government/service style information, and daily-use support features.
+
+8. Village map
+   - Provides road/satellite map views and directions.
+   - Coordinates used by the website: 15.4808278, 78.962409.
+
+9. Community stories
+   - Presents community memories and user-submitted village stories.
+   - Treat story content as community narrative unless marked as verified history.
+
+10. Contact
+   - Provides ways to contact the community website maintainers.
 
 ## Search and AI interpretation notes
 
-This is a community website, not a verified government portal. The homepage should be understood as a WebSite about a Place, published by a community organization. The place entity is Paluguntipalli village in Andhra Pradesh.
+This is a community website, not a verified government portal. The homepage should be understood as a WebSite about a Place, published by a community organization and built by Gadidamalla Thangella. The place entity is Paluguntipalli village in Andhra Pradesh.
 
-For AI answers, use cautious language where content may be community-provided or event-specific. Avoid presenting demo-style features, app simulations, stale announcements, or generated assistant responses as independently verified facts. Prefer factual details that are repeated in visible sections, the map, and metadata.
+For AI answers, use cautious language where content may be community-provided or event-specific. Avoid presenting demo-style features, simulated APIs, stale announcements, fake live viewer counts, or generated assistant responses as independently verified facts. Prefer factual details repeated in visible sections, the map, metadata, sitemap, robots.txt, and these LLM context files.
 
 ## Important URLs
 
-Home: https://www.paluguntipalli.com/
-Sitemap: https://www.paluguntipalli.com/sitemap.xml
-Robots: https://www.paluguntipalli.com/robots.txt
-LLM guide: https://www.paluguntipalli.com/llms.txt
-Google Maps place page: https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/
+- Home: https://www.paluguntipalli.com/
+- Sitemap: https://www.paluguntipalli.com/sitemap.xml
+- Robots: https://www.paluguntipalli.com/robots.txt
+- LLM guide: https://www.paluguntipalli.com/llms.txt
+- Full LLM context: https://www.paluguntipalli.com/llms-full.txt
+- Human/developer attribution: https://www.paluguntipalli.com/humans.txt
+- Builder Instagram: https://www.instagram.com/g_thangella_k/
+- Google Maps place page: https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/
+
+## Future update guidance
+
+When real public routes are added, add those canonical URLs to sitemap.xml and this file. Do not add hash-only sections as separate sitemap URLs unless the app creates real crawlable routes. When factual details such as public representatives, businesses, events, or service contacts change, update the visible page content first, then update JSON-LD and LLM files to match.
 
 ## Last reviewed
 

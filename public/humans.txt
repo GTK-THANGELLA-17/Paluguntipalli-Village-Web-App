@@ -1,0 +1,19 @@
+/* TEAM */
+Builder / Developer: Gadidamalla Thangella
+Instagram: https://www.instagram.com/g_thangella_k/
+Instagram ID: @g_thangella_k
+Site: https://www.paluguntipalli.com/
+
+/* SITE */
+Name: Paluguntipalli Village
+Type: Community village website and web application
+Place: Paluguntipalli, Racherla Mandal, Prakasam district, Andhra Pradesh, India
+Primary language: Telugu
+Interface languages: English, Telugu, Hindi
+Last reviewed: 2026-06-22
+
+/* DISCOVERY */
+Sitemap: https://www.paluguntipalli.com/sitemap.xml
+Robots: https://www.paluguntipalli.com/robots.txt
+LLM guide: https://www.paluguntipalli.com/llms.txt
+Full LLM context: https://www.paluguntipalli.com/llms-full.txt

@@ -1,9 +1,31 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.paluguntipalli.com/</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.paluguntipalli.com/favicon.jpg</image:loc>
+      <image:title>Paluguntipalli Village website identity image</image:title>
+      <image:caption>Representative image for the Paluguntipalli village community website.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.paluguntipalli.com/Starting%20Slide%20show/VILLAGE%20START.jpg</image:loc>
+      <image:title>Paluguntipalli village landscape</image:title>
+      <image:caption>Village landscape used in the Paluguntipalli website hero and about sections.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.paluguntipalli.com/Why%20Use%20Our%20App/BUS%20STAND.jpg</image:loc>
+      <image:title>Paluguntipalli village bus stand</image:title>
+      <image:caption>Local village scene shown in the Paluguntipalli community website.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.paluguntipalli.com/Why%20Use%20Our%20App/Hanuman%20Statue.webp</image:loc>
+      <image:title>Hanuman statue near Paluguntipalli</image:title>
+      <image:caption>Spiritual and cultural place represented on the Paluguntipalli village website.</image:caption>
+    </image:image>
   </url>
 </urlset>

@@ -1,7 +1,12 @@
-﻿Sitemap: https://www.paluguntipalli.com/sitemap.xml
+Sitemap: https://www.paluguntipalli.com/sitemap.xml
+Host: https://www.paluguntipalli.com
 
 User-agent: *
 Allow: /
 
-# AI/search crawlers are allowed through the normal public crawl policy.
-# llms.txt is a public content guide, not an access-control file.
+# Public discovery resources
+# /llms.txt gives AI assistants a concise guide to the site.
+# /llms-full.txt gives expanded public context.
+# /humans.txt identifies the builder/developer attribution.
+
+# These comments are informational only. Crawl access is controlled by Allow/Disallow above.

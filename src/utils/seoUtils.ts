@@ -1,4 +1,9 @@
-﻿// SEO optimization utilities for production
+// SEO optimization utilities for production
+const CREATOR_ID = 'https://www.paluguntipalli.com/#gadidamalla-thangella';
+const ORGANIZATION_ID = 'https://www.paluguntipalli.com/#organization';
+const PLACE_ID = 'https://www.paluguntipalli.com/#place';
+const WEBSITE_ID = 'https://www.paluguntipalli.com/#website';
+
 export const seoUtils = {
   // Update page meta tags dynamically
   updatePageMeta: (pageData: {
@@ -12,12 +17,10 @@ export const seoUtils = {
     const currentUrl = url || window.location.href;
     const metaImage = image || 'https://www.paluguntipalli.com/favicon.jpg';
 
-    // Update document title
     if (title) {
       document.title = `${title} | Paluguntipalli Village`;
     }
 
-    // Update or create meta tags
     const updateMeta = (name: string, content: string, property?: boolean) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
       let meta = document.querySelector(selector) as HTMLMetaElement;
@@ -45,38 +48,61 @@ export const seoUtils = {
       updateMeta('keywords', keywords);
     }
 
+    updateMeta('creator', 'Gadidamalla Thangella');
+    updateMeta('developer', 'Gadidamalla Thangella');
     updateMeta('og:image', metaImage, true);
     updateMeta('twitter:image', metaImage);
     updateMeta('og:url', currentUrl, true);
     updateMeta('twitter:url', currentUrl);
 
-    // Add structured data aligned with the visible website entity.
     seoUtils.addStructuredData({
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'WebSite',
-          '@id': 'https://www.paluguntipalli.com/#website',
+          '@id': WEBSITE_ID,
           name: 'Paluguntipalli Village',
+          alternateName: ['Paluguntipalli', 'Paluguntipalli Village Community', 'Paluguntipalli Community Website'],
           url: 'https://www.paluguntipalli.com/',
-          inLanguage: ['en-IN', 'te-IN'],
+          inLanguage: ['en-IN', 'te-IN', 'hi-IN'],
           description: description || 'Community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh.',
-          publisher: { '@id': 'https://www.paluguntipalli.com/#organization' },
-          about: { '@id': 'https://www.paluguntipalli.com/#place' }
+          publisher: { '@id': ORGANIZATION_ID },
+          creator: { '@id': CREATOR_ID },
+          copyrightHolder: { '@id': ORGANIZATION_ID },
+          about: { '@id': PLACE_ID },
+          mainEntity: { '@id': PLACE_ID },
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://www.paluguntipalli.com/?q={search_term_string}',
+            'query-input': 'required name=search_term_string'
+          }
         },
         {
           '@type': 'Organization',
-          '@id': 'https://www.paluguntipalli.com/#organization',
+          '@id': ORGANIZATION_ID,
           name: 'Paluguntipalli Community',
           url: 'https://www.paluguntipalli.com/',
-          logo: 'https://www.paluguntipalli.com/favicon.jpg'
+          logo: 'https://www.paluguntipalli.com/favicon.jpg',
+          sameAs: ['https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/']
+        },
+        {
+          '@type': 'Person',
+          '@id': CREATOR_ID,
+          name: 'Gadidamalla Thangella',
+          alternateName: 'g_thangella_k',
+          description: 'Builder and developer of the Paluguntipalli village web application.',
+          jobTitle: 'Website builder and developer',
+          sameAs: ['https://www.instagram.com/g_thangella_k/'],
+          knowsAbout: ['Web development', 'Village community websites', 'Paluguntipalli']
         },
         {
           '@type': 'Place',
-          '@id': 'https://www.paluguntipalli.com/#place',
+          '@id': PLACE_ID,
           name: 'Paluguntipalli',
+          alternateName: ['Palugutipalli', 'Paluguntipalli Village'],
           description: 'Village in Racherla Mandal, Prakasam district, Andhra Pradesh, India.',
           url: 'https://www.paluguntipalli.com/',
+          subjectOf: { '@id': WEBSITE_ID },
           geo: {
             '@type': 'GeoCoordinates',
             latitude: 15.4808278,
@@ -88,7 +114,12 @@ export const seoUtils = {
             addressRegion: 'Andhra Pradesh',
             postalCode: '523368',
             addressCountry: 'IN'
-          }
+          },
+          containedInPlace: {
+            '@type': 'AdministrativeArea',
+            name: 'Prakasam district, Andhra Pradesh'
+          },
+          sameAs: ['https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/']
         }
       ]
     });
@@ -108,16 +139,10 @@ export const seoUtils = {
     document.head.appendChild(script);
   },
 
-  // Generate sitemap data (for build process)
+  // Generate sitemap data for the current SPA. Add real route URLs here when the app gains routed pages.
   generateSitemapData: () => {
     const routes = [
-      { url: '/', priority: 1.0, changefreq: 'weekly' },
-      { url: '/#about', priority: 0.9, changefreq: 'monthly' },
-      { url: '/#places', priority: 0.8, changefreq: 'monthly' },
-      { url: '/#gallery', priority: 0.8, changefreq: 'monthly' },
-      { url: '/#events', priority: 0.8, changefreq: 'weekly' },
-      { url: '/#services', priority: 0.7, changefreq: 'monthly' },
-      { url: '/#contact', priority: 0.7, changefreq: 'monthly' }
+      { url: '/', priority: 1.0, changefreq: 'weekly' }
     ];
 
     return routes.map(route => ({
