@@ -12,8 +12,8 @@ interface MainLayoutProps {
   isAudioPlaying: boolean;
   audioRef: React.RefObject<HTMLAudioElement>;
   setIsAudioPlaying: (playing: boolean) => void;
-  activeSection: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null;
-  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null) => void;
+  activeSection: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null;
+  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null) => void;
   isAIAssistantOpen?: boolean;
   onAIAssistantOpenChange?: (open: boolean) => void;
   onAIAssistantOpen?: () => void;
@@ -33,7 +33,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   onAIAssistantOpen
 }) => {
   const handleAIAssistantOpen = () => {
-    console.log('MainLayout handleAIAssistantOpen called');
     if (onAIAssistantOpen) {
       onAIAssistantOpen();
     }

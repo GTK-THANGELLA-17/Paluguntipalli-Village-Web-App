@@ -14,7 +14,7 @@ import Announcements from "@/components/Announcements";
 import ApplicationUpdates from "@/components/ApplicationUpdates";
 
 interface MainContentProps {
-  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null) => void;
+  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null) => void;
   onAIAssistantOpen?: () => void;
 }
 
@@ -22,8 +22,6 @@ const MainContent: React.FC<MainContentProps> = ({
   onSectionChange,
   onAIAssistantOpen 
 }) => {
-  console.log('MainContent received onAIAssistantOpen:', !!onAIAssistantOpen);
-  
   return (
     <>
       <Hero />

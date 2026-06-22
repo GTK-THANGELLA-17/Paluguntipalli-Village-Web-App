@@ -32,5 +32,5 @@ export interface Language {
 export interface AIAssistantProps {
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
-  onSectionChange?: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | null) => void;
+  onSectionChange?: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'live-streaming' | null) => void;
 }

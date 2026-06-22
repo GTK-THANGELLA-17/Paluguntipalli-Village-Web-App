@@ -1,7 +1,8 @@
-
 import React, { ReactNode } from 'react';
 import LoadingScreen from "@/components/LoadingScreen";
 import MainLayout from './MainLayout';
+
+type ActiveSection = 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null;
 
 interface SpecialSectionLayoutProps {
   children: ReactNode;
@@ -9,8 +10,8 @@ interface SpecialSectionLayoutProps {
   isAudioPlaying: boolean;
   audioRef: React.RefObject<HTMLAudioElement>;
   setIsAudioPlaying: (playing: boolean) => void;
-  activeSection: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null;
-  onSectionChange: (section: 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | null) => void;
+  activeSection: ActiveSection;
+  onSectionChange: (section: ActiveSection) => void;
 }
 
 const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
@@ -23,7 +24,6 @@ const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
   onSectionChange
 }) => {
   const handleBackToFeatures = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     onSectionChange(null);
   };
 
@@ -40,7 +40,6 @@ const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
         onSectionChange={onSectionChange}
       >
         <div className="pt-20 min-h-screen relative z-10">
-          {/* Pass onBackToFeatures prop to VillageMap if it's the active section */}
           {activeSection === 'village-map' ? (
             <div>
               {React.cloneElement(children as React.ReactElement, { onBackToFeatures: handleBackToFeatures })}

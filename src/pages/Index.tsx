@@ -1,15 +1,5 @@
-
-import { useState, useCallback, useMemo } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, useCallback, useMemo, type ReactNode } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
-import DailyQuiz from "@/components/DailyQuiz";
-import LocalBusiness from "@/components/LocalBusiness";
-import CommunityStories from "@/components/CommunityStories";
-import NeedServices from "@/components/NeedServices";
-import WhyUseAppSection from "@/components/WhyUseAppSection";
-import StayUpdated from "@/components/StayUpdated";
-import VillageMap from "@/components/VillageMap";
-import ApplicationSuggestions from "@/components/ApplicationSuggestions";
-import LiveStreaming from "@/components/LiveStreaming";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import MainContent from "@/components/sections/MainContent";
@@ -19,29 +9,53 @@ import { useAppInitialization } from "@/hooks/useAppInitialization";
 import { useAudioManager } from "@/hooks/useAudioManager";
 import { motion } from 'framer-motion';
 
+const DailyQuiz = lazy(() => import("@/components/DailyQuiz"));
+const LocalBusiness = lazy(() => import("@/components/LocalBusiness"));
+const CommunityStories = lazy(() => import("@/components/CommunityStories"));
+const NeedServices = lazy(() => import("@/components/NeedServices"));
+const WhyUseAppSection = lazy(() => import("@/components/WhyUseAppSection"));
+const StayUpdated = lazy(() => import("@/components/StayUpdated"));
+const VillageMap = lazy(() => import("@/components/VillageMap"));
+const ApplicationSuggestions = lazy(() => import("@/components/ApplicationSuggestions"));
+const LiveStreaming = lazy(() => import("@/components/LiveStreaming"));
+
+type ActiveSection = 'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null;
+
 const Index = () => {
-  const [activeSection, setActiveSection] = useState<'quiz' | 'community' | 'business' | 'services' | 'why-use-app' | 'stay-updated' | 'village-map' | 'app-suggestions' | 'live-streaming' | null>(null);
+  const [activeSection, setActiveSection] = useState<ActiveSection>(null);
   const [isAIAssistantOpen, setIsAIAssistantOpen] = useState(false);
+  const shouldReturnToFeatures = useRef(false);
   const { loading, isScrolled } = useAppInitialization();
   const { audioRef, isAudioPlaying, setIsAudioPlaying } = useAudioManager(loading, isScrolled);
 
-  // Memoized callback to prevent recreation on every render
   const handleAIAssistantOpen = useCallback(() => {
-    if (!isAIAssistantOpen) {
-      console.log('Index handleAIAssistantOpen called - setting state to true');
-      setIsAIAssistantOpen(true);
-    }
-  }, [isAIAssistantOpen]);
+    setIsAIAssistantOpen(true);
+  }, []);
 
-  // Memoized section change handler
-  const handleSectionChange = useCallback((section: typeof activeSection) => {
+  const handleSectionChange = useCallback((section: ActiveSection) => {
+    shouldReturnToFeatures.current = section === null;
     setActiveSection(section);
   }, []);
 
-  // Memoized close handlers for each section
-  const handleCloseSection = useCallback(() => setActiveSection(null), []);
+  const handleCloseSection = useCallback(() => {
+    shouldReturnToFeatures.current = true;
+    setActiveSection(null);
+  }, []);
 
-  // Memoized special section props to prevent recreation
+  useEffect(() => {
+    if (activeSection !== null || !shouldReturnToFeatures.current) return;
+
+    const scrollFrame = requestAnimationFrame(() => {
+      document.getElementById('features')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      shouldReturnToFeatures.current = false;
+    });
+
+    return () => cancelAnimationFrame(scrollFrame);
+  }, [activeSection]);
+
   const specialSectionProps = useMemo(() => ({
     loading,
     isAudioPlaying,
@@ -51,77 +65,48 @@ const Index = () => {
     onSectionChange: handleSectionChange
   }), [loading, isAudioPlaying, audioRef, setIsAudioPlaying, activeSection, handleSectionChange]);
 
-  // Special section renders with optimized props
+  const renderSpecialSection = useCallback((children: ReactNode) => (
+    <SpecialSectionLayout {...specialSectionProps}>
+      <Suspense fallback={<LoadingScreen />}>
+        {children}
+      </Suspense>
+    </SpecialSectionLayout>
+  ), [specialSectionProps]);
+
   if (activeSection === 'village-map') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <VillageMap />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<VillageMap onBackToFeatures={handleCloseSection} />);
   }
 
   if (activeSection === 'live-streaming') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <LiveStreaming onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<LiveStreaming onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'app-suggestions') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <ApplicationSuggestions onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<ApplicationSuggestions onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'quiz') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <DailyQuiz onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<DailyQuiz onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'community') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <CommunityStories onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<CommunityStories onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'business') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <LocalBusiness onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<LocalBusiness onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'services') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <NeedServices onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<NeedServices onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'stay-updated') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <StayUpdated onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<StayUpdated onClose={handleCloseSection} />);
   }
 
   if (activeSection === 'why-use-app') {
-    return (
-      <SpecialSectionLayout {...specialSectionProps}>
-        <WhyUseAppSection onClose={handleCloseSection} />
-      </SpecialSectionLayout>
-    );
+    return renderSpecialSection(<WhyUseAppSection onClose={handleCloseSection} />);
   }
 
   return (

@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Users, Building2, Wrench, ArrowRight, Star, Bell, MapPin, MessageSquare, Lightbulb, Video } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import LiveStreaming from './LiveStreaming';
 interface FeatureShowcaseProps {
   onSectionChange: (
     section:
@@ -14,7 +13,7 @@ interface FeatureShowcaseProps {
       | 'stay-updated'
       | 'village-map'
       | 'app-suggestions'
-      | 'live-streaming' // ✅ Add this
+      | 'live-streaming'
       | null
   ) => void;
   onAIAssistantOpen?: () => void;
@@ -25,10 +24,8 @@ const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onA
   const { t } = useTranslation();
 
   const handleSectionClick = (sectionId: string) => {
-    console.log('Feature clicked:', sectionId);
     
     if (sectionId === 'ai-assistant') {
-      console.log('Chat Assistant clicked, onAIAssistantOpen available:', !!onAIAssistantOpen);
       if (onAIAssistantOpen) {
         onAIAssistantOpen();
       } else {
@@ -52,7 +49,7 @@ const FeaturesShowcase: React.FC<FeatureShowcaseProps> = ({ onSectionChange, onA
   },
   {
     id: 'ai-assistant',
-    title: 'Chat Assistant 🤖',
+    title: 'Chat Assistant',
     description: 'Get instant help and navigate through the app with our smart Chat Assistant.',
     icon: MessageSquare,
     color: 'from-purple-500 to-pink-600',

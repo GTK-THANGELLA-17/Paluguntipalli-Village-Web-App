@@ -2,16 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 
 export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const isScrolledRef = useRef(isScrolled);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+
+  useEffect(() => {
+    isScrolledRef.current = isScrolled;
+    if (isScrolled && audioRef.current && !audioRef.current.paused) {
+      audioRef.current.pause();
+      setIsAudioPlaying(false);
+    }
+  }, [isScrolled]);
 
   useEffect(() => {
     const audio = new Audio('/Bgm Sounds.mp3');
     audio.loop = true;
     audio.volume = 0.1;
-    audio.preload = 'metadata';
+    audio.preload = 'none';
     audioRef.current = audio;
 
-    // Pause audio if user switches tab or app is hidden
     const handleVisibilityChange = () => {
       if (document.hidden && audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
@@ -19,49 +27,44 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Scroll handler to pause audio if isScrolled is true
     let ticking = false;
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (isScrolled && audioRef.current && !audioRef.current.paused) {
-            audioRef.current.pause();
-            setIsAudioPlaying(false);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (ticking) return;
+
+      ticking = true;
+      requestAnimationFrame(() => {
+        if (isScrolledRef.current && audioRef.current && !audioRef.current.paused) {
+          audioRef.current.pause();
+          setIsAudioPlaying(false);
+        }
+        ticking = false;
+      });
     };
 
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      audio.pause();
+      audioRef.current = null;
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isScrolled]);
+  }, []);
 
-  // Manual play method
   const playAudio = async () => {
-    if (loading) return; // Don't allow play if loading
+    if (loading || !audioRef.current) return;
+
     try {
-      if (audioRef.current) {
-        await audioRef.current.play();
-        setIsAudioPlaying(true);
-      }
+      await audioRef.current.play();
+      setIsAudioPlaying(true);
     } catch (error) {
-      console.log('User interaction required to play audio or autoplay prevented.');
+      if (import.meta.env.DEV) {
+        console.log('User interaction required to play audio or autoplay prevented.');
+      }
     }
   };
 
-  // Manual pause method
   const pauseAudio = () => {
     if (audioRef.current && !audioRef.current.paused) {
       audioRef.current.pause();
@@ -74,5 +77,6 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
     isAudioPlaying,
     playAudio,
     pauseAudio,
+    setIsAudioPlaying,
   };
 };
