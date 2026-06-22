@@ -1,49 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paluguntipalli – Official Village Website of Andhra Pradesh</title>
+  <title>Paluguntipalli Village, Andhra Pradesh | Culture, Events, Places & Community Guide</title>
 
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Welcome to Paluguntipalli – the official website of our vibrant village in Andhra Pradesh. Discover its culture, heritage, events, and community stories." />
-  <meta name="keywords" content="Paluguntipalli, Andhra Pradesh Villages, Indian Village Website, Rural Culture, Village Life, Paluguntipalli News" />
+  <!-- Primary SEO Meta Tags -->
+  <meta name="description" content="Official community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh. Explore village culture, events, places, gallery, local services, map, stories, and contact information." />
+  <meta name="keywords" content="Paluguntipalli, Paluguntipalli village, Racherla Mandal, Prakasam district, Andhra Pradesh village, Paluguntipalli events, Peerla Panduga, Paluguntipalli map, Paluguntipalli gallery, Telugu village" />
   <meta name="author" content="Paluguntipalli Community" />
-  <meta name="robots" content="index, follow" />
+  <meta name="publisher" content="Paluguntipalli Community" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#8B4513" />
   <link rel="canonical" href="https://www.paluguntipalli.com/" />
+
+  <!-- GEO / local discovery signals -->
+  <meta name="geo.region" content="IN-AP" />
+  <meta name="geo.placename" content="Paluguntipalli, Racherla Mandal, Prakasam, Andhra Pradesh" />
+  <meta name="geo.position" content="15.4808278;78.962409" />
+  <meta name="ICBM" content="15.4808278, 78.962409" />
+  <meta name="DC.title" content="Paluguntipalli Village" />
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.jpg" type="image/jpeg" />
   <link rel="shortcut icon" href="/favicon.jpg" type="image/jpeg" />
+  <link rel="manifest" href="/manifest.json" />
 
-  <!-- Open Graph for Facebook & LinkedIn -->
-  <meta property="og:title" content="Paluguntipalli – Official Village Website of Andhra Pradesh" />
-  <meta property="og:description" content="Explore the culture, stories, updates, and history of Paluguntipalli village." />
+  <!-- Open Graph for Facebook, LinkedIn, WhatsApp -->
+  <meta property="og:site_name" content="Paluguntipalli Village" />
+  <meta property="og:title" content="Paluguntipalli Village, Andhra Pradesh" />
+  <meta property="og:description" content="Explore Paluguntipalli village culture, places, festivals, community stories, services, local businesses, gallery, and map." />
   <meta property="og:url" content="https://www.paluguntipalli.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://www.paluguntipalli.com/preview.jpg" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:image" content="https://www.paluguntipalli.com/favicon.jpg" />
+  <meta property="og:image:alt" content="Paluguntipalli village community website" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Paluguntipalli – Official Village Website" />
-  <meta name="twitter:description" content="Paluguntipalli is a beautiful village in Andhra Pradesh. Learn about its history, people, and culture." />
-  <meta name="twitter:image" content="https://www.paluguntipalli.com/preview.jpg" />
+  <meta name="twitter:title" content="Paluguntipalli Village, Andhra Pradesh" />
+  <meta name="twitter:description" content="A community guide to Paluguntipalli village, including culture, events, places, gallery, services, businesses, and map." />
+  <meta name="twitter:image" content="https://www.paluguntipalli.com/favicon.jpg" />
+  <meta name="twitter:image:alt" content="Paluguntipalli village community website" />
 
-  <!-- Structured Data (JSON-LD) -->
+  <!-- Structured Data (JSON-LD): keep factual and visible-content aligned -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Paluguntipalli Village",
-    "description": "Official website of Paluguntipalli village in Andhra Pradesh.",
-    "url": "https://www.paluguntipalli.com",
-    "image": "https://www.paluguntipalli.com/preview.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Paluguntipalli",
-      "addressRegion": "Andhra Pradesh",
-      "addressCountry": "India"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.paluguntipalli.com/#website",
+        "name": "Paluguntipalli Village",
+        "alternateName": ["Paluguntipalli", "Paluguntipalli Village Community"],
+        "url": "https://www.paluguntipalli.com/",
+        "inLanguage": ["en-IN", "te-IN"],
+        "description": "Community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh.",
+        "publisher": { "@id": "https://www.paluguntipalli.com/#organization" },
+        "about": { "@id": "https://www.paluguntipalli.com/#place" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.paluguntipalli.com/#organization",
+        "name": "Paluguntipalli Community",
+        "url": "https://www.paluguntipalli.com/",
+        "logo": "https://www.paluguntipalli.com/favicon.jpg"
+      },
+      {
+        "@type": "Place",
+        "@id": "https://www.paluguntipalli.com/#place",
+        "name": "Paluguntipalli",
+        "description": "Village in Racherla Mandal, Prakasam district, Andhra Pradesh, India.",
+        "url": "https://www.paluguntipalli.com/",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 15.4808278,
+          "longitude": 78.962409
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paluguntipalli",
+          "addressRegion": "Andhra Pradesh",
+          "postalCode": "523368",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/"
+        ]
+      }
+    ]
   }
   </script>
 </head>
@@ -54,3 +100,4 @@
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
+

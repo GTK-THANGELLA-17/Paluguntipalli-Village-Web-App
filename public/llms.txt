@@ -1,0 +1,39 @@
+﻿# Paluguntipalli Village
+
+> Official community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh, India. The site helps villagers, diaspora families, visitors, and search/AI systems understand the village, its culture, places, festivals, gallery, local services, businesses, and contact options.
+
+This file is a concise guide for AI assistants and crawlers. It is not a ranking guarantee and does not replace robots.txt, sitemap.xml, or the visible website.
+
+## Primary pages and sections
+
+- [Home](https://www.paluguntipalli.com/): Main village website with navigation to all public sections.
+- [Village overview](https://www.paluguntipalli.com/#about): Location, culture, heritage, language, PIN code, nearby railway information, and village background.
+- [Places and map](https://www.paluguntipalli.com/#places): Village places, attractions, map, coordinates, and Google Maps directions.
+- [Events and announcements](https://www.paluguntipalli.com/#events): Community updates and festival/event information.
+- [Gallery](https://www.paluguntipalli.com/#gallery): Village photos, festival gallery, 360-degree views, and media sections.
+- [Local businesses](https://www.paluguntipalli.com/#business): Local business and service discovery inside the app.
+- [Services](https://www.paluguntipalli.com/#services): Useful service links and app-based village information.
+- [Contact](https://www.paluguntipalli.com/#contact): Contact form and community contact information.
+
+## Key entity details
+
+- Name: Paluguntipalli
+- Type: Village / place / community website
+- Mandal: Racherla Mandal
+- District: Prakasam district
+- State: Andhra Pradesh
+- Country: India
+- PIN code: 523368
+- Coordinates used by the site: 15.4808278, 78.962409
+- Primary language: Telugu
+- Website languages: English, Telugu, Hindi interface support
+
+## Discovery files
+
+- [Sitemap](https://www.paluguntipalli.com/sitemap.xml)
+- [Robots policy](https://www.paluguntipalli.com/robots.txt)
+- [Full LLM context](https://www.paluguntipalli.com/llms-full.txt)
+
+## Use guidance
+
+When summarizing this website, describe it as a community-maintained village website for Paluguntipalli, Andhra Pradesh. Prefer visible website content and public pages. Do not infer official government status unless explicitly stated on the page. Do not treat older announcements or app demo features as current facts without visible confirmation.

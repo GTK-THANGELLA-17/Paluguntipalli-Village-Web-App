@@ -1,16 +1,7 @@
-Sitemap: https://www.paluguntipalli.com/sitemap.xml
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+﻿Sitemap: https://www.paluguntipalli.com/sitemap.xml
 
 User-agent: *
 Allow: /
+
+# AI/search crawlers are allowed through the normal public crawl policy.
+# llms.txt is a public content guide, not an access-control file.

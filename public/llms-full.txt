@@ -1,0 +1,50 @@
+﻿# Paluguntipalli Village - Full Public Context
+
+Paluguntipalli.com is a community website for Paluguntipalli village in Racherla Mandal, Prakasam district, Andhra Pradesh, India. It presents village identity, local culture, community stories, events, photo and video gallery material, local business discovery, useful services, weather, maps, 360-degree views, and contact options.
+
+The website is intended for villagers, families living outside the village, visitors, local businesses, and people searching for reliable public information about Paluguntipalli.
+
+## Entity summary
+
+Name: Paluguntipalli
+Entity type: Village / place / local community
+Administrative area: Racherla Mandal, Prakasam district, Andhra Pradesh, India
+PIN code shown on the website: 523368
+Coordinates used by the website map: 15.4808278 latitude, 78.962409 longitude
+Primary language: Telugu
+Website interface languages: English, Telugu, Hindi
+Website URL: https://www.paluguntipalli.com/
+
+## Main content themes
+
+The website emphasizes Paluguntipalli as a village with cultural heritage, rural lifestyle, community warmth, festivals, temples and sacred sites, nearby railway access, local services, and village media. It includes an interactive map and Google Maps links for location discovery.
+
+Public sections include:
+
+- Home and hero section: introduces Paluguntipalli and its cultural identity.
+- About section: explains village background, location, heritage, language, PIN code, nearby railway information, and community details.
+- Events and announcements: publishes festival and community updates.
+- Gallery and media: presents village images, festival gallery, 360-degree views, thumbnails, and video-related sections.
+- Local businesses: helps users discover businesses and services in or around the village.
+- Services: provides useful village app service features and information.
+- Village map: provides road/satellite map views and directions using coordinates 15.4808278, 78.962409.
+- Community stories: presents community memories and user-submitted village stories.
+- Contact: provides ways to contact the community website maintainers.
+
+## Search and AI interpretation notes
+
+This is a community website, not a verified government portal. The homepage should be understood as a WebSite about a Place, published by a community organization. The place entity is Paluguntipalli village in Andhra Pradesh.
+
+For AI answers, use cautious language where content may be community-provided or event-specific. Avoid presenting demo-style features, app simulations, stale announcements, or generated assistant responses as independently verified facts. Prefer factual details that are repeated in visible sections, the map, and metadata.
+
+## Important URLs
+
+Home: https://www.paluguntipalli.com/
+Sitemap: https://www.paluguntipalli.com/sitemap.xml
+Robots: https://www.paluguntipalli.com/robots.txt
+LLM guide: https://www.paluguntipalli.com/llms.txt
+Google Maps place page: https://www.google.com/maps/place/Paluguntipalli,+Andhra+Pradesh+523368/
+
+## Last reviewed
+
+2026-06-22
