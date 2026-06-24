@@ -71,11 +71,11 @@ const DailyQuiz = ({ onClose }: { onClose: () => void }) => {
   const currentQ = dailyQuestions[currentQuestion];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-purple-50 to-white dark:from-[#1a1a1a] dark:to-[#252525] min-h-screen">
-      <div className="container mx-auto px-4">
+    <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-purple-50 to-white dark:from-[#1a1a1a] dark:to-[#252525] min-h-screen">
+      <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
         <QuizHeader onBackToFeatures={handleBackToFeatures} />
 
-        <div className="max-w-3xl mx-auto">
+        <div className="w-full max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -83,13 +83,13 @@ const DailyQuiz = ({ onClose }: { onClose: () => void }) => {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden"
           >
             {/* Quiz Header */}
-            <div className="bg-gradient-to-r from-heritage to-heritage-dark text-white p-6">
-              <div className="flex justify-between items-center">
+            <div className="bg-gradient-to-r from-heritage to-heritage-dark text-white p-4 sm:p-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <div className="text-sm opacity-75">Question {currentQuestion + 1} of {dailyQuestions.length}</div>
                   <div className="text-sm opacity-75">{currentQ.category}</div>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <div className="text-sm opacity-75">Score</div>
                   <div className="text-xl font-bold">{score}</div>
                 </div>

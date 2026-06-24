@@ -26,9 +26,9 @@ const StoryCard = ({ story, index, isLiked, onLike }: StoryCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+      className="feature-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
     >
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex items-center mb-4">
           <div className="w-10 h-10 bg-heritage rounded-full flex items-center justify-center">
             <User className="text-white" size={20} />
@@ -53,8 +53,8 @@ const StoryCard = ({ story, index, isLiked, onLike }: StoryCardProps) => {
           {story.content}
         </p>
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <button
               onClick={() => onLike(story.id)}
               className={`flex items-center space-x-2 transition-colors duration-300 ${

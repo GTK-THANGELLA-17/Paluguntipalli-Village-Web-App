@@ -155,11 +155,11 @@ From: Paluguntipalli Village App
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white dark:bg-gray-800 rounded-xl p-8 text-center max-w-md mx-auto"
+        className="bg-white dark:bg-gray-800 rounded-xl p-5 sm:p-8 text-center w-full max-w-md mx-auto"
       >
         <div className="mb-6">
           <Trophy className="text-yellow-500 mx-auto mb-4" size={64} />
-          <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-2">
             Congratulations!
           </h3>
           <p className="text-gray-600 dark:text-gray-300">
@@ -172,7 +172,7 @@ From: Paluguntipalli Village App
             <span>Final Level:</span>
             <Badge variant="secondary">{gameStats.level}</Badge>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <span>Total Points:</span>
             <span className="font-bold">{gameStats.points}</span>
           </div>
@@ -186,19 +186,19 @@ From: Paluguntipalli Village App
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto">
       {/* Game Stats Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="bg-gradient-to-r from-heritage to-heritage-dark rounded-lg p-4 text-white mb-6"
       >
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h3 className="font-bold">Level: {gameStats.level}</h3>
             <p className="text-sm opacity-90">Points: {gameStats.points}</p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap items-center gap-2">
             {gameStats.achievements.map((achievement) => (
               <div
                 key={achievement.id}
@@ -214,12 +214,12 @@ From: Paluguntipalli Village App
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-8">
         {/* Form */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+          className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-lg"
         >
           <h3 className="text-xl font-bold mb-6 text-gray-800 dark:text-white flex items-center">
             <Store className="mr-2 text-heritage" />
@@ -328,7 +328,7 @@ From: Paluguntipalli Village App
               </div>
             </div>
             
-            <div className="flex space-x-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
               <Button
                 type="submit"
                 disabled={isSubmitting}
@@ -353,7 +353,7 @@ From: Paluguntipalli Village App
           animate={{ opacity: 1, x: 0 }}
           className="space-y-6"
         >
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-lg">
             <h4 className="font-bold mb-4 text-gray-800 dark:text-white flex items-center">
               <Trophy className="mr-2 text-yellow-500" />
               Achievements
@@ -392,7 +392,7 @@ From: Paluguntipalli Village App
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-lg">
             <h4 className="font-bold mb-4 text-gray-800 dark:text-white flex items-center">
               <Gift className="mr-2 text-purple-500" />
               Session Rewards

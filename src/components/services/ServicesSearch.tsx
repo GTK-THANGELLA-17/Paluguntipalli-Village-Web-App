@@ -31,16 +31,16 @@ const ServicesSearch = ({
           placeholder="Search for services or providers..."
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-heritage/50 shadow-lg text-lg"
+          className="w-full min-h-12 pl-11 sm:pl-12 pr-4 py-3 sm:py-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-heritage/50 shadow-lg text-lg"
         />
       </div>
 
-      <div className="flex flex-wrap gap-3 justify-center">
+      <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
         {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => onCategoryChange(category.id)}
-            className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+            className={`min-h-11 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm font-medium transition-all duration-300 ${
               selectedCategory === category.id
                 ? 'bg-heritage text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-heritage/10 hover:scale-105 border border-gray-200 dark:border-gray-700 shadow-md'

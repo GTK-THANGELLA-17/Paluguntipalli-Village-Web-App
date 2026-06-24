@@ -1,4 +1,4 @@
-
+﻿
 import { config } from './environment';
 import { productionUtils } from '@/utils/productionUtils';
 
@@ -17,7 +17,6 @@ export const initPerformanceMonitoring = () => {
       for (const entry of list.getEntries()) {
         if (entry.name === 'first-contentful-paint') {
           metrics.fcp = entry.startTime;
-          console.log(`FCP: ${entry.startTime.toFixed(2)}ms`);
           
           if (entry.startTime > config.PERFORMANCE_THRESHOLDS.FCP) {
             console.warn(`FCP exceeds threshold: ${entry.startTime.toFixed(2)}ms > ${config.PERFORMANCE_THRESHOLDS.FCP}ms`);
@@ -32,7 +31,6 @@ export const initPerformanceMonitoring = () => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
       metrics.lcp = lastEntry.startTime;
-      console.log(`LCP: ${lastEntry.startTime.toFixed(2)}ms`);
       
       if (lastEntry.startTime > config.PERFORMANCE_THRESHOLDS.LCP) {
         console.warn(`LCP exceeds threshold: ${lastEntry.startTime.toFixed(2)}ms > ${config.PERFORMANCE_THRESHOLDS.LCP}ms`);
@@ -64,7 +62,6 @@ export const initPerformanceMonitoring = () => {
         if (fidEntry.processingStart) {
           const fidValue = fidEntry.processingStart - fidEntry.startTime;
           metrics.fid = fidValue;
-          console.log(`FID: ${fidValue.toFixed(2)}ms`);
           
           if (fidValue > config.PERFORMANCE_THRESHOLDS.FID) {
             console.warn(`High FID detected: ${fidValue.toFixed(2)}ms > ${config.PERFORMANCE_THRESHOLDS.FID}ms`);
@@ -86,3 +83,4 @@ export const initPerformanceMonitoring = () => {
     productionUtils.reportError(error as Error, { context: 'performance-monitoring' });
   }
 };
+

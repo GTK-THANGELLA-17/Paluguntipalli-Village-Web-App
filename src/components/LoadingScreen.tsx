@@ -1,6 +1,5 @@
-
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+﻿import { useEffect, useState } from "react";
+import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const LoadingScreen = () => {
@@ -35,7 +34,7 @@ const LoadingScreen = () => {
   }, []);
 
   // Animation variants - SIMPLIFIED for better performance
-  const containerVariants = {
+  const containerVariants: Variants = {
     initial: { opacity: 1 },
     exit: { 
       opacity: 0, 
@@ -255,3 +254,5 @@ const LoadingScreen = () => {
 };
 
 export default LoadingScreen;
+
+

@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Brain, X, ArrowLeft } from "lucide-react";
 
@@ -14,29 +13,35 @@ const QuizHeader = ({ onBackToFeatures }: QuizHeaderProps) => {
       transition={{ duration: 0.6 }}
       className="text-center mb-8"
     >
-      <div className="flex items-center justify-center mb-4">
-        <Brain className="text-heritage mr-3" size={36} />
-        <h2 className="section-title text-[#000000] dark:text-white mb-0">
-          Village Knowledge Quiz
-        </h2>
-        <div className="ml-auto flex items-center space-x-4">
+      <div className="feature-section-header">
+        <div className="feature-section-title-wrap">
+          <Brain className="text-heritage shrink-0" size={34} aria-hidden="true" />
+          <h2 className="section-title text-[#000000] dark:text-white">
+            Village Knowledge Quiz
+          </h2>
+        </div>
+
+        <div className="feature-section-actions">
           <button
+            type="button"
             onClick={onBackToFeatures}
-            className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+            className="feature-back-button text-gray-600 transition-colors duration-300 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-heritage/30 dark:text-gray-400 dark:hover:text-gray-200"
           >
-            <ArrowLeft size={20} className="mr-2" />
-            Back to Features
+            <ArrowLeft size={20} aria-hidden="true" />
+            <span>Back to Features</span>
           </button>
           <button
+            type="button"
             onClick={onBackToFeatures}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="feature-close-button text-gray-500 transition-colors hover:text-gray-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-heritage/30 dark:text-gray-400 dark:hover:text-gray-200"
+            aria-label="Close quiz"
           >
-            <X size={28} />
+            <X size={26} aria-hidden="true" />
           </button>
         </div>
       </div>
-      <p className="text-lg text-gray-600 dark:text-gray-300">
-        Test your General knowledge
+      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        Test your general knowledge
       </p>
     </motion.div>
   );

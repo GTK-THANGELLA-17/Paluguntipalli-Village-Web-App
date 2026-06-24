@@ -93,7 +93,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-gray-800 text-center">
-          <p>&copy; 2025 Paluguntipalli - {t("The Cultural Heritage")}</p>
+          <p>&copy; 2026 Paluguntipalli - {t("The Cultural Heritage")}</p>
           <Button 
             variant="custom"
             className="mt-2 bg-black text-white hover:bg-gray-800 dark:bg-charcoal dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-300"

@@ -30,10 +30,10 @@ const ServiceCard = ({ provider, index, onCall, onWhatsApp }: ServiceCardProps) 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
+      className="feature-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2"
     >
-      <div className="p-8">
-        <div className="flex items-start justify-between mb-6">
+      <div className="p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-5 sm:mb-6">
           <div className="flex items-center gap-4">
             <div className="p-3 bg-gray-50 dark:bg-gray-700 rounded-2xl group-hover:scale-110 transition-transform duration-300 shadow-md">
               {provider.icon}
@@ -64,7 +64,7 @@ const ServiceCard = ({ provider, index, onCall, onWhatsApp }: ServiceCardProps) 
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <button
             onClick={() => onCall(provider.phone)}
             className="flex-1 bg-heritage text-white px-4 py-3 rounded-xl font-semibold hover:bg-heritage/90 transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"

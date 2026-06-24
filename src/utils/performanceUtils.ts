@@ -1,4 +1,4 @@
-
+﻿
 // Performance optimization utilities
 
 // Debounce function for performance
@@ -91,19 +91,6 @@ export const createImageObserver = (
 export const logPerformanceMetrics = () => {
   if (typeof window === 'undefined') return;
 
-  // Log navigation timing
-  const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
-  if (navigation) {
-    console.log('Performance Metrics:', {
-      'DNS Lookup': navigation.domainLookupEnd - navigation.domainLookupStart,
-      'TCP Connection': navigation.connectEnd - navigation.connectStart,
-      'Request': navigation.responseStart - navigation.requestStart,
-      'Response': navigation.responseEnd - navigation.responseStart,
-      'DOM Loading': navigation.domContentLoadedEventStart - navigation.responseEnd,
-      'DOM Ready': navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
-      'Total Load Time': navigation.loadEventEnd - navigation.fetchStart
-    });
-  }
 
   // Log resource timing
   const resources = performance.getEntriesByType('resource');
@@ -118,8 +105,6 @@ export const logPerformanceMetrics = () => {
       const resourceTiming = resource as PerformanceResourceTiming;
       return sum + (resourceTiming.responseEnd - resourceTiming.startTime);
     }, 0) / imageResources.length;
-    
-    console.log('Average Image Load Time:', avgImageLoadTime.toFixed(2) + 'ms');
   }
 };
 
@@ -127,11 +112,6 @@ export const logPerformanceMetrics = () => {
 export const monitorMemoryUsage = () => {
   if ('memory' in performance) {
     const memory = (performance as any).memory;
-    console.log('Memory Usage:', {
-      'Used JS Heap Size': (memory.usedJSHeapSize / 1048576).toFixed(2) + ' MB',
-      'Total JS Heap Size': (memory.totalJSHeapSize / 1048576).toFixed(2) + ' MB',
-      'JS Heap Size Limit': (memory.jsHeapSizeLimit / 1048576).toFixed(2) + ' MB'
-    });
   }
 };
 
@@ -158,3 +138,5 @@ export const addResourceHints = () => {
     document.head.appendChild(link);
   });
 };
+
+

@@ -95,3 +95,4 @@ When real public routes are added, add those canonical URLs to sitemap.xml and t
 ## Last reviewed
 
 2026-06-22
+Current festival update: Peerla Panduga and Pedda Sarigesu 2026 are listed on the website for June 25 to 26, 2026, with YouTube-based live streaming support when the site owner adds the active YouTube Live URL.

@@ -1,4 +1,4 @@
-
+﻿
 import { useTheme } from "@/providers/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
@@ -35,7 +35,6 @@ const ThemeToggle = ({ mobile = false }: ThemeToggleProps) => {
 
   // Debug logging to track theme changes
   useEffect(() => {
-    console.log("Current theme:", theme);
   }, [theme]);
 
   const buttonSize = mobile ? 'h-6 w-6 min-w-6' : 'h-10 w-10';
@@ -162,3 +161,4 @@ const ThemeToggle = ({ mobile = false }: ThemeToggleProps) => {
 };
 
 export default ThemeToggle;
+

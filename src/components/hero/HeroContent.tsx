@@ -1,12 +1,11 @@
-
-import { motion } from "framer-motion";
+﻿import { motion, type Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Sparkles } from "lucide-react";
 
 const HeroContent = () => {
   const { t } = useTranslation();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -17,7 +16,7 @@ const HeroContent = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 80, scale: 0.8 },
     visible: {
       opacity: 1,
@@ -32,7 +31,7 @@ const HeroContent = () => {
     }
   };
 
-  const buttonVariants = {
+  const buttonVariants: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
@@ -63,7 +62,7 @@ const HeroContent = () => {
     }
   };
 
-  const sparkleVariants = {
+  const sparkleVariants: Variants = {
     animate: {
       rotate: [0, 360],
       scale: [1, 1.4, 1],
@@ -208,7 +207,7 @@ const HeroContent = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="text-xl"
               >
-                →
+                {"->"}
               </motion.div>
             </span>
           </motion.a>
@@ -248,7 +247,7 @@ const HeroContent = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="text-xl"
               >
-                ✨
+                {"*"}
               </motion.div>
             </span>
           </motion.a>
@@ -349,3 +348,7 @@ const HeroContent = () => {
 };
 
 export default HeroContent;
+
+
+
+

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Cloud, CloudRain, Sun, Loader2 } from "lucide-react";
@@ -10,8 +9,27 @@ interface WeatherData {
   description: string;
   humidity: number;
   windSpeed: number;
-  icon: string;
 }
+
+const weatherCodeDescriptions: Record<number, string> = {
+  0: "Clear sky",
+  1: "Mainly clear",
+  2: "Partly cloudy",
+  3: "Overcast",
+  45: "Fog",
+  48: "Depositing rime fog",
+  51: "Light drizzle",
+  53: "Moderate drizzle",
+  55: "Dense drizzle",
+  61: "Slight rain",
+  63: "Moderate rain",
+  65: "Heavy rain",
+  71: "Slight snow",
+  80: "Rain showers",
+  81: "Moderate rain showers",
+  82: "Violent rain showers",
+  95: "Thunderstorm",
+};
 
 const Weather = () => {
   const { t } = useTranslation();
@@ -20,93 +38,86 @@ const Weather = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchWeather = async () => {
       try {
         setLoading(true);
         setError(null);
-        
-        // Using OpenWeatherMap free API - Paluguntipalli coordinates (approximate)
-        const apiKey = "4d8fb5b93d4af21d66a2948710284366"; // Free public API key
-        const lat = 14.5138; // Approximate lat for Paluguntipalli
-        const lon = 79.8927; // Approximate long for Paluguntipalli
-        
-        console.log('Fetching weather data...');
-        
+
+        const lat = 15.4808278;
+        const lon = 78.962409;
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=auto`,
+          { signal: controller.signal }
         );
-        
-        console.log('Weather API response status:', response.status);
-        
+
         if (!response.ok) {
           throw new Error(`Weather API error: ${response.status}`);
         }
-        
+
         const data = await response.json();
-        console.log('Weather data received:', data);
-        
+        const current = data.current;
+
         setWeather({
-          temperature: Math.round(data.main.temp),
-          description: data.weather[0].description,
-          humidity: data.main.humidity,
-          windSpeed: Math.round(data.wind.speed * 3.6), // Convert m/s to km/h
-          icon: data.weather[0].icon
+          temperature: Math.round(current.temperature_2m),
+          description: weatherCodeDescriptions[current.weather_code] || "Current weather",
+          humidity: Math.round(current.relative_humidity_2m),
+          windSpeed: Math.round(current.wind_speed_10m),
         });
-        
-        console.log('Weather state updated successfully');
-        
       } catch (err) {
-        console.error("Error fetching weather:", err);
-        setError("Unable to fetch current weather data");
-        
-        // Fallback to sample data when API fails
-        setWeather({
-          temperature: 30,
-          description: "Clear skies",
-          humidity: 65,
-          windSpeed: 12,
-          icon: "01d"
-        });
+        if ((err as Error).name !== "AbortError") {
+          setError("Unable to fetch current weather data");
+          setWeather({
+            temperature: 30,
+            description: "Seasonal weather estimate",
+            humidity: 65,
+            windSpeed: 12,
+          });
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchWeather();
+
+    return () => controller.abort();
   }, []);
 
   const getWeatherIcon = () => {
     if (!weather) return <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />;
-    
-    if (weather.description?.toLowerCase().includes("rain")) {
+
+    const description = weather.description.toLowerCase();
+    if (description.includes("rain") || description.includes("drizzle") || description.includes("thunder")) {
       return <CloudRain size={120} className="text-blue-400 dark:text-blue-500" />;
-    } else if (weather.description?.toLowerCase().includes("cloud")) {
-      return <Cloud size={120} className="text-gray-400 dark:text-gray-500" />;
-    } else {
-      return <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />;
     }
+
+    if (description.includes("cloud") || description.includes("overcast") || description.includes("fog")) {
+      return <Cloud size={120} className="text-gray-400 dark:text-gray-500" />;
+    }
+
+    return <Sun size={120} className="text-yellow-400 dark:text-yellow-500" />;
   };
 
   return (
     <section id="village-weather" className="text-center text-3xl md:text-4xl font-bold text-[#000000] dark:text-white">
       <div className="container mx-auto px-4">
         <h2 className="section-title" data-aos="fade-up">{t("Village Weather")}</h2>
-        
+
         <div className="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 
-                     rounded-2xl shadow-lg p-8 md:p-12 border border-blue-200 dark:border-gray-700
-                     hover:shadow-xl transition-all duration-300"
+            className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 border border-blue-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div className="text-center md:text-left">
                 <h3 className="text-2xl font-bold mb-2 text-blue-900 dark:text-blue-300">
                   {t("Paluguntipalli Weather")}
                 </h3>
-                
+
                 {loading ? (
                   <div className="flex justify-center items-center py-8">
                     <Loader2 className="animate-spin text-blue-600 dark:text-blue-400" size={40} />
@@ -114,32 +125,26 @@ const Weather = () => {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {error && !weather && (
-                      <p className="text-red-500 mb-4 text-sm">{error}</p>
-                    )}
-                    
                     <div className="flex justify-center md:justify-start items-center gap-4">
-                      {weather?.icon ? (
-                        <img 
-                          src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} 
-                          alt="Weather icon" 
-                          className="w-16 h-16"
-                          onError={(e) => {
-                            console.log('Weather icon failed to load, hiding image');
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      ) : null}
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/60 dark:bg-gray-800/60">
+                        {weather?.description.toLowerCase().includes("rain") ? (
+                          <CloudRain className="text-blue-500" size={36} />
+                        ) : weather?.description.toLowerCase().includes("cloud") || weather?.description.toLowerCase().includes("overcast") ? (
+                          <Cloud className="text-gray-500" size={36} />
+                        ) : (
+                          <Sun className="text-yellow-500" size={36} />
+                        )}
+                      </div>
                       <div>
                         <p className="text-3xl font-bold text-blue-800 dark:text-blue-300">
-                          {weather?.temperature}째C
+                          {weather?.temperature}캜
                         </p>
                         <p className="capitalize text-blue-600 dark:text-blue-400">
                           {weather?.description}
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4 text-left">
                       <div className="bg-white/50 dark:bg-gray-800/50 p-3 rounded-lg">
                         <p className="text-sm text-blue-600 dark:text-blue-400">{t("Humidity")}</p>
@@ -154,31 +159,30 @@ const Weather = () => {
                         </p>
                       </div>
                     </div>
-                    
-                    {error && weather && (
+
+                    {error && (
                       <p className="text-yellow-600 dark:text-yellow-400 text-xs mt-2">
-                        {t("Showing cached weather data")}
+                        {t("Showing estimated weather data")}
                       </p>
                     )}
                   </div>
                 )}
-                
+
                 <div className="mt-6">
                   <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">{t("Typical weather patterns:")}</p>
                   <ul className="text-blue-800 dark:text-blue-300 mb-6 text-left list-disc list-inside text-sm">
-                    <li>{t("Summers (March-June): Hot and dry (30째C - 40째C)")}</li>
+                    <li>{t("Summers (March-June): Hot and dry (30캜 - 40캜)")}</li>
                     <li>{t("Monsoon (July-September): Moderate rainfall")}</li>
-                    <li>{t("Winters (November-February): Cool and pleasant (15째C - 28째C)")}</li>
+                    <li>{t("Winters (November-February): Cool and pleasant (15캜 - 28캜)")}</li>
                   </ul>
                 </div>
-                
-                <Button 
+
+                <Button
                   asChild
-                  className="bg-blue-600 dark:bg-blue-800 hover:bg-blue-700 dark:hover:bg-blue-700 text-white
-                         transition-all duration-300 transform hover:scale-105"
+                  className="bg-blue-600 dark:bg-blue-800 hover:bg-blue-700 dark:hover:bg-blue-700 text-white transition-all duration-300 transform hover:scale-105"
                 >
-                  <a 
-                    href="https://www.google.com/search?q=paluguntipalli+weather" 
+                  <a
+                    href="https://www.google.com/search?q=paluguntipalli+weather"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
@@ -188,15 +192,15 @@ const Weather = () => {
                   </a>
                 </Button>
               </div>
-              
+
               <div className="hidden md:block">
-                <motion.div 
+                <motion.div
                   className="relative flex justify-center items-center"
                   animate={{ rotate: [0, 10, 0, -10, 0] }}
                   transition={{ repeat: Infinity, duration: 30, ease: "easeInOut" }}
                 >
                   <div className="w-48 h-48 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 flex items-center justify-center relative shadow-lg">
-                    <motion.div 
+                    <motion.div
                       className="absolute"
                       animate={{ y: [0, -10, 0, 10, 0] }}
                       transition={{ repeat: Infinity, duration: 10 }}

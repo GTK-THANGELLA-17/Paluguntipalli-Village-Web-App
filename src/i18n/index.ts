@@ -1,4 +1,4 @@
-
+﻿
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -43,7 +43,6 @@ i18n
 // Enhanced language change function with complete UI refresh
 export const changeLanguage = async (language: string): Promise<boolean> => {
   try {
-    console.log('Changing language to:', language);
     
     // Validate language
     if (!['en', 'te', 'hi'].includes(language)) {
@@ -66,8 +65,6 @@ export const changeLanguage = async (language: string): Promise<boolean> => {
     // Force React components to re-render by dispatching events
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: language }));
     window.dispatchEvent(new CustomEvent('i18nextLanguageChanged', { detail: language }));
-    
-    console.log('Language changed successfully to:', language);
     return true;
     
   } catch (error) {
@@ -126,7 +123,6 @@ export const applyTranslations = (): void => {
 
 // Listen for language changes and apply translations
 i18n.on('languageChanged', (lng) => {
-  console.log('Language changed event fired:', lng);
   applyTranslations();
   
   // Update CSS direction for RTL languages if needed
@@ -139,3 +135,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export default i18n;
+

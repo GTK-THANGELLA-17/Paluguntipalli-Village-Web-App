@@ -1,6 +1,5 @@
-
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+﻿import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 interface HeroBackgroundProps {
   currentSlide: number;
@@ -81,16 +80,15 @@ const HeroBackground = ({
       setUseVideo(false);
     };
     
-    if (videoRef.current) {
-      videoRef.current.addEventListener('canplay', handleCanPlay);
-      videoRef.current.addEventListener('error', handleError);
-      videoRef.current.load();
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('error', handleError);
+      video.load();
       
       return () => {
-        if (videoRef.current) {
-          videoRef.current.removeEventListener('canplay', handleCanPlay);
-          videoRef.current.removeEventListener('error', handleError);
-        }
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('error', handleError);
       };
     }
   }, [currentSlide, useVideo]);
@@ -100,7 +98,7 @@ const HeroBackground = ({
     nextSlide();
   };
 
-  const slideVariant = {
+  const slideVariant: Variants = {
     initial: { opacity: 0, scale: 1.1 },
     animate: { 
       opacity: 1, 
@@ -191,3 +189,6 @@ const HeroBackground = ({
 };
 
 export default HeroBackground;
+
+
+

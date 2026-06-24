@@ -1,6 +1,5 @@
-
-import { Bell, Calendar, Sparkles, Star, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+﻿import { Bell, Calendar, Sparkles, Star, Zap } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 
 interface Announcement {
   title: string;
@@ -12,21 +11,21 @@ interface Announcement {
 const announcements: Announcement[] = [
   {
     title: "Peerla Panduga",
-    date: "July 2025",
-    description: "Peerla Panduga was successfully celebrated with cultural performances, traditional rituals, and vibrant processions.Village People from who are across Andhra Pradesh and Telangana came and participated, making it a grand and joyful event.",
+    date: "June 25, 2026",
+    description: "Peerla Panduga 2026 is being celebrated in Paluguntipalli on June 25 to 26, 2026 with traditional rituals, cultural gatherings, village processions, and community participation from local families and visitors.",
     important: true
   },
   {
     title: "Pedda Sarigesu",
-    date: "ON MONDAY -- July 7, 2025",
-    description: "Pedda Sarigesu festival was completed successfully in village with a large community gathering. The event was marked by traditional ceremonies, strong local participation, and festive enthusiasm.",
+    date: "June 26, 2026",
+    description: "Pedda Sarigesu 2026 is scheduled as part of the June 25 to 26 Peerla Panduga celebrations, with traditional ceremonies, community gathering, and festive participation at the village Peerla Chavidi.",
     important: true
   }
 ];
 
 
 const Announcements = () => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -37,7 +36,7 @@ const Announcements = () => {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { 
       opacity: 0, 
       y: 30,
@@ -55,7 +54,7 @@ const Announcements = () => {
     }
   };
 
-  const iconVariants = {
+  const iconVariants: Variants = {
     initial: { rotate: 0, scale: 1 },
     hover: { 
       rotate: [0, -10, 10, -10, 0],
@@ -278,7 +277,7 @@ const Announcements = () => {
                 whileHover={{ scale: 1.05 }}
                 className="text-gray-600 dark:text-gray-300 font-medium text-lg relative z-10"
               >
-                Stay tuned for more upcoming events and announcements! 🎉
+                Stay tuned for more upcoming events and festival updates!
               </motion.p>
             </motion.div>
           </div>
@@ -289,3 +288,5 @@ const Announcements = () => {
 };
 
 export default Announcements;
+
+

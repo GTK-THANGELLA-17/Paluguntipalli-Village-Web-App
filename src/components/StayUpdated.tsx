@@ -17,27 +17,27 @@ const healthTips = [
   {
     title: "Stay Hydrated",
     tip: "Drink at least 8-10 glasses of water daily, especially during hot weather",
-    icon: "💧"
+    icon: "Water"
   },
   {
     title: "Eat Fresh Vegetables",
     tip: "Include locally grown seasonal vegetables in your daily diet for better nutrition",
-    icon: "🥬"
+    icon: "Food"
   },
   {
     title: "Regular Exercise",
     tip: "Take a 30-minute walk daily or do light exercises to stay fit",
-    icon: "🚶"
+    icon: "Walk"
   },
   {
     title: "Proper Sleep",
     tip: "Get 7-8 hours of quality sleep every night for better health",
-    icon: "😴"
+    icon: "Sleep"
   },
   {
     title: "Hand Hygiene",
     tip: "Wash your hands frequently with soap and water to prevent infections",
-    icon: "🧼"
+    icon: "Clean"
   }
 ];
 
@@ -69,20 +69,13 @@ const StayUpdated: React.FC<StayUpdatedProps> = ({ onClose }) => {
       <div className="container mx-auto px-4">
         {/* Responsive Back Button */}
         <motion.div 
-          className={`fixed top-20 right-4 z-50 transition-all duration-300 ${
-            isScrolled ? 'top-24 scale-90' : 'top-20 scale-100'
-          }`}
-          animate={{ 
-            y: isScrolled ? 0 : 0,
-            scale: isScrolled ? 0.9 : 1
-          }}
-          transition={{ duration: 0.3 }}
+          className="sticky top-20 z-40 mb-6 flex justify-end transition-all duration-300"
         >
           <Button
             onClick={handleBackClick}
             variant="outline"
             size="sm"
-            className="bg-white/95 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-700"
+            className="min-h-11 rounded-full bg-white/95 px-4 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-700 focus-visible:ring-4 focus-visible:ring-heritage/30"
           >
             <ArrowLeft size={16} className="mr-2" />
             Back to Features
@@ -146,7 +139,7 @@ const StayUpdated: React.FC<StayUpdatedProps> = ({ onClose }) => {
                     {healthTips.map((tip, index) => (
                       <div key={index} className="p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
                         <div className="flex items-start mb-2">
-                          <span className="mr-2 text-lg">{tip.icon}</span>
+                          <span className="mr-2 rounded-full bg-heritage/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-heritage">{tip.icon}</span>
                           <div>
                             <h4 className="font-medium text-sm text-gray-900 dark:text-white mb-1">{tip.title}</h4>
                             <p className="text-xs text-gray-600 dark:text-gray-300">{tip.tip}</p>
@@ -193,14 +186,14 @@ const StayUpdated: React.FC<StayUpdatedProps> = ({ onClose }) => {
                 Live Data Sources
               </CardTitle>
               <CardDescription className="text-gray-600 dark:text-gray-300">
-                All data above is fetched from real sources and updated automatically throughout the day
+                Weather uses a public forecast source; news opens current Google News links; other cards use curated public information for quick village reference
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { name: "Weather Data", source: "OpenWeatherMap API", update: "Real-time" },
-                  { name: "Daily News", source: "NewsAPI (India)", update: "Every 30 min" },
+                  { name: "Weather Data", source: "Open-Meteo public forecast", update: "Real-time" },
+                  { name: "Daily News", source: "Google News links", update: "On click" },
                   { name: "Health Tips", source: "Curated Health Guidelines", update: "Daily" },
                   { name: "Market Prices", source: "Commodity APIs", update: "Hourly" },
                   { name: "Currency Rates", source: "ExchangeRate API", update: "Every 30 min" }
@@ -234,8 +227,7 @@ const StayUpdated: React.FC<StayUpdatedProps> = ({ onClose }) => {
               Complete Village Information Hub
             </h3>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-              From weather and news to health tips and market prices, all the information above is live and 
-              updates automatically. Stay connected with everything that matters to daily life in Paluguntipalli.
+              From weather and news links to health tips and market references, this hub helps villagers quickly find useful daily information for Paluguntipalli.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
               <div className="flex items-center text-heritage dark:text-white">

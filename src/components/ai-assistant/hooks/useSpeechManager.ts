@@ -1,4 +1,4 @@
-
+﻿
 import { useState, useEffect, useRef } from 'react';
 import { SpeechManager } from '../speechUtils';
 
@@ -10,7 +10,7 @@ export const useSpeechManager = (selectedLanguage: string) => {
   // Initialize speech manager
   useEffect(() => {
     speechManagerRef.current = new SpeechManager(selectedLanguage);
-  }, []);
+  }, [selectedLanguage]);
 
   // Update speech manager language
   useEffect(() => {
@@ -64,3 +64,4 @@ export const useSpeechManager = (selectedLanguage: string) => {
     handleStopListening
   };
 };
+

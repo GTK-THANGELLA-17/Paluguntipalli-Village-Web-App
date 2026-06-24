@@ -56,8 +56,8 @@ const NeedServices: React.FC<NeedServicesProps> = ({ onClose }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-[#1a1a2e] dark:via-[#16213e] dark:to-[#0f3460] min-h-screen">
-      <div className="container mx-auto px-4">
+    <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-[#1a1a2e] dark:via-[#16213e] dark:to-[#0f3460] min-h-screen">
+      <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
         <ServicesHeader onBackToFeatures={handleBackToFeatures} />
 
         <ServicesSearch
@@ -68,7 +68,7 @@ const NeedServices: React.FC<NeedServicesProps> = ({ onClose }) => {
           onCategoryChange={setSelectedCategory}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredProviders.map((provider, index) => (
             <ServiceCard
               key={provider.id}
@@ -86,8 +86,8 @@ const NeedServices: React.FC<NeedServicesProps> = ({ onClose }) => {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <div className="text-8xl mb-6">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">No services found</h3>
+            <div className="text-5xl sm:text-7xl mb-4 sm:mb-6">🔍</div>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white mb-4">No services found</h3>
             <p className="text-gray-600 dark:text-gray-300 text-lg">Try adjusting your search or category filter</p>
           </motion.div>
         )}

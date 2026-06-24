@@ -8,151 +8,84 @@ export interface QuizQuestion {
 }
 
 export const dailyQuestions: QuizQuestion[] = [
-  // ——— State‑related (Andhra Pradesh) ———
   {
     id: 1,
-    question: "What is the traditional festival celebrated during harvest season in Paluguntipalli?",
-    options: ["Peerla Panduga", "Diwali", "Holi", "Ugadi"],
+    question: "Which festival is strongly associated with Paluguntipalli's Peerla Chavidi?",
+    options: ["Peerla Panduga", "Holi", "Onam", "Baisakhi"],
     correctAnswer: 0,
-    explanation: "Peerla Panduga is our unique harvest festival celebrated with great enthusiasm by the entire village community.",
-    category: "Andhra Pradesh‑Culture"
+    explanation: "Peerla Panduga is closely connected with the village's Peerla Chavidi traditions and annual community celebrations.",
+    category: "Village Culture"
+  },
+  {
+    id: 2,
+    question: "Which language is predominantly spoken in Paluguntipalli and nearby villages?",
+    options: ["Tamil", "Telugu", "Kannada", "Marathi"],
+    correctAnswer: 1,
+    explanation: "Telugu is the primary local language across this part of Andhra Pradesh.",
+    category: "Local Knowledge"
   },
   {
     id: 3,
-    question: "What is the main crop grown in Paluguntipalli?",
-    options: ["Wheat", "Rice", "Cotton", "Sugarcane"],
+    question: "Paluguntipalli is located in which Indian state?",
+    options: ["Telangana", "Andhra Pradesh", "Karnataka", "Tamil Nadu"],
     correctAnswer: 1,
-    explanation: "Rice is the primary crop in our village, grown during both Kharif and Rabi seasons.",
-    category: "Andhra Pradesh‑Agriculture"
+    explanation: "Paluguntipalli is a village in Andhra Pradesh, India.",
+    category: "Geography"
+  },
+  {
+    id: 4,
+    question: "What is the best way to preserve old village festival memories for future generations?",
+    options: ["Delete old photos", "Keep only rumors", "Save photos, videos, names, dates, and captions", "Avoid sharing history"],
+    correctAnswer: 2,
+    explanation: "Photos and videos become much more useful when they include dates, names, locations, captions, and context.",
+    category: "Digital Heritage"
   },
   {
     id: 5,
-    question: "What is the local language predominantly spoken in Paluguntipalli?",
-    options: ["Tamil", "Telugu", "Kannada", "Hindi"],
+    question: "During crowded festival days, what should visitors prioritize?",
+    options: ["Blocking narrow roads", "Safety, clean surroundings, and respect for rituals", "Ignoring elders", "Leaving waste everywhere"],
     correctAnswer: 1,
-    explanation: "Telugu is the primary language spoken by the residents of Paluguntipalli.",
-    category: "Andhra Pradesh‑Culture"
+    explanation: "Community safety, cleanliness, and respect for local traditions help everyone enjoy the festival.",
+    category: "Festival Safety"
   },
   {
     id: 6,
-    question: "On which river was Srisailam bridge built?",
-    options: ["Tungabhadra", "Krishna", "Godavari"],
-    correctAnswer: 1,
-    explanation: "The Srisailam bridge is constructed over the Krishna River, one of the major rivers in Andhra Pradesh.",
-    category: "Andhra Pradesh‑Geography"
+    question: "Which feature helps visitors locate Paluguntipalli more easily?",
+    options: ["Village Map", "Random guessing", "Broken links", "Hidden address"],
+    correctAnswer: 0,
+    explanation: "The Village Map and Google Maps links help visitors find the village and plan directions.",
+    category: "Website Features"
   },
   {
     id: 7,
-    question: "Which was the first Telugu newspaper?",
-    options: ["Deshabhimini", "Bharatui", "Satya Doota", "Andhra Patrika"],
-    correctAnswer: 3,
-    explanation: "Andhra Patrika was the first major Telugu newspaper, playing a vital role in the freedom movement.",
-    category: "Andhra Pradesh‑History"
+    question: "Why should local business information be verified before publishing?",
+    options: ["To avoid wrong phone numbers and addresses", "To reduce trust", "To hide services", "To confuse visitors"],
+    correctAnswer: 0,
+    explanation: "Verified phone numbers, addresses, and timings make the business directory more useful and trustworthy.",
+    category: "Community Services"
   },
   {
     id: 8,
-    question: "On the bank of which river is Vijayawada located?",
-    options: ["Krishna", "Tungabhadra", "Gundlakamma", "Godavari"],
-    correctAnswer: 0,
-    explanation: "Vijayawada lies on the banks of the Krishna River and is a key urban hub of Andhra Pradesh.",
-    category: "Andhra Pradesh‑Geography"
+    question: "What kind of image alt text is best for village photos?",
+    options: ["image1", "A clear description of the place, event, or people shown", "blank for every photo", "random keywords"],
+    correctAnswer: 1,
+    explanation: "Meaningful alt text helps accessibility, search engines, and AI systems understand the photo.",
+    category: "Accessibility"
   },
   {
     id: 9,
-    question: "Name the city called as Jewel of East Coast.",
-    options: ["Hyderabad", "Guntur", "Visakhapatnam", "Tirupati"],
-    correctAnswer: 2,
-    explanation: "Visakhapatnam, with its beaches and ports, is called the Jewel of the East Coast.",
-    category: "Andhra Pradesh‑Geography"
+    question: "What should be done before treating community-submitted stories as factual history?",
+    options: ["Publish without checking", "Review and verify details where possible", "Remove all names", "Ignore dates"],
+    correctAnswer: 1,
+    explanation: "Community stories are valuable, but important factual claims should be reviewed before being presented as verified history.",
+    category: "Editorial Quality"
   },
   {
     id: 10,
-    question: "What is the total area of cultivated land in Andhra Pradesh?",
-    options: ["22.63 lakh hectares", "49.55 lakh hectares", "24.29 lakh hectares", "12.84 lakh hectares"],
+    question: "For YouTube live streaming on the website, what must be added before deployment?",
+    options: ["A random local video", "The active YouTube Live URL", "A fake viewer count", "Nothing at all"],
     correctAnswer: 1,
-    explanation: "According to government statistics, Andhra Pradesh has about 49.55 lakh hectares of cultivated land.",
-    category: "Andhra Pradesh‑Agriculture"
-  },
-
-  // ——— General GK (2025 updates) ———
-  {
-    id: 11,
-    question: "Which country successfully launched the Artemis II mission in 2025?",
-    options: ["China", "USA", "India", "Russia"],
-    correctAnswer: 1,
-    explanation: "NASA launched Artemis II in 2025, marking the first crewed mission around the Moon since Apollo.",
-    category: "Global‑Science"
-  },
-  {
-    id: 12,
-    question: "Which city hosts Expo 2025 that started in April 2025?",
-    options: ["Osaka", "Dubai", "Buenos Aires", "Beijing"],
-    correctAnswer: 0,
-    explanation: "Expo 2025 is being held in Osaka, Japan, focusing on future food and sustainable innovation.",
-    category: "Global‑Current Affairs"
-  },
-  {
-    id: 13,
-    question: "Which cricket team won the ICC World Test Championship final in 2025?",
-    options: ["Australia", "India", "England", "New Zealand"],
-    correctAnswer: 1,
-    explanation: "India defeated Australia in the 2025 WTC final held at the Oval.",
-    category: "Sports‑Cricket"
-  },
-  {
-    id: 14,
-    question: "Which company became the first to reach a $3 trillion market cap in 2025?",
-    options: ["Apple", "Microsoft", "Saudi Aramco", "Alphabet"],
-    correctAnswer: 0,
-    explanation: "Apple hit a market value of $3 trillion in February 2025.",
-    category: "Global‑Economy"
-  },
-  {
-    id: 15,
-    question: "Which artificial intelligence model made headlines for passing the US bar exam in 2025?",
-    options: ["GPT‑5", "PaLM 3", "Claude 3", "Gemini 2"],
-    correctAnswer: 0,
-    explanation: "OpenAI’s GPT‑5 reportedly passed the bar exam in early 2025 under supervised conditions.",
-    category: "Science‑Technology"
-  },
-  {
-    id: 16,
-    question: "Which nation hosted the 2025 Cricket World Cup qualifier tournament?",
-    options: ["Zimbabwe", "Bangladesh", "Namibia", "Netherlands"],
-    correctAnswer: 3,
-    explanation: "The qualifying tournament for the 2025 Men’s T20 World Cup took place in the Netherlands.",
-    category: "Sports‑Cricket"
-  },
-  {
-    id: 17,
-    question: "Which movie won the Best Picture Oscar at the 2025 Academy Awards?",
-    options: ["The Last Colony", "Eternal Spring", "Lost in Tomorrow", "Whisper of the Heart"],
-    correctAnswer: 2,
-    explanation: "“Lost in Tomorrow” received the Academy Award for Best Picture in March 2025.",
-    category: "Arts‑Entertainment"
-  },
-  {
-    id: 18,
-    question: "Which country became the first in the world to approve fully electric commercial flights in 2025?",
-    options: ["Sweden", "Canada", "Australia", "France"],
-    correctAnswer: 0,
-    explanation: "Sweden certified the world’s first all‑electric regional aircraft for commercial use in mid‑2025.",
-    category: "Science‑Technology"
-  },
-  {
-    id: 19,
-    question: "Who won the Women’s Final at the 2025 Wimbledon Championship?",
-    options: ["Iga Swiatek", "Aryna Sabalenka", "Elena Rybakina", "Coco Gauff"],
-    correctAnswer: 3,
-    explanation: "Coco Gauff triumphed over Aryna Sabalenka to win Wimbledon 2025 Women’s Singles.",
-    category: "Sports‑Tennis"
-  },
-  {
-    id: 20,
-    question: "Which country launched a nationwide digital ID system named ‘e‑Citizen’ in 2025?",
-    options: ["India", "United Kingdom", "Estonia", "South Korea"],
-    correctAnswer: 0,
-    explanation: "India rolled out its ‘e‑Citizen’ digital identity platform in 2025 to streamline public services.",
-    category: "Global‑Current Affairs"
+    explanation: "The Live Streaming section embeds the YouTube live video after the active YouTube Live URL is configured.",
+    category: "Live Streaming"
   }
 ];

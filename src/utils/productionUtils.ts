@@ -1,4 +1,4 @@
-
+﻿
 import { config } from '@/config/environment';
 
 // Production-specific utilities
@@ -49,8 +49,6 @@ export const productionUtils = {
         referrer: document.referrer
       }
     };
-
-    console.log('Analytics Event:', eventData);
     
     // Example Google Analytics integration (commented out):
     // if (window.gtag) {
@@ -68,8 +66,6 @@ export const productionUtils = {
       url: window.location.href,
       connection: (navigator as any).connection?.effectiveType || 'unknown'
     };
-
-    console.log('Performance Metrics:', performanceReport);
     
     // This is where you'd send to your monitoring service
   },
@@ -91,8 +87,7 @@ export const productionUtils = {
       caching: 'serviceWorker' in navigator,
       prefetch: document.querySelector('link[rel="prefetch"]') !== null
     };
-
-    console.log('Build Optimizations Status:', optimizations);
     return optimizations;
   }
 };
+

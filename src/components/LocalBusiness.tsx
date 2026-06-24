@@ -41,24 +41,24 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
 
   if (showBusinessForm) {
     return (
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-green-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
-        <div className="container mx-auto px-4">
+      <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-green-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
+        <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
               <button
                 onClick={() => setShowBusinessForm(false)}
-                className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+                className="min-h-11 justify-center rounded-full px-3 flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
               >
                 <ArrowLeft size={20} className="mr-2" />
                 Back to Directory
               </button>
               <button
                 onClick={handleBackToFeatures}
-                className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+                className="min-h-11 justify-center rounded-full px-3 flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
               >
                 <Home size={20} className="mr-2" />
                 Back to Features
@@ -67,7 +67,7 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
             <h2 className="section-title text-[#000000] dark:text-white">
               Register Your Business
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
               Join our local business directory and reach more customers
             </p>
           </motion.div>
@@ -79,24 +79,24 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
 
   if (showStoryForm) {
     return (
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
-        <div className="container mx-auto px-4">
+      <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-orange-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
+        <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-8"
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
               <button
                 onClick={() => setShowStoryForm(false)}
-                className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+                className="min-h-11 justify-center rounded-full px-3 flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
               >
                 <ArrowLeft size={20} className="mr-2" />
                 Back to Hub
               </button>
               <button
                 onClick={handleBackToFeatures}
-                className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+                className="min-h-11 justify-center rounded-full px-3 flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
               >
                 <Home size={20} className="mr-2" />
                 Back to Features
@@ -105,7 +105,7 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
             <h2 className="section-title text-[#000000] dark:text-white">
               Share Your Story
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
               Tell the community about your experiences and memories
             </p>
           </motion.div>
@@ -116,14 +116,14 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
   }
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-green-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
-      <div className="container mx-auto px-4">
+    <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-green-50 to-white dark:from-[#1a1a1a] dark:to-[#252525]">
+      <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
         <BusinessHeader onBackToFeatures={handleBackToFeatures} />
 
         <div className="text-center mb-8">
           <Button
             onClick={() => setShowBusinessForm(true)}
-            className="bg-heritage hover:bg-heritage-dark text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
+            className="min-h-11 w-full sm:w-auto bg-heritage hover:bg-heritage-dark text-white px-5 sm:px-8 py-3 rounded-lg font-semibold transition-colors duration-300"
           >
             <Plus size={16} className="mr-2" />
             Add Your Business
@@ -139,10 +139,10 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
         />
 
         <div className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+          <h3 className="text-xl sm:text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Featured Businesses
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {businesses
               .filter(business => business.featured)
               .map((business, index) => (
@@ -157,10 +157,10 @@ const LocalBusiness: React.FC<LocalBusinessProps> = ({ onClose }) => {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+          <h3 className="text-xl sm:text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             All Businesses ({filteredBusinesses.length})
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
             {filteredBusinesses.map((business, index) => (
               <BusinessCard
                 key={business.id}

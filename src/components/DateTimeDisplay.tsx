@@ -21,15 +21,14 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
         return;
       }
       
-      const apiKey = "4d8fb5b93d4af21d66a2948710284366";
-      const lat = 14.5138;
-      const lon = 79.8927;
+      const lat = 15.4808278;
+      const lon = 78.962409;
       
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
       
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`,
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&timezone=auto`,
         { signal: controller.signal }
       );
       
@@ -38,14 +37,14 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
       if (!response.ok) throw new Error("Weather data not available");
       
       const data = await response.json();
-      const temp = Math.round(data.main.temp);
+      const temp = Math.round(data.current.temperature_2m);
       
       localStorage.setItem('weather_cache', JSON.stringify(temp));
       localStorage.setItem('weather_cache_time', Date.now().toString());
       
       setWeatherTemp(temp);
     } catch (err) {
-      console.warn("Weather fetch failed, using fallback:", err);
+      if (import.meta.env.DEV) console.warn("Weather fetch failed, using fallback:", err);
       setWeatherTemp(32);
     }
   }, []);
@@ -230,7 +229,7 @@ const DateTimeDisplay = ({ isScrolled }: DateTimeDisplayProps) => {
                     animate={{ x: ['-100%', '100%'] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                   />
-                  <span className="relative z-10">{weatherTemp}Â°C</span>
+                  <span className="relative z-10">{weatherTemp}°C</span>
                 </motion.span>
               )}
             </motion.p>

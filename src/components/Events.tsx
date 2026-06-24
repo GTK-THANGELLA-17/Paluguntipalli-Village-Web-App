@@ -180,7 +180,7 @@ const Events = () => {
               <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 font-playfair text-[#000000] dark:text-white">Peerla Panduga</h3>
               <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-[#000000] dark:text-white">
                 <strong>Peerla Panduga</strong> is the main event celebrated during every
-                Moharam. Experience vibrant processions, religious rituals, and cultural
+                Moharam. The 2026 celebrations are taking place on June 25 to 26 with vibrant processions, religious rituals, and cultural
                 performances that unite the community.
               </p>
               <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-[#000000] dark:text-white">
@@ -190,7 +190,7 @@ const Events = () => {
               </p>
               <Button className="bg-[#000000] hover:bg-[#333333] text-white dark:bg-[#000000] dark:hover:bg-[#333333] dark:text-white transition-all duration-300">
                 <Calendar size={16} className="mr-2 sm:w-[18px] sm:h-[18px]" />
-                <span className="text-sm sm:text-base">Next Event: July 2025</span>
+                <span className="text-sm sm:text-base">Festival Dates: June 25 to 26, 2026</span>
               </Button>
             </div>
           </div>
@@ -203,7 +203,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panduga Images of 2025
+          Peerla Panduga Images and Memories
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -255,7 +255,7 @@ const Events = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Peerla Panduga Videos of 2025
+          Peerla Panduga Videos and Highlights
         </motion.h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">

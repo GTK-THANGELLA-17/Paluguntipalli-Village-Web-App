@@ -11,36 +11,38 @@ const BusinessHeader = ({ onBackToFeatures }: BusinessHeaderProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12"
+      className="text-center mb-8 sm:mb-12"
     >
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-        <div className="flex items-center">
-          <Store className="text-heritage mr-3" size={36} />
-          <h2 className="section-title text-[#000000] dark:text-white mb-0">
+      <div className="feature-section-header">
+        <div className="feature-section-title-wrap">
+          <Store className="text-heritage shrink-0" size={34} aria-hidden="true" />
+          <h2 className="section-title text-[#000000] dark:text-white">
             Business Directory
           </h2>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="feature-section-actions">
           <button
+            type="button"
             onClick={onBackToFeatures}
-            className="flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-300"
+            className="feature-back-button text-gray-600 transition-colors duration-300 hover:text-gray-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-heritage/30 dark:text-gray-400 dark:hover:text-gray-200"
           >
-            <ArrowLeft size={20} className="mr-2" />
-            Back to Features
+            <ArrowLeft size={20} aria-hidden="true" />
+            <span>Back to Features</span>
           </button>
 
           <button
+            type="button"
             onClick={onBackToFeatures}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="feature-close-button text-gray-500 transition-colors hover:text-gray-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-heritage/30 dark:text-gray-400 dark:hover:text-gray-200"
             aria-label="Close business directory"
           >
-            <X size={28} />
+            <X size={26} aria-hidden="true" />
           </button>
         </div>
       </div>
 
-      <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+      <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Discover and support local businesses in Paluguntipalli
       </p>
     </motion.div>

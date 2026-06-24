@@ -1,4 +1,4 @@
-
+﻿
 import { useState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import { Message, PredefinedQuestion } from '../types';
@@ -25,12 +25,12 @@ export const useMessageManager = (isOpen: boolean) => {
       const welcomeMessage: Message = {
         id: 'welcome',
         type: 'assistant',
-        content: '👋 Hello! Welcome to the Paluguntipalli Village Assistant! 🌟 I\'m here to help you explore our beautiful application and answer any questions you might have. 🤖💫 How can I assist you today? 🎯',
+        content: 'Hello! Welcome to the Paluguntipalli Village help assistant. I can guide you to village features, festival updates, map, services, stories, and contact information. How can I help today?',
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   const handleQuestionClick = (question: PredefinedQuestion) => {
     const userMessage: Message = {
@@ -96,7 +96,7 @@ export const useMessageManager = (isOpen: boolean) => {
       const welcomeMessage: Message = {
         id: 'welcome-reset',
         type: 'assistant',
-        content: '🔄 Chat reset! 🆕 I\'m ready to help you again. 🤖✨ What would you like to know about our Paluguntipalli village app? 😊🎯',
+        content: 'Chat reset. I am ready to help you explore the Paluguntipalli village app again. What would you like to know?',
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
@@ -118,7 +118,6 @@ export const useMessageManager = (isOpen: boolean) => {
       ));
       toast.success('Message translated successfully!');
     } catch (error) {
-      console.error('Translation failed:', error);
       toast.error('Translation failed. Please try again.');
     }
   };
@@ -136,3 +135,4 @@ export const useMessageManager = (isOpen: boolean) => {
     handleTranslateMessage
   };
 };
+

@@ -39,7 +39,7 @@ const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
         activeSection={activeSection}
         onSectionChange={onSectionChange}
       >
-        <div className="pt-20 min-h-screen relative z-10">
+        <div className="feature-detail-page pt-16 sm:pt-20 min-h-screen relative z-10">
           {activeSection === 'village-map' ? (
             <div>
               {React.cloneElement(children as React.ReactElement, { onBackToFeatures: handleBackToFeatures })}

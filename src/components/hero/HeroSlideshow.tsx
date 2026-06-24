@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+﻿import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -18,9 +18,8 @@ interface HeroSlideshowProps {
 const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshowProps) => {
   const { t } = useTranslation();
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
-  const timeoutRef = useRef<NodeJS.Timeout>();
 
-  const slides: Slide[] = [
+  const slides: Slide[] = useMemo(() => [
     {
       type: 'image',
       src: '/Starting Slide show/Hanuman Statue.webp',
@@ -39,7 +38,7 @@ const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshow
       title: t('hero.title'),
       subtitle: t('hero.subtitle')
     }
-  ];
+  ], [t]);
 
   // Preload next image for smoother transitions
   const preloadNextImage = useCallback((index: number) => {
@@ -69,14 +68,6 @@ const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshow
     preloadNextImage(0);
   }, [preloadNextImage]);
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
 
   const handleImageLoad = useCallback((index: number) => {
     setLoadedImages(prev => new Set(prev).add(index));
@@ -124,3 +115,4 @@ const HeroSlideshow = ({ currentSlide, isPlaying, onSlideChange }: HeroSlideshow
 };
 
 export default HeroSlideshow;
+

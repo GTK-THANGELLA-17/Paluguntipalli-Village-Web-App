@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 
 export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -58,10 +58,8 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
     try {
       await audioRef.current.play();
       setIsAudioPlaying(true);
-    } catch (error) {
-      if (import.meta.env.DEV) {
-        console.log('User interaction required to play audio or autoplay prevented.');
-      }
+    } catch {
+      // Autoplay can be blocked until the user interacts with the page.
     }
   };
 
@@ -80,3 +78,6 @@ export const useAudioManager = (loading: boolean, isScrolled: boolean) => {
     setIsAudioPlaying,
   };
 };
+
+
+

@@ -35,7 +35,7 @@ const ApplicationUpdates = () => {
   id: "2",
   title: "Festival Media Update",
   message:
-    "All festival media has been updated! The Gallery and Festival Main Events sections now include the latest images and videos from Peerla Panduga 2025. You can view and download them now.",
+    "Festival media and live updates are being refreshed for 2026! The Gallery and Festival Main Events sections now include the latest images and videos from Peerla Panduga 2026. You can view and download them now.",
   type: "info",
   timestamp: new Date(), // now
   priority: "medium",

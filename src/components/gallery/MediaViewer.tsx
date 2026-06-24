@@ -1,4 +1,4 @@
-
+﻿
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -24,6 +24,10 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
   const [isLiked, setIsLiked] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const toggleFullscreen = useCallback(() => {
+    setIsFullscreen(prev => !prev);
+  }, []);
 
   useEffect(() => {
     if (selectedItem) {
@@ -64,7 +68,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedItem, onClose]);
+  }, [selectedItem, onClose, toggleFullscreen]);
 
   const handleDownload = useCallback(async () => {
     if (!selectedItem?.src) return;
@@ -98,8 +102,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
           url: window.location.href,
         });
         toast.success('Shared successfully!');
-      } catch (error) {
-        console.log('Share cancelled or failed:', error);
+      } catch {
+        toast.error('Share cancelled or unavailable.');
       }
     } else {
       // Fallback to clipboard
@@ -111,10 +115,6 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
       }
     }
   }, [selectedItem]);
-
-  const toggleFullscreen = useCallback(() => {
-    setIsFullscreen(prev => !prev);
-  }, []);
 
   const resetZoom = useCallback(() => {
     setZoom(1);
@@ -415,7 +415,7 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
                         )}
                         {rotation !== 0 && (
                           <span className="px-3 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs border border-white/20">
-                            {rotation}°
+                            {rotation} deg
                           </span>
                         )}
                       </>
@@ -438,3 +438,8 @@ const MediaViewer: React.FC<MediaViewerProps> = ({ selectedItem, onClose, isLoad
 };
 
 export default MediaViewer;
+
+
+
+
+

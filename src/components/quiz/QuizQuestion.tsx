@@ -31,8 +31,8 @@ const QuizQuestion = ({
   isLastQuestion
 }: QuizQuestionProps) => {
   return (
-    <div className="p-8">
-      <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white leading-relaxed">
+    <div className="p-4 sm:p-6 lg:p-8">
+      <h3 className="text-xl sm:text-2xl font-bold mb-6 text-gray-800 dark:text-white leading-relaxed">
         {question.question}
       </h3>
 
@@ -57,8 +57,8 @@ const QuizQuestion = ({
                 : 'border-gray-200 dark:border-gray-600 hover:border-heritage hover:bg-heritage/5'
             }`}
           >
-            <div className="flex items-center justify-between">
-              <span className="text-lg">{option}</span>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <span className="text-base sm:text-lg">{option}</span>
               {showResult && (
                 <div>
                   {index === question.correctAnswer && (
@@ -93,14 +93,14 @@ const QuizQuestion = ({
           <button
             onClick={onSubmitAnswer}
             disabled={selectedAnswer === null}
-            className="bg-heritage text-white px-8 py-3 rounded-lg font-semibold hover:bg-heritage-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
+            className="min-h-11 bg-heritage text-white px-5 sm:px-8 py-3 rounded-lg font-semibold hover:bg-heritage-dark disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
           >
             Submit Answer
           </button>
         ) : (
           <button
             onClick={onNextQuestion}
-            className="bg-heritage text-white px-8 py-3 rounded-lg font-semibold hover:bg-heritage-dark transition-colors duration-300"
+            className="min-h-11 bg-heritage text-white px-5 sm:px-8 py-3 rounded-lg font-semibold hover:bg-heritage-dark transition-colors duration-300"
           >
             {isLastQuestion ? 'View Results' : 'Next Question'}
           </button>

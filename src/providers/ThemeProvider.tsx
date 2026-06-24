@@ -1,5 +1,4 @@
-
-import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
+﻿import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 type ThemeType = "light" | "dark";
 
@@ -15,118 +14,82 @@ const ThemeContext = createContext<ThemeContextType>({
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeType>("light");
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const mousePositionRef = useRef({ x: 50, y: 50 });
 
-  // Initialize theme from localStorage or system preference without triggering a full reflow
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as ThemeType;
-    if (savedTheme) {
+    const savedTheme = localStorage.getItem("theme") as ThemeType | null;
+    if (savedTheme === "light" || savedTheme === "dark") {
       setTheme(savedTheme);
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    } else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
     }
-    
-    // Track mouse position for theme transition effect
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ 
-        x: e.clientX / window.innerWidth * 100,
-        y: e.clientY / window.innerHeight * 100
-      });
+
+    const handleMouseMove = (event: MouseEvent) => {
+      mousePositionRef.current = {
+        x: (event.clientX / window.innerWidth) * 100,
+        y: (event.clientY / window.innerHeight) * 100,
+      };
     };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // Update document when theme changes - without reload
+  const applyThemeWithoutAnimation = useCallback((currentTheme: ThemeType) => {
+    const root = document.documentElement;
+    const isDark = currentTheme === "dark";
+
+    root.classList.toggle("dark", isDark);
+    document.body.style.backgroundColor = isDark ? "#252525" : "#ffffff";
+    document.body.style.color = isDark ? "#ffffff" : "#000000";
+    localStorage.setItem("theme", currentTheme);
+  }, []);
+
+  const applyThemeWithAnimation = useCallback((currentTheme: ThemeType) => {
+    const root = document.documentElement;
+    const isDark = currentTheme === "dark";
+    const { x, y } = mousePositionRef.current;
+    const overlay = document.createElement("div");
+
+    overlay.className = isDark
+      ? "theme-transition-overlay theme-transition-to-dark"
+      : "theme-transition-overlay theme-transition-to-light";
+
+    root.style.setProperty("--x", `${x}%`);
+    root.style.setProperty("--y", `${y}%`);
+    document.body.classList.add("theme-transition");
+    document.body.appendChild(overlay);
+
+    root.classList.toggle("dark", isDark);
+    window.setTimeout(() => {
+      document.body.style.backgroundColor = isDark ? "#252525" : "#ffffff";
+      document.body.style.color = isDark ? "#ffffff" : "#000000";
+    }, 100);
+
+    localStorage.setItem("theme", currentTheme);
+
+    window.setTimeout(() => {
+      overlay.remove();
+      document.body.classList.remove("theme-transition");
+    }, 1000);
+  }, []);
+
   useEffect(() => {
     if (isInitialLoad) {
-      // Skip animation on initial load
       setIsInitialLoad(false);
       applyThemeWithoutAnimation(theme);
       return;
     }
 
     applyThemeWithAnimation(theme);
-    
-  }, [theme, isInitialLoad]);
-
-  // Apply theme without animation for initial load
-  const applyThemeWithoutAnimation = useCallback((currentTheme: ThemeType) => {
-    const root = document.documentElement;
-    
-    if (currentTheme === "dark") {
-      root.classList.add("dark");
-      document.body.style.backgroundColor = "#252525";
-      document.body.style.color = "#ffffff";
-    } else {
-      root.classList.remove("dark");
-      document.body.style.backgroundColor = "#ffffff";
-      document.body.style.color = "#000000";
-    }
-    
-    // Store theme preference
-    localStorage.setItem("theme", currentTheme);
-  }, []);
-
-  // Apply theme with animation for toggle interactions
-  const applyThemeWithAnimation = useCallback((currentTheme: ThemeType) => {
-    const root = document.documentElement;
-    
-    // Create overlay for animation
-    const overlay = document.createElement('div');
-    overlay.className = currentTheme === 'light' 
-      ? 'theme-transition-overlay theme-transition-to-light' 
-      : 'theme-transition-overlay theme-transition-to-dark';
-    
-    // Set the center of the animation to the current mouse position
-    document.documentElement.style.setProperty('--x', `${mousePosition.x}%`);
-    document.documentElement.style.setProperty('--y', `${mousePosition.y}%`);
-    
-    // Add transition class for animation
-    document.body.classList.add("theme-transition");
-    
-    document.body.appendChild(overlay);
-    
-    // Apply theme change
-    if (currentTheme === "dark") {
-      root.classList.add("dark");
-      setTimeout(() => {
-        document.body.style.backgroundColor = "#252525";
-        document.body.style.color = "#ffffff";
-      }, 100);
-    } else {
-      root.classList.remove("dark");
-      setTimeout(() => {
-        document.body.style.backgroundColor = "#ffffff";
-        document.body.style.color = "#000000";
-      }, 100);
-    }
-    
-    // Store theme preference
-    localStorage.setItem("theme", currentTheme);
-    
-    // Remove overlay and transition class after animation
-    setTimeout(() => {
-      if (document.body.contains(overlay)) {
-        document.body.removeChild(overlay);
-      }
-      document.body.classList.remove("theme-transition");
-    }, 1000);
-  }, [mousePosition]);
+  }, [theme, isInitialLoad, applyThemeWithoutAnimation, applyThemeWithAnimation]);
 
   const toggleTheme = useCallback(() => {
     setTheme(prevTheme => prevTheme === "light" ? "dark" : "light");
-    
-    // Log for debugging
-    console.log("Theme toggled without page refresh");
   }, []);
 
-  const contextValue = {
-    theme,
-    toggleTheme
-  };
+  const contextValue = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
 
   return (
     <ThemeContext.Provider value={contextValue}>

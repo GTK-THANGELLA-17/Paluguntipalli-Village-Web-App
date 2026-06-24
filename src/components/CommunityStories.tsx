@@ -42,8 +42,8 @@ const CommunityStories: React.FC<CommunityStoriesProps> = ({ onClose }) => {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-50 to-white dark:from-[#1a1a1a] dark:to-[#252525] min-h-screen">
-      <div className="container mx-auto px-4">
+    <section className="feature-section-shell py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-orange-50 to-white dark:from-[#1a1a1a] dark:to-[#252525] min-h-screen">
+      <div className="feature-container container mx-auto px-3 sm:px-4 lg:px-6">
         <StoriesHeader onBackToFeatures={handleBackToFeatures} />
 
         <StoriesFilter
@@ -52,7 +52,7 @@ const CommunityStories: React.FC<CommunityStoriesProps> = ({ onClose }) => {
           onCategoryChange={setSelectedCategory}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {filteredStories.map((story, index) => (
             <StoryCard
               key={story.id}

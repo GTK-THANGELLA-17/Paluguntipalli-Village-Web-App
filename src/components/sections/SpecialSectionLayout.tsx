@@ -1,7 +1,6 @@
-
-import React, { ReactNode } from 'react';
+﻿import React, { ReactNode } from 'react';
 import LoadingScreen from "@/components/LoadingScreen";
-import MainLayout from './MainLayout';
+import MainLayout from '@/components/layout/MainLayout';
 
 interface SpecialSectionLayoutProps {
   children: ReactNode;
@@ -43,7 +42,7 @@ const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
           {/* Pass onBackToFeatures prop to VillageMap if it's the active section */}
           {activeSection === 'village-map' ? (
             <div>
-              {React.cloneElement(children as React.ReactElement, { onBackToFeatures: handleBackToFeatures })}
+              {React.cloneElement(children as React.ReactElement<{ onBackToFeatures?: () => void }>, { onBackToFeatures: handleBackToFeatures })}
             </div>
           ) : (
             children
@@ -55,3 +54,5 @@ const SpecialSectionLayout: React.FC<SpecialSectionLayoutProps> = ({
 };
 
 export default SpecialSectionLayout;
+
+

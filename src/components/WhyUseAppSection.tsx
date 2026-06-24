@@ -65,20 +65,13 @@ const WhyUseAppSection: React.FC<WhyUseAppSectionProps> = ({ onClose }) => {
       <div className="container mx-auto px-4">
         {/* Responsive Back Button */}
         <motion.div 
-          className={`fixed top-20 right-4 z-50 transition-all duration-300 ${
-            isScrolled ? 'top-24 scale-90' : 'top-20 scale-100'
-          }`}
-          animate={{ 
-            y: isScrolled ? 0 : 0,
-            scale: isScrolled ? 0.9 : 1
-          }}
-          transition={{ duration: 0.3 }}
+          className="sticky top-20 z-40 mb-6 flex justify-end transition-all duration-300"
         >
           <Button
             onClick={handleBackClick}
             variant="outline"
             size="sm"
-            className="bg-white/95 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-700"
+            className="min-h-11 rounded-full bg-white/95 px-4 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-600 hover:bg-white dark:hover:bg-gray-700 focus-visible:ring-4 focus-visible:ring-heritage/30"
           >
             <ArrowLeft size={16} className="mr-2" />
             Back to Features

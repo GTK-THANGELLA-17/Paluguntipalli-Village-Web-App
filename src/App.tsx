@@ -30,21 +30,21 @@ function App() {
     };
   }, [location.pathname]);
 
-  // Preload critical resources
+  // Warm up Google Fonts connections without incorrectly preloading CSS as a font file.
   useEffect(() => {
-    // Preload fonts
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'font';
-    link.type = 'font/woff2';
-    link.crossOrigin = 'anonymous';
-    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
-    document.head.appendChild(link);
+    const preconnects = ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'].map((href) => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = href;
+      if (href.includes('gstatic')) {
+        link.crossOrigin = 'anonymous';
+      }
+      document.head.appendChild(link);
+      return link;
+    });
 
     return () => {
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
+      preconnects.forEach((link) => link.parentNode?.removeChild(link));
     };
   }, []);
 

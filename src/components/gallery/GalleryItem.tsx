@@ -1,4 +1,4 @@
-// components/GalleryItem.tsx
+﻿// components/GalleryItem.tsx
 import { motion } from "framer-motion";
 import { Image, Video } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
@@ -13,9 +13,10 @@ interface GalleryItemProps {
   };
   index: number;
   onSelect: (item: any) => void;
+  disabled?: boolean;
 }
 
-const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
+const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect, disabled = false }) => {
   const [imageSrc, setImageSrc] = useState('');
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -47,8 +48,8 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
   return (
     <motion.div
       className="group relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 cursor-pointer"
-      onClick={() => onSelect(item)}
-      whileHover={{ scale: 1.02 }}
+      onClick={() => { if (!disabled) onSelect(item); }}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
     >
       <div className="aspect-[4/3] bg-gray-200 dark:bg-gray-800 relative">
         {!isLoaded && !hasError && (
@@ -97,3 +98,4 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onSelect }) => {
 };
 
 export default GalleryItem;
+

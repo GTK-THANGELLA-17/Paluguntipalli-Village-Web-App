@@ -52,7 +52,9 @@ try {
     </StrictMode>
   );
   
-  console.log(`🚀 ${config.APP_NAME} v${config.APP_VERSION} initialized successfully`);
+  if (!config.isProduction) {
+    console.info(`${config.APP_NAME} v${config.APP_VERSION} initialized successfully`);
+  }
   
 } catch (error) {
   console.error('Failed to render application:', error);

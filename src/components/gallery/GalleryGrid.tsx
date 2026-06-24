@@ -144,7 +144,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ items, onItemSelect, isLoadin
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="text-4xl sm:text-6xl mb-4">🔍</div>
+          <Search className="mx-auto mb-4 text-gray-400" size={48} />
           <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg px-4">
             {searchTerm ? `No items found for "${searchTerm}"` : 'No items available'}
           </p>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useTranslation } from "react-i18next";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -30,7 +30,6 @@ export const useAppInitialization = () => {
     const loadTimer = setTimeout(() => {
       if (import.meta.env.DEV) {
         const loadTime = performance.now() - startTime;
-        console.log(`App loaded in ${loadTime.toFixed(2)}ms`);
       }
       setLoading(false);
     }, 250);
@@ -58,3 +57,4 @@ export const useAppInitialization = () => {
 
   return { loading, isScrolled };
 };
+

@@ -11,8 +11,8 @@ const eventsData = [
     id: 1,
     title: "Peerla Panduga Celebrations",
     description:
-      "Peerla Panduga was celebrated with vibrant processions, traditional rituals, and community prayers. The celebrations went very well, with a large number of people attending from across Andhra Pradesh, Telangana, and local villages. The atmosphere was festive and filled with joy, devotion, and cultural unity. It was truly a memorable occasion for everyone who took part.",
-    time: "All Day",
+      "Peerla Panduga 2026 is being celebrated in Paluguntipalli on June 25 to 26, 2026 with vibrant processions, traditional rituals, community prayers, and village gatherings at Peerla Chavidi. Visitors and villagers can follow festival updates, photos, videos, and live streaming through this website.",
+    time: "June 25 to 26, 2026",
     location: "Village Main Peerla Chavidi",
     image: "/Events Today/pedda sarigesu 1.jpg"
   },
@@ -20,8 +20,8 @@ const eventsData = [
     id: 2,
     title: "Rainy Season Safety Tips",
     description:
-      "The rainy season has begun with occasional heavy showers. Please stay cautious—avoid water-logged areas, drink clean water, and help keep the village mosquito-free.",
-    time: "All Day",
+      "Festival days may bring crowds, travel, and rainy-season weather. Please stay cautious, drink clean water, avoid unsafe water-logged areas, and help keep the village clean during the June 25 to 26 celebrations.",
+    time: "June 25 to 26, 2026",
     location: "Across the Village",
     image: "/Events Today/VILLAGE START.jpg"
   }

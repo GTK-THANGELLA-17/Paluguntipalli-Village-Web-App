@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { GraduationCap, Calendar, Clock } from 'lucide-react';
+import { GraduationCap, Calendar } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 interface SchoolUpdate {
@@ -16,61 +15,48 @@ const SchoolAPI = () => {
 
   useEffect(() => {
     const fetchSchoolUpdates = async () => {
-      try {
-        // Simulating school updates API
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        
-        const sampleUpdates = [
-          {
-            type: 'notice' as const,
-            title: "Parent-Teacher Meeting",
-            date: tomorrow.toLocaleDateString(),
-            description: "Monthly PTM scheduled for all classes"
-          },
-          {
-            type: 'holiday' as const,
-            title: "Republic Day Holiday",
-            date: "26/01/2025",
-            description: "School will remain closed"
-          },
-          {
-            type: 'exam' as const,
-            title: "Annual Examinations",
-            date: "15/02/2025",
-            description: "Final exams start for classes 1-10"
-          },
-          {
-            type: 'event' as const,
-            title: "Science Exhibition",
-            date: "05/02/2025",
-            description: "Students showcase science projects"
-          }
-        ];
-        
-        setUpdates(sampleUpdates);
-        
-      } catch (err) {
-        console.error("Error fetching school updates:", err);
-      } finally {
-        setLoading(false);
-      }
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      const sampleUpdates: SchoolUpdate[] = [
+        {
+          type: 'notice',
+          title: 'School Notice Board',
+          date: today.toLocaleDateString(),
+          description: 'Local school updates are shown here when available.'
+        },
+        {
+          type: 'holiday',
+          title: 'Festival Period Advisory',
+          date: '25/06/2026 - 26/06/2026',
+          description: 'Families should check with the school for festival-period class timings.'
+        },
+        {
+          type: 'event',
+          title: 'Community Learning Activities',
+          date: tomorrow.toLocaleDateString(),
+          description: 'Students are encouraged to participate in safe community and cultural learning activities.'
+        }
+      ];
+
+      setUpdates(sampleUpdates);
+      setLoading(false);
     };
 
     fetchSchoolUpdates();
-    const interval = setInterval(fetchSchoolUpdates, 24 * 60 * 60 * 1000); // Daily
+    const interval = setInterval(fetchSchoolUpdates, 24 * 60 * 60 * 1000);
     return () => clearInterval(interval);
   }, []);
 
-  if (loading) return <div className="animate-pulse bg-gray-200 dark:bg-gray-700 h-48 rounded-lg"></div>;
+  if (loading) return <div className="animate-pulse bg-gray-200 dark:bg-gray-700 h-48 rounded-lg" />;
 
   const getTypeIcon = (type: SchoolUpdate['type']) => {
     switch (type) {
-      case 'holiday': return '🏖️';
-      case 'exam': return '📝';
-      case 'event': return '🎉';
-      case 'notice': return '📢';
+      case 'holiday': return 'Holiday';
+      case 'exam': return 'Exam';
+      case 'event': return 'Event';
+      case 'notice': return 'Notice';
     }
   };
 
@@ -86,9 +72,11 @@ const SchoolAPI = () => {
         <div className="space-y-3 max-h-64 overflow-y-auto">
           {updates.map((update, index) => (
             <div key={index} className="p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-              <div className="flex items-start justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="mr-2">{getTypeIcon(update.type)}</span>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                    {getTypeIcon(update.type)}
+                  </span>
                   <h4 className="font-medium text-sm text-gray-900 dark:text-white">{update.title}</h4>
                 </div>
                 <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
