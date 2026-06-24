@@ -1,4 +1,4 @@
-
+﻿
 import { config } from '@/config/environment';
 
 // Security utility functions for production deployment
@@ -12,8 +12,8 @@ export const securityUtils = {
       "font-src 'self' https://fonts.gstatic.com",
       "img-src 'self' data: https: blob:",
       "media-src 'self' data: blob:",
-      "connect-src 'self' https://api.paluguntipalli.com https://www.google-analytics.com",
-      "frame-src 'none'",
+      "connect-src 'self' https://api.paluguntipalli.com https://www.google-analytics.com https://api.open-meteo.com https://api.exchangerate-api.com",
+      "frame-src 'self' https://maps.google.com https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com",
       "object-src 'none'",
       "base-uri 'self'"
     ];
@@ -33,18 +33,6 @@ export const securityUtils = {
         cspMeta.content = securityUtils.getCSPHeader();
         document.head.appendChild(cspMeta);
       }
-
-      // Add X-Content-Type-Options
-      const xContentTypeMeta = document.createElement('meta');
-      xContentTypeMeta.httpEquiv = 'X-Content-Type-Options';
-      xContentTypeMeta.content = 'nosniff';
-      document.head.appendChild(xContentTypeMeta);
-
-      // Add X-Frame-Options
-      const xFrameMeta = document.createElement('meta');
-      xFrameMeta.httpEquiv = 'X-Frame-Options';
-      xFrameMeta.content = 'DENY';
-      document.head.appendChild(xFrameMeta);
 
       // Add Referrer Policy
       const referrerMeta = document.createElement('meta');
@@ -76,3 +64,5 @@ export const securityUtils = {
     }
   }
 };
+
+

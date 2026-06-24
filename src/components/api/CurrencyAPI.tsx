@@ -1,14 +1,20 @@
-
-import { useState, useEffect } from 'react';
-import { TrendingUp, DollarSign } from 'lucide-react';
+﻿import { useEffect, useState } from 'react';
+import { DollarSign } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 interface ExchangeRates {
-  USD: number;
-  EUR: number;
-  GBP: number;
+  USD: string;
+  EUR: string;
+  GBP: string;
   lastUpdated: string;
 }
+
+const fallbackRates = (): ExchangeRates => ({
+  USD: '83.25',
+  EUR: '89.50',
+  GBP: '104.75',
+  lastUpdated: new Date().toLocaleTimeString()
+});
 
 const CurrencyAPI = () => {
   const [rates, setRates] = useState<ExchangeRates | null>(null);
@@ -18,42 +24,33 @@ const CurrencyAPI = () => {
   useEffect(() => {
     const fetchCurrency = async () => {
       try {
-        // Using a free currency API
         const response = await fetch('https://api.exchangerate-api.com/v4/latest/INR');
-        
-        if (!response.ok) throw new Error("Currency data not available");
-        
+        if (!response.ok) throw new Error('Currency data not available');
+
         const data = await response.json();
         setRates({
-          USD: (1 / data.rates.USD).toFixed(2) as any,
-          EUR: (1 / data.rates.EUR).toFixed(2) as any,
-          GBP: (1 / data.rates.GBP).toFixed(2) as any,
+          USD: (1 / data.rates.USD).toFixed(2),
+          EUR: (1 / data.rates.EUR).toFixed(2),
+          GBP: (1 / data.rates.GBP).toFixed(2),
           lastUpdated: new Date().toLocaleTimeString()
         });
-        
-      } catch (err) {
-        console.error("Error fetching currency:", err);
-        setError("Unable to fetch currency data");
-        
-        // Fallback sample data
-        setRates({
-          USD: 83.25,
-          EUR: 89.50,
-          GBP: 104.75,
-          lastUpdated: new Date().toLocaleTimeString()
-        });
+        setError(null);
+      } catch {
+        setError('Showing fallback currency reference');
+        setRates(fallbackRates());
       } finally {
         setLoading(false);
       }
     };
 
     fetchCurrency();
-    // Update every 30 minutes
-    const interval = setInterval(fetchCurrency, 30 * 60 * 1000);
-    return () => clearInterval(interval);
+    const interval = window.setInterval(fetchCurrency, 30 * 60 * 1000);
+    return () => window.clearInterval(interval);
   }, []);
 
-  if (loading) return <div className="animate-pulse bg-gray-200 dark:bg-gray-700 h-48 rounded-lg"></div>;
+  if (loading) {
+    return <div className="h-48 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-700" />;
+  }
 
   return (
     <Card className="h-full">
@@ -67,25 +64,19 @@ const CurrencyAPI = () => {
         <div className="space-y-3">
           {rates && (
             <>
-              <div className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
-                <span className="font-medium text-gray-900 dark:text-white">USD</span>
-                <span className="text-lg text-gray-900 dark:text-white">₹{rates.USD}</span>
-              </div>
-              <div className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
-                <span className="font-medium text-gray-900 dark:text-white">EUR</span>
-                <span className="text-lg text-gray-900 dark:text-white">₹{rates.EUR}</span>
-              </div>
-              <div className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700 rounded">
-                <span className="font-medium text-gray-900 dark:text-white">GBP</span>
-                <span className="text-lg text-gray-900 dark:text-white">₹{rates.GBP}</span>
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-3">
+              {(['USD', 'EUR', 'GBP'] as const).map(currency => (
+                <div key={currency} className="flex items-center justify-between rounded bg-gray-50 p-2 dark:bg-gray-700">
+                  <span className="font-medium text-gray-900 dark:text-white">{currency}</span>
+                  <span className="text-lg text-gray-900 dark:text-white">INR {rates[currency]}</span>
+                </div>
+              ))}
+              <p className="mt-3 text-center text-xs text-gray-500 dark:text-gray-400">
                 Last updated: {rates.lastUpdated}
               </p>
             </>
           )}
         </div>
-        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+        {error && <p className="mt-2 text-sm text-amber-600 dark:text-amber-300">{error}</p>}
       </CardContent>
     </Card>
   );
